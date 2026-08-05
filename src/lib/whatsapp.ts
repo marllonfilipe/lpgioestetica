@@ -8,17 +8,12 @@ export function buildWhatsAppUrl(message = siteConfig.whatsappMessage) {
 
 export function buildLeadMessage(data: {
   name: string;
-  timeTrying: string;
   difficulty: string;
-  priorTreatment: string;
-  bestTime: string;
 }) {
   return [
     `Olá! Meu nome é ${data.name}.`,
     "Gostaria de saber mais sobre o protocolo de emagrecimento multidisciplinar da Gio.",
-    `Tento emagrecer há: ${data.timeTrying}`,
     `Minha principal dificuldade é: ${data.difficulty}`,
-    `Já realizei tratamento anteriormente: ${data.priorTreatment}`,
-    `Melhor horário para contato: ${data.bestTime}`,
+    "Quero entender se o protocolo é indicado para mim e quais são os próximos passos.",
   ].join("\n");
 }

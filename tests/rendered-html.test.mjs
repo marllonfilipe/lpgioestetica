@@ -29,12 +29,16 @@ test("server-renders the Gio landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /Emagrecimento Multidisciplinar \| Gio Praia da Costa/i);
-  assert.match(html, /Você já tentou emagrecer de várias formas/i);
+  assert.match(html, /Emagrecimento com/i);
+  assert.match(html, /uma equipe cuidando de você por inteiro/i);
   assert.match(html, /Seis frentes de acompanhamento/i);
   assert.match(html, /Tire suas dúvidas sobre o protocolo/i);
   assert.match(html, /Descubra se o protocolo é indicado para você/i);
   assert.match(html, /aria-label="Navegação principal"/i);
   assert.match(html, /name="consent"/i);
+  assert.match(html, /wa\.me\/5527992325542/i);
+  assert.match(html, /Av\. Henrique Moscoso, 530/i);
+  assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
   assert.match(html, /images\/gio\/hero\.png/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });

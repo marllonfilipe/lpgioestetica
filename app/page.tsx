@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import GioLandingPage from "./GioLandingPage";
 import { faqs } from "../src/config/copy";
+import { siteConfig } from "../src/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -39,15 +40,39 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    name: "Gio Estética Avançada Praia da Costa",
+    name: siteConfig.clinicName,
+    url: siteConfig.canonicalUrl,
+    telephone: "+55 27 99232-5542",
     areaServed: "Praia da Costa, Vila Velha, Espírito Santo",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Av. Henrique Moscoso, 530 - Praia da Costa",
+      postalCode: "29100-020",
       addressLocality: "Vila Velha",
       addressRegion: "ES",
       addressCountry: "BR",
     },
-    sameAs: ["https://www.instagram.com/giopraiadacosta/"],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Wednesday", "Friday"],
+        opens: "08:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Tuesday", "Thursday"],
+        opens: "08:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "08:00",
+        closes: "16:00",
+      },
+    ],
+    sameAs: [siteConfig.instagramUrl],
   },
   {
     "@context": "https://schema.org",

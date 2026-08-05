@@ -5,8 +5,12 @@ export function trackEvent(event: string, payload: TrackingPayload = {}) {
 
   const target = window as Window & {
     dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   };
 
   target.dataLayer = target.dataLayer ?? [];
   target.dataLayer.push({ event, ...payload });
+  target.gtag?.("event", event, payload);
+  target.fbq?.("trackCustom", event, payload);
 }

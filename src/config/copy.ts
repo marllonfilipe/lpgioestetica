@@ -118,11 +118,11 @@ export const objections = [
 ] as const;
 
 export const teamRoles = [
-  "Profissional médico",
-  "Profissional de psicologia",
-  "Profissional de nutrição",
-  "Profissional de educação física",
-  "Equipe de estética",
+  ["Profissional médico", "Avalia o histórico de saúde, a indicação medicamentosa e a evolução clínica."],
+  ["Profissional de psicologia", "Acompanha fatores emocionais e comportamentais relacionados à jornada."],
+  ["Profissional de nutrição", "Constrói uma estratégia alimentar adequada à rotina e aos objetivos."],
+  ["Profissional de educação física", "Orienta um plano de movimento possível, progressivo e individualizado."],
+  ["Equipe de estética", "Define cuidados estéticos conforme as necessidades percebidas durante o processo."],
 ] as const;
 
 export const faqs = [
@@ -133,6 +133,12 @@ export const faqs = [
   ["Preciso já praticar atividade física?", "Não. O educador físico desenvolve um plano adequado ao seu momento, às suas condições e à sua rotina."],
   ["Posso participar mesmo já tendo tentado outros tratamentos?", "Sim. As tentativas anteriores fazem parte do histórico e devem ser consideradas durante a avaliação."],
   ["Os resultados são iguais para todas as pessoas?", "Não. Os resultados podem variar conforme as condições de saúde, a resposta do organismo, a rotina e a adesão ao acompanhamento."],
+  ["Quanto tempo dura o acompanhamento?", "A duração é individual. A equipe define e ajusta os próximos passos conforme a avaliação, os objetivos e a evolução de cada pessoa."],
+  ["O que pode fazer parte do protocolo?", "O plano pode integrar acompanhamento médico, psicológico, nutricional, físico e estético. A composição e a frequência são definidas de forma individualizada."],
+  ["E se a tirzepatida não for indicada para mim?", "A medicação não é obrigatória para que exista cuidado multidisciplinar. O médico conversa sobre as estratégias adequadas ao seu caso após a avaliação."],
+  ["Como os efeitos e a evolução são acompanhados?", "A resposta ao plano, as dificuldades e eventuais sintomas são acompanhados pela equipe. Condutas e frequência podem ser ajustadas conforme a evolução."],
+  ["Existe acompanhamento para manutenção dos resultados?", "Os próximos passos são definidos conforme a evolução e os objetivos de cada pessoa. A equipe orienta como dar continuidade ao cuidado no momento apropriado."],
+  ["A avaliação tem algum custo?", "A equipe informa as condições da avaliação e do acompanhamento no primeiro contato, antes de qualquer decisão."],
   ["Como faço para começar?", "Clique em um dos botões da página e converse com a equipe pelo WhatsApp."],
 ] as const;
 

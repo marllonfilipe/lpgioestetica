@@ -4,26 +4,24 @@ export const siteConfig = {
   instagram: "@giopraiadacosta",
   instagramUrl: "https://www.instagram.com/giopraiadacosta/",
   location: "Praia da Costa - Vila Velha, Espírito Santo",
-  fullAddress: "",
-  whatsappNumber: "",
+  fullAddress: "Av. Henrique Moscoso, 530 - Praia da Costa, Vila Velha - ES, 29100-020",
+  whatsappNumber: "5527992325542",
   whatsappMessage:
     "Olá! Gostaria de saber se o protocolo de emagrecimento da Gio é indicado para mim.",
-  googleMapsUrl: "",
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Av.%20Henrique%20Moscoso%2C%20530%20-%20Praia%20da%20Costa%2C%20Vila%20Velha%20-%20ES%2C%2029100-020",
   email: "",
-  openingHours: "",
-  canonicalUrl: "",
+  openingHours:
+    "Seg., qua. e sex., das 8h às 18h · Ter. e qui., das 8h às 20h · Sáb., das 8h às 16h",
+  canonicalUrl: "https://gio-praia-da-costa.mfcs1510.chatgpt.site",
   googleAnalyticsId: "",
   googleTagManagerId: "",
   metaPixelId: "",
 } as const;
 
 export const pendingInformation = [
-  "Número oficial do WhatsApp",
-  "Endereço completo e link do mapa",
   "Logo oficial",
   "Nomes, registros, biografias e fotos dos profissionais",
   "Depoimentos autorizados",
-  "Horário de atendimento",
   "IDs de ferramentas de análise",
-  "URL oficial do domínio",
 ] as const;

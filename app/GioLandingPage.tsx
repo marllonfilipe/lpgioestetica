@@ -36,7 +36,7 @@ import {
   sixFronts,
   teamRoles,
 } from "../src/config/copy";
-import { pendingInformation, siteConfig } from "../src/config/site";
+import { siteConfig } from "../src/config/site";
 import { trackEvent } from "../src/lib/analytics";
 import { buildLeadMessage, buildWhatsAppUrl } from "../src/lib/whatsapp";
 
@@ -57,7 +57,7 @@ const galleryImages = [
 ] as const;
 
 type FormErrors = Partial<
-  Record<"name" | "phone" | "timeTrying" | "difficulty" | "priorTreatment" | "bestTime" | "consent", string>
+  Record<"name" | "phone" | "difficulty" | "consent", string>
 >;
 
 function formatPhone(value: string) {
@@ -78,6 +78,7 @@ export default function GioLandingPage() {
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const formSectionRef = useRef<HTMLElement | null>(null);
+  const formStartedRef = useRef(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -146,20 +147,14 @@ export default function GioLandingPage() {
     const values = {
       name: String(form.get("name") ?? "").trim(),
       phone: String(form.get("phone") ?? "").replace(/\D/g, ""),
-      timeTrying: String(form.get("timeTrying") ?? "").trim(),
       difficulty: String(form.get("difficulty") ?? "").trim(),
-      priorTreatment: String(form.get("priorTreatment") ?? "").trim(),
-      bestTime: String(form.get("bestTime") ?? "").trim(),
       consent: form.get("consent") === "on",
     };
 
     const nextErrors: FormErrors = {};
     if (values.name.length < 3) nextErrors.name = "Informe seu nome completo.";
     if (values.phone.length < 10) nextErrors.phone = "Informe um WhatsApp válido com DDD.";
-    if (!values.timeTrying) nextErrors.timeTrying = "Selecione uma opção.";
     if (!values.difficulty) nextErrors.difficulty = "Conte brevemente sua principal dificuldade.";
-    if (!values.priorTreatment) nextErrors.priorTreatment = "Selecione uma opção.";
-    if (!values.bestTime) nextErrors.bestTime = "Selecione o melhor horário.";
     if (!values.consent) nextErrors.consent = "Você precisa autorizar o contato da equipe.";
 
     setErrors(nextErrors);
@@ -247,19 +242,17 @@ export default function GioLandingPage() {
         <section id="hero" className="hero section-pad">
           <div className="shell hero-grid">
             <div className="hero-copy reveal">
-              <div className="eyebrow">Emagrecimento multidisciplinar e personalizado</div>
+              <div className="eyebrow">Método Gio Integrado · acompanhamento personalizado</div>
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
-                Você já tentou emagrecer de várias formas. O que talvez tenha faltado não foi esforço - foi{" "}
-                <em>uma equipe cuidando de tudo ao mesmo tempo.</em>
+                Emagrecimento com <em>uma equipe cuidando de você por inteiro.</em>
               </h1>
               <p className="hero-lead">
-                Um protocolo personalizado que reúne acompanhamento médico, psicológico, nutricional,
-                estético, plano com educador físico e aplicação de tirzepatida em uma única jornada.
+                Acompanhamento médico, psicológico, nutricional, físico e estético — com tirzepatida somente
+                quando houver indicação médica.
               </p>
               <p className="hero-support">
-                Na Gio Praia da Costa, diferentes profissionais acompanham sua saúde, alimentação,
-                comportamento, atividade física e evolução corporal durante o processo.
+                Converse com a equipe, entenda os próximos passos e tire suas dúvidas antes de decidir.
               </p>
               <div className="button-row">
                 <a
@@ -689,19 +682,16 @@ export default function GioLandingPage() {
                 <span className="kicker">Equipe e autoridade</span>
                 <h2>Conheça os profissionais que acompanharão sua jornada</h2>
               </div>
-              <p>
-                Os perfis serão publicados após a confirmação dos nomes, registros, biografias e fotografias
-                oficiais. Nenhuma credencial foi inventada nesta página.
-              </p>
+              <p>Cinco áreas conectadas para que decisões, dificuldades e evolução sejam acompanhadas em conjunto.</p>
             </div>
             <div className="team-grid">
-              {teamRoles.map((role, index) => (
+              {teamRoles.map(([role, description], index) => (
                 <article key={role} className={`team-card team-card-${index + 1}`}>
                   <span className="team-placeholder" aria-hidden="true">G.</span>
                   <div>
                     <span className="team-number">0{index + 1}</span>
                     <h3>{role}</h3>
-                    <p>Nome, registro, biografia e fotografia em atualização.</p>
+                    <p>{description}</p>
                   </div>
                 </article>
               ))}
@@ -712,15 +702,16 @@ export default function GioLandingPage() {
         <section className="testimonials section-pad" aria-labelledby="experiencias-title">
           <div className="shell testimonials-grid">
             <div>
-              <span className="kicker">Prova social responsável</span>
-              <h2 id="experiencias-title">Experiências de quem escolheu ser acompanhado</h2>
+              <span className="kicker">Transparência e responsabilidade</span>
+              <h2 id="experiencias-title">Resultados reais começam com expectativas individualizadas</h2>
             </div>
             <div className="testimonial-placeholder">
               <span aria-hidden="true">“</span>
               <p>
-                Depoimentos autorizados serão exibidos aqui com nome ou iniciais, data e origem da avaliação.
+                Cada pessoa responde de forma diferente. O plano considera histórico, rotina, objetivos e
+                resposta individual ao acompanhamento.
               </p>
-              <small>Área preparada - nenhum depoimento fictício inserido.</small>
+              <small>A evolução é acompanhada pela equipe e as condutas podem ser ajustadas durante a jornada.</small>
             </div>
           </div>
         </section>
@@ -757,7 +748,8 @@ export default function GioLandingPage() {
                 <div><dt>Unidade</dt><dd>{siteConfig.clinicName}</dd></div>
                 <div><dt>Região</dt><dd>{siteConfig.location}</dd></div>
                 <div><dt>Instagram</dt><dd>{siteConfig.instagram}</dd></div>
-                <div><dt>Endereço e horário</dt><dd>Confirme com a equipe no primeiro contato</dd></div>
+                <div><dt>Endereço</dt><dd>{siteConfig.fullAddress}</dd></div>
+                <div><dt>Atendimento</dt><dd>{siteConfig.openingHours}</dd></div>
               </dl>
               <div className="button-row">
                 <a
@@ -784,7 +776,7 @@ export default function GioLandingPage() {
               <MapPin aria-hidden="true" />
               <p>Praia da Costa</p>
               <strong>Vila Velha · ES</strong>
-              <span>Endereço completo será adicionado após confirmação oficial.</span>
+              <span>{siteConfig.fullAddress}</span>
             </div>
           </div>
         </section>
@@ -850,8 +842,8 @@ export default function GioLandingPage() {
               <span className="kicker">Seu primeiro contato</span>
               <h2>Descubra se o protocolo é indicado para você</h2>
               <p>
-                Preencha seus dados para montar uma mensagem e conversar com a equipe pelo WhatsApp. As respostas
-                não são enviadas para ferramentas de análise.
+                Leva menos de um minuto. Preencha seus dados para montar uma mensagem e conversar diretamente
+                com a equipe pelo WhatsApp. As respostas não são enviadas para ferramentas de análise.
               </p>
               <div className="lead-security">
                 <ShieldCheck aria-hidden="true" />
@@ -859,52 +851,30 @@ export default function GioLandingPage() {
               </div>
             </div>
 
-            <form className="lead-form" onSubmit={handleSubmit} noValidate>
+            <form
+              className="lead-form"
+              onSubmit={handleSubmit}
+              onFocusCapture={() => {
+                if (formStartedRef.current) return;
+                formStartedRef.current = true;
+                trackEvent("lead_form_start", { location: "lead_form" });
+              }}
+              noValidate
+            >
               <div className="field field-wide">
                 <label htmlFor="name">Nome completo</label>
                 <input id="name" name="name" type="text" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />
                 {errors.name && <span id="name-error" className="field-error">{errors.name}</span>}
               </div>
-              <div className="field">
+              <div className="field field-wide">
                 <label htmlFor="phone">WhatsApp</label>
                 <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(formatPhone(event.target.value))} placeholder="(27) 99999-9999" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} />
                 {errors.phone && <span id="phone-error" className="field-error">{errors.phone}</span>}
-              </div>
-              <div className="field">
-                <label htmlFor="timeTrying">Há quanto tempo tenta emagrecer?</label>
-                <select id="timeTrying" name="timeTrying" defaultValue="" aria-invalid={Boolean(errors.timeTrying)} aria-describedby={errors.timeTrying ? "time-error" : undefined}>
-                  <option value="" disabled>Selecione</option>
-                  <option>Menos de 1 ano</option>
-                  <option>Entre 1 e 3 anos</option>
-                  <option>Entre 3 e 5 anos</option>
-                  <option>Há mais de 5 anos</option>
-                </select>
-                {errors.timeTrying && <span id="time-error" className="field-error">{errors.timeTrying}</span>}
               </div>
               <div className="field field-wide">
                 <label htmlFor="difficulty">Principal dificuldade atualmente</label>
                 <textarea id="difficulty" name="difficulty" rows={4} placeholder="Conte brevemente o que mais dificulta seu processo hoje" aria-invalid={Boolean(errors.difficulty)} aria-describedby={errors.difficulty ? "difficulty-error" : undefined} />
                 {errors.difficulty && <span id="difficulty-error" className="field-error">{errors.difficulty}</span>}
-              </div>
-              <div className="field">
-                <label htmlFor="priorTreatment">Já realizou tratamento?</label>
-                <select id="priorTreatment" name="priorTreatment" defaultValue="" aria-invalid={Boolean(errors.priorTreatment)} aria-describedby={errors.priorTreatment ? "treatment-error" : undefined}>
-                  <option value="" disabled>Selecione</option>
-                  <option>Sim</option>
-                  <option>Não</option>
-                  <option>Prefiro conversar com a equipe</option>
-                </select>
-                {errors.priorTreatment && <span id="treatment-error" className="field-error">{errors.priorTreatment}</span>}
-              </div>
-              <div className="field">
-                <label htmlFor="bestTime">Melhor horário para contato</label>
-                <select id="bestTime" name="bestTime" defaultValue="" aria-invalid={Boolean(errors.bestTime)} aria-describedby={errors.bestTime ? "best-time-error" : undefined}>
-                  <option value="" disabled>Selecione</option>
-                  <option>Manhã</option>
-                  <option>Tarde</option>
-                  <option>Noite</option>
-                </select>
-                {errors.bestTime && <span id="best-time-error" className="field-error">{errors.bestTime}</span>}
               </div>
               <div className="consent field-wide">
                 <input id="consent" name="consent" type="checkbox" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "consent-error" : "consent-help"} />
@@ -935,8 +905,8 @@ export default function GioLandingPage() {
             <a href="/termos-de-uso">Termos de Uso</a>
           </div>
           <div className="footer-pending">
-            <strong>Dados em atualização</strong>
-            <p>{pendingInformation.slice(0, 4).join(" · ")}</p>
+            <strong>Atendimento</strong>
+            <p>{siteConfig.fullAddress} · {siteConfig.openingHours} · WhatsApp: (27) 99232-5542</p>
           </div>
         </div>
         <div className="shell footer-notice">
