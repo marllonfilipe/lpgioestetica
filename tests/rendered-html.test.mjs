@@ -31,7 +31,8 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /Emagrecimento Multidisciplinar \| Gio Praia da Costa/i);
   assert.match(html, /Emagrecer pode ser mais leve/i);
   assert.match(html, /você não precisa fazer tudo sozinho/i);
-  assert.match(html, /Aplicação de tirzepatida com cinco áreas de cuidado conectadas/i);
+  assert.match(html, /A aplicação é apenas/i);
+  assert.match(html, /Cinco áreas conectadas ao mesmo plano/i);
   assert.match(html, /tirzepatida-aplicacao\.png/i);
   assert.match(html, /Tire suas dúvidas sobre o protocolo/i);
   assert.match(html, /Converse com a equipe e entenda seu próximo passo/i);

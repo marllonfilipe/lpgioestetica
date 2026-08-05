@@ -407,14 +407,6 @@ export default function GioLandingPage() {
         <section id="protocolo" className="protocol section-pad">
           <div className="shell">
             <div className="protocol-intro">
-              <div>
-                <span className="kicker">Tirzepatida com acompanhamento</span>
-                <h2>Aplicação de tirzepatida com cinco áreas de cuidado conectadas por <em>um único plano.</em></h2>
-                <p>
-                  Quando houver indicação, prescrição e acompanhamento médico, a aplicação integra uma estratégia
-                  que também cuida de alimentação, emoções, atividade física e mudanças do corpo.
-                </p>
-              </div>
               <div className="protocol-photo image-frame">
                 <img
                   src="/images/gio/tirzepatida-aplicacao.png"
@@ -424,6 +416,23 @@ export default function GioLandingPage() {
                   loading="lazy"
                 />
               </div>
+              <div className="protocol-application-card">
+                <span className="kicker">Tirzepatida com acompanhamento</span>
+                <h2>A aplicação é apenas <em>uma parte do cuidado.</em></h2>
+                <p>
+                  Quando indicada pelo médico, a tirzepatida é integrada a um plano que também cuida da alimentação,
+                  das emoções, da atividade física e das mudanças do corpo.
+                </p>
+                <p className="protocol-medical-disclaimer">
+                  <ShieldCheck aria-hidden="true" /> Somente mediante avaliação, prescrição e acompanhamento médico.
+                </p>
+              </div>
+            </div>
+
+            <div className="protocol-areas-intro">
+              <span className="kicker">O cuidado continua</span>
+              <h3>Cinco áreas conectadas ao mesmo plano.</h3>
+              <p>A medicação pode fazer parte da estratégia. O cuidado continua em todas estas áreas:</p>
             </div>
 
             <div className="protocol-bento">
