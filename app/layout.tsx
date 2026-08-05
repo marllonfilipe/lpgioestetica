@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
+import type { CSSProperties } from "react";
 import "./globals.css";
 
-const editorial = Cormorant_Garamond({
+const editorial = Playfair_Display({
   variable: "--font-editorial",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -30,9 +31,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const fontVariables = {
+    "--font-editorial": editorial.style.fontFamily,
+    "--font-body": body.style.fontFamily,
+  } as CSSProperties;
+
   return (
     <html lang="pt-BR">
-      <body className={`${editorial.variable} ${body.variable}`}>{children}</body>
+      <body className={body.className} style={fontVariables}>
+        {children}
+      </body>
     </html>
   );
 }

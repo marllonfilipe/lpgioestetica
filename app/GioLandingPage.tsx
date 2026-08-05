@@ -74,6 +74,7 @@ export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
+  const [heroActionsVisible, setHeroActionsVisible] = useState(true);
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const formSectionRef = useRef<HTMLElement | null>(null);
@@ -99,6 +100,17 @@ export default function GioLandingPage() {
       { threshold: 0.15 },
     );
     observer.observe(formSectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const heroActions = document.querySelector(".hero");
+    if (!heroActions) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroActionsVisible(entry.isIntersecting),
+      { threshold: 0.15 },
+    );
+    observer.observe(heroActions);
     return () => observer.disconnect();
   }, []);
 
@@ -933,7 +945,7 @@ export default function GioLandingPage() {
         </div>
       </footer>
 
-      {!formVisible && (
+      {!formVisible && !heroActionsVisible && (
         <a
           className="floating-whatsapp"
           href={whatsappHref}
@@ -947,7 +959,7 @@ export default function GioLandingPage() {
         </a>
       )}
 
-      {!formVisible && (
+      {!formVisible && !heroActionsVisible && (
         <a
           className="mobile-fixed-cta"
           href={whatsappHref}
