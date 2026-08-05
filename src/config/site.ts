@@ -7,7 +7,7 @@ export const siteConfig = {
   fullAddress: "Av. Henrique Moscoso, 530 - Praia da Costa, Vila Velha - ES, 29100-020",
   whatsappNumber: "5527997756738",
   whatsappMessage:
-    "Olá! Gostaria de saber se o protocolo de emagrecimento da Gio é indicado para mim.",
+    "Olá! Gostaria de entender se o Método Gio Integrado faz sentido para o meu momento.",
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Av.%20Henrique%20Moscoso%2C%20530%20-%20Praia%20da%20Costa%2C%20Vila%20Velha%20-%20ES%2C%2029100-020",
   email: "",

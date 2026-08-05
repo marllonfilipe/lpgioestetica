@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Gio Praia da Costa",
   },
   description:
-    "Protocolo de emagrecimento multidisciplinar e personalizado na Praia da Costa, Vila Velha.",
+    "Método de emagrecimento multidisciplinar com plano personalizado na Praia da Costa, Vila Velha.",
   robots: {
     index: true,
     follow: true,

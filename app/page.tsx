@@ -14,11 +14,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { absolute: "Emagrecimento Multidisciplinar | Gio Praia da Costa" },
     description:
-      "Conheça o protocolo de emagrecimento da Gio Praia da Costa com acompanhamento médico, psicológico, nutricional, estético, plano com educador físico e tirzepatida mediante indicação médica.",
+      "Conheça o Método Gio Integrado: um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e estética na Praia da Costa.",
     openGraph: {
       title: "Emagrecimento Multidisciplinar | Gio Praia da Costa",
       description:
-        "Uma equipe cuidando da sua saúde, alimentação, comportamento, atividade física e evolução corporal em conjunto.",
+        "Emagrecer pode ser mais leve quando você não precisa fazer tudo sozinho. Conheça o Método Gio Integrado.",
       type: "website",
       locale: "pt_BR",
       siteName: "Gio Estética Avançada Praia da Costa",
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Emagrecimento Multidisciplinar | Gio Praia da Costa",
       description:
-        "Protocolo personalizado com acompanhamento multidisciplinar na Praia da Costa.",
+        "Um plano personalizado com diferentes áreas de cuidado conectadas na Praia da Costa.",
       ...(ogImage ? { images: [ogImage] } : {}),
     },
   };

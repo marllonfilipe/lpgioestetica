@@ -7,21 +7,21 @@ export const navigation = [
 ] as const;
 
 export const sixFronts = [
-  ["Médico", "Avaliação e acompanhamento clínico"],
-  ["Psicólogo", "Comportamentos e fatores emocionais"],
-  ["Nutricionista", "Estratégia alimentar personalizada"],
-  ["Educador físico", "Plano adequado ao seu momento"],
-  ["Estética", "Cuidados durante a transformação"],
+  ["Medicina", "Saúde, indicação e evolução clínica"],
+  ["Psicologia", "Emoções, comportamentos e hábitos"],
+  ["Nutrição", "Estratégia alimentar para a sua rotina"],
+  ["Atividade física", "Movimento possível e progressivo"],
+  ["Estética", "Cuidados conforme as mudanças do corpo"],
   ["Tirzepatida", "Mediante indicação médica"],
 ] as const;
 
 export const identificationItems = [
-  "Começa a semana decidido a mudar, mas sente dificuldade para manter a rotina.",
-  "O cansaço, a ansiedade ou os compromissos fazem você sair do plano.",
-  "Perde alguns quilos, recupera o peso e sente que voltou ao ponto de partida.",
-  "Compra roupas pensando em quando conseguirá emagrecer.",
-  "Evita fotos, eventos ou determinadas roupas porque não se sente confortável.",
-  "Já recebeu orientações, mas não conseguiu transformar tudo em um plano possível.",
+  "Já emagreceu, mas recuperou o peso.",
+  "Tem dificuldade para manter a rotina quando os compromissos aumentam.",
+  "Percebe que as emoções influenciam sua relação com a alimentação.",
+  "Já tentou diferentes estratégias sem um acompanhamento integrado.",
+  "Evita roupas, fotos ou situações porque não se sente confortável.",
+  "Quer cuidar da saúde sem depender apenas de uma medicação.",
 ] as const;
 
 export const cycleSteps = [
@@ -39,50 +39,50 @@ export const protocolCards = [
   {
     key: "medical",
     number: "01",
-    title: "Acompanhamento médico",
-    text: "Avalia sua saúde, histórico, condições clínicas e resposta ao tratamento. Também analisa a indicação da tirzepatida e acompanha o tratamento medicamentoso.",
+    title: "Medicina",
+    text: "Avaliação clínica, indicação medicamentosa e acompanhamento da evolução.",
   },
   {
     key: "nutrition",
     number: "02",
-    title: "Acompanhamento nutricional",
-    text: "Constrói uma estratégia alimentar possível, considerando sua rotina, suas necessidades, dificuldades e objetivos.",
+    title: "Nutrição",
+    text: "Estratégia alimentar construída para a sua rotina, necessidades e objetivos.",
   },
   {
     key: "psychology",
     number: "03",
-    title: "Acompanhamento psicológico",
-    text: "Acompanha emoções, comportamentos e padrões que podem interferir na sua relação com a alimentação.",
+    title: "Psicologia",
+    text: "Cuidado com comportamentos, emoções e padrões relacionados à alimentação.",
   },
   {
     key: "movement",
     number: "04",
-    title: "Plano com educador físico",
-    text: "Propõe movimento de forma possível e progressiva, adequado ao seu momento, às suas condições e à sua rotina.",
+    title: "Atividade física",
+    text: "Movimento possível, progressivo e adequado ao seu momento atual.",
   },
   {
     key: "aesthetics",
     number: "05",
-    title: "Acompanhamento estético",
-    text: "Acompanha as mudanças do corpo durante o processo com cuidados definidos conforme suas necessidades.",
+    title: "Estética",
+    text: "Cuidados definidos conforme as necessidades percebidas durante as mudanças do corpo.",
   },
   {
     key: "tirzepatide",
     number: "06",
-    title: "Aplicação de tirzepatida",
-    text: "Integra o protocolo somente quando houver avaliação, indicação, prescrição e acompanhamento médico. O cuidado não termina na aplicação.",
+    title: "Tirzepatida",
+    text: "Utilizada somente quando houver avaliação, indicação, prescrição e acompanhamento médico.",
   },
 ] as const;
 
 export const audienceItems = [
-  "Luta contra o peso há muitos anos",
-  "Já tentou diferentes dietas e estratégias",
-  "Perde peso, mas tem dificuldade para manter a evolução",
-  "Sente que sempre precisa recomeçar",
-  "Percebe que as emoções influenciam sua relação com a comida",
-  "Busca um plano personalizado e acompanhamento próximo",
+  "Já emagreceu, mas recuperou o peso",
+  "Tem dificuldade para manter uma rotina",
+  "Percebe que as emoções influenciam a alimentação",
+  "Já tentou diferentes estratégias sem acompanhamento integrado",
+  "Busca um plano possível de sustentar",
   "Não quer depender apenas de uma medicação",
-  "Quer cuidar da saúde, mente, alimentação e corpo em conjunto",
+  "Quer entender o que faz sentido para o seu momento",
+  "Deseja cuidar de saúde, mente e corpo em conjunto",
 ] as const;
 
 export const personalizationItems = [
@@ -95,11 +95,11 @@ export const personalizationItems = [
 ] as const;
 
 export const processSteps = [
-  ["Conversa com a equipe", "O primeiro contato acontece pelo WhatsApp. A equipe conhece brevemente seu objetivo e apresenta os próximos passos."],
-  ["Avaliação", "A equipe conhece seu histórico, sua rotina, suas dificuldades e seus objetivos."],
-  ["Plano personalizado", "É definida a estrutura do acompanhamento médico, psicológico, nutricional, estético e físico."],
-  ["Avaliação médica", "O médico analisa a indicação da tirzepatida e as demais estratégias adequadas ao seu caso."],
-  ["Acompanhamento", "A equipe acompanha respostas, dificuldades e evolução durante o processo."],
+  ["Você conversa com a equipe", "No WhatsApp, você apresenta brevemente seu momento e recebe orientação sobre os próximos passos."],
+  ["A equipe entende sua realidade", "Histórico, rotina, dificuldades, tentativas anteriores e objetivos entram na conversa."],
+  ["A avaliação identifica necessidades", "Os profissionais avaliam quais áreas de cuidado podem contribuir para o seu caso."],
+  ["O plano é construído", "A estrutura do cuidado e a indicação da tirzepatida, quando pertinente, são definidas individualmente."],
+  ["A estratégia pode ser ajustada", "Respostas, dificuldades e evolução orientam os próximos passos do acompanhamento."],
 ] as const;
 
 export const emotionalBenefits = [

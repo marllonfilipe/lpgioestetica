@@ -245,14 +245,15 @@ export default function GioLandingPage() {
               <div className="eyebrow">Método Gio Integrado · acompanhamento personalizado</div>
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
-                Emagrecimento com <em>uma equipe cuidando de você por inteiro.</em>
+                Emagrecer pode ser mais leve quando <em>você não precisa fazer tudo sozinho.</em>
               </h1>
               <p className="hero-lead">
-                Acompanhamento médico, psicológico, nutricional, físico e estético — com tirzepatida somente
-                quando houver indicação médica.
+                Um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e
+                estética em uma única estratégia.
               </p>
               <p className="hero-support">
-                Converse com a equipe, entenda os próximos passos e tire suas dúvidas antes de decidir.
+                A tirzepatida pode fazer parte do Método Gio Integrado quando houver indicação, prescrição e
+                acompanhamento médico.
               </p>
               <div className="button-row">
                 <a
@@ -262,7 +263,7 @@ export default function GioLandingPage() {
                   rel="noreferrer"
                   onClick={() => handleWhatsAppClick("hero")}
                 >
-                  Quero saber se é para mim
+                  Quero conversar com a equipe
                   <ArrowRight aria-hidden="true" />
                 </a>
                 <a
@@ -270,7 +271,7 @@ export default function GioLandingPage() {
                   href="#protocolo"
                   onClick={() => trackEvent("secondary_cta_click", { location: "hero" })}
                 >
-                  Conhecer o protocolo
+                  Conhecer o Método Gio
                 </a>
               </div>
               <div className="hero-indicators" aria-label="Diferenciais">
@@ -325,12 +326,12 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="section-heading split-heading">
               <div>
-                <span className="kicker">Quando a rotina pesa</span>
-                <h2>Talvez você se reconheça em algumas dessas situações</h2>
+                <span className="kicker">Sem culpa, com contexto</span>
+                <h2>Você não falhou. Talvez só tenha tentado cuidar de algo complexo com soluções isoladas.</h2>
               </div>
               <p>
-                Não é sobre falta de vontade. É sobre tentar sustentar sozinho um processo que envolve corpo,
-                mente, rotina e saúde.
+                Dietas, treinos e medicamentos podem ajudar. Mas, quando cada parte acontece separadamente,
+                manter a evolução pode se tornar mais difícil.
               </p>
             </div>
 
@@ -357,8 +358,8 @@ export default function GioLandingPage() {
 
             <div className="editorial-callout">
               <p>
-                Talvez o problema não seja falta de força de vontade. Talvez você esteja tentando resolver
-                sozinho um processo que precisa ser acompanhado por diferentes profissionais.
+                Quando saúde, alimentação, emoções, atividade física e estética conversam entre si, o cuidado
+                pode fazer mais sentido para a sua realidade.
               </p>
               <a
                 href={whatsappHref}
@@ -366,7 +367,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("identificacao")}
               >
-                Quero conhecer esse acompanhamento <ArrowRight aria-hidden="true" />
+                Quero entender meu próximo passo <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -407,9 +408,9 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="protocol-intro">
               <div>
-                <span className="kicker">O protocolo</span>
-                <h2>Seis frentes de acompanhamento. <em>Uma única jornada.</em></h2>
-                <p>Cada profissional acompanha uma parte do que pode estar dificultando sua evolução.</p>
+                <span className="kicker">Método Gio Integrado</span>
+                <h2>Cinco áreas de cuidado conectadas por <em>um único plano.</em></h2>
+                <p>Cada profissional cuida de uma parte da sua realidade, mas as decisões fazem parte da mesma estratégia.</p>
               </div>
               <div className="protocol-photo image-frame">
                 <img
@@ -439,7 +440,7 @@ export default function GioLandingPage() {
             </div>
 
             <div className="protocol-footer">
-              <p>Você não recebe apenas uma aplicação. Você recebe uma equipe inteira acompanhando o processo.</p>
+              <p>Não é apenas uma aplicação. É uma estratégia construída e acompanhada por diferentes áreas.</p>
               <a
                 className="button button-light"
                 href={whatsappHref}
@@ -447,7 +448,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("protocolo")}
               >
-                Quero iniciar minha avaliação <ArrowRight aria-hidden="true" />
+                Quero conhecer o Método Gio <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -457,8 +458,8 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="section-heading centered-narrow">
               <span className="kicker">Integração</span>
-              <h2>Não é escolher entre dieta, exercício, estética ou medicação</h2>
-              <p>É entender como cada parte pode contribuir para o seu processo.</p>
+              <h2>Soluções isoladas podem ajudar. Um plano conectado ajuda a dar continuidade.</h2>
+              <p>O diferencial está em entender como cada parte pode contribuir para a mesma estratégia.</p>
             </div>
             <div className="contrast-grid">
               <article className="contrast-isolated">
@@ -475,8 +476,8 @@ export default function GioLandingPage() {
               </article>
             </div>
             <p className="contrast-conclusion">
-              O seu processo não depende de uma única decisão. Depende de um plano em que todas as partes
-              conversem entre si.
+              Você não precisa escolher uma única solução. Precisa entender quais cuidados fazem sentido para
+              o seu momento e como eles podem trabalhar em conjunto.
             </p>
           </div>
         </section>
@@ -492,12 +493,12 @@ export default function GioLandingPage() {
                 loading="lazy"
               />
               <div className="audience-overlap">
-                Não é para quem procura mais uma solução genérica. É para quem deseja ser acompanhado de perto.
+                Para quem não procura uma promessa rápida, mas um cuidado pensado para a própria realidade.
               </div>
             </div>
             <div className="audience-copy">
               <span className="kicker">Para quem é</span>
-              <h2>Este protocolo foi pensado para você que</h2>
+              <h2>Para quem cansou de recomeçar e procura um plano possível de sustentar.</h2>
               <ul className="editorial-list">
                 {audienceItems.map((item) => (
                   <li key={item}><span aria-hidden="true">✦</span>{item}</li>
@@ -510,7 +511,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("para_quem_e")}
               >
-                Quero saber se é para mim <ArrowRight aria-hidden="true" />
+                Quero saber se faz sentido para mim <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -520,13 +521,13 @@ export default function GioLandingPage() {
           <div className="shell personalization-grid">
             <div className="personalization-copy">
               <span className="kicker">Personalização</span>
-              <h2>O seu processo não deveria ser igual ao de todo mundo</h2>
+              <h2>Seu histórico deve definir o plano — não o contrário.</h2>
               <p className="large-copy">
-                Cada pessoa possui um histórico. Cada corpo responde de uma maneira. Cada rotina apresenta
-                dificuldades específicas.
+                Antes de recomendar qualquer estratégia, a equipe procura entender sua saúde, rotina,
+                dificuldades, tentativas anteriores e objetivos.
               </p>
               <p>
-                Por isso, o protocolo não começa com uma solução pronta. Ele começa com uma avaliação.
+                O Método Gio Integrado não começa com uma solução pronta. Ele começa com escuta e avaliação.
               </p>
               <div className="personalization-list">
                 {personalizationItems.map((item) => (
@@ -534,8 +535,8 @@ export default function GioLandingPage() {
                 ))}
               </div>
               <blockquote>
-                Você não precisa se encaixar em um método genérico. O acompanhamento precisa fazer sentido para
-                a sua realidade.
+                Você não precisa se encaixar em um método genérico. O plano é que precisa fazer sentido para a
+                sua realidade.
               </blockquote>
             </div>
             <div className="personalization-photo image-frame">
@@ -556,7 +557,7 @@ export default function GioLandingPage() {
             <div className="process-heading">
               <div>
                 <span className="kicker">Como funciona</span>
-                <h2>Sua jornada começa com uma avaliação</h2>
+                <h2>Você não precisa decidir tudo agora. O primeiro passo é uma conversa.</h2>
               </div>
               <div className="process-thumbnails" aria-label="Momentos da avaliação e do acompanhamento">
                 <img src="/images/gio/hero.png" alt="Conversa inicial durante a avaliação" loading="lazy" />
@@ -580,7 +581,7 @@ export default function GioLandingPage() {
               rel="noreferrer"
               onClick={() => handleWhatsAppClick("como_funciona")}
             >
-              Quero agendar minha avaliação <ArrowRight aria-hidden="true" />
+              Quero iniciar uma conversa <ArrowRight aria-hidden="true" />
             </a>
           </div>
         </section>
@@ -589,17 +590,17 @@ export default function GioLandingPage() {
           <div className="shell transformation-grid">
             <div className="transformation-copy">
               <span className="kicker kicker-light">Transformação emocional</span>
-              <h2>Imagine viver esse processo sem precisar juntar todas as peças sozinho</h2>
+              <h2>O objetivo não é apenas perder peso. É voltar a viver com mais confiança e disposição.</h2>
               <p>
-                Ter profissionais acompanhando alimentação, fatores emocionais, atividade física, cuidados
-                estéticos e saúde - dentro de uma jornada conectada e responsável.
+                Vestir-se com mais segurança, participar de momentos sem desconforto e sentir que existe um
+                caminho possível também fazem parte da transformação.
               </p>
               <ul>
                 {emotionalBenefits.map((item) => (
                   <li key={item}><Check aria-hidden="true" />{item}</li>
                 ))}
               </ul>
-              <p className="transformation-statement">Desta vez, você não precisa enfrentar o processo sozinho.</p>
+              <p className="transformation-statement">Você não precisa juntar todas as peças sozinho.</p>
               <a
                 className="button button-beige"
                 href={whatsappHref}
@@ -607,7 +608,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("transformacao")}
               >
-                Quero viver essa experiência <ArrowRight aria-hidden="true" />
+                Quero entender meu próximo passo <ArrowRight aria-hidden="true" />
               </a>
             </div>
             <div className="transformation-photo image-frame">
@@ -626,8 +627,8 @@ export default function GioLandingPage() {
         <section className="delay-section section-pad">
           <div className="shell delay-grid">
             <div>
-              <span className="kicker">O primeiro passo</span>
-              <h2>Adiar também tem um custo</h2>
+              <span className="kicker">Comece com clareza</span>
+              <h2>O primeiro passo pode ser mais simples do que parece.</h2>
             </div>
             <div className="delay-lines">
               <p>Mais uma semana evitando determinadas roupas.</p>
@@ -637,8 +638,8 @@ export default function GioLandingPage() {
             </div>
             <div className="delay-action">
               <p>
-                Você não precisa esperar se sentir completamente preparado. A avaliação é o início da construção
-                de um plano pensado para você.
+                Você não precisa chegar com tudo decidido. Uma conversa com a equipe ajuda a entender as
+                possibilidades antes de qualquer escolha.
               </p>
               <a
                 className="button button-outline"
@@ -647,7 +648,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("custo_adiar")}
               >
-                Quero dar o primeiro passo
+                Quero iniciar uma conversa
               </a>
             </div>
           </div>
@@ -680,7 +681,7 @@ export default function GioLandingPage() {
             <div className="team-heading">
               <div>
                 <span className="kicker">Equipe e autoridade</span>
-                <h2>Conheça os profissionais que acompanharão sua jornada</h2>
+                <h2>Um plano integrado pede áreas de cuidado que conversem entre si.</h2>
               </div>
               <p>Cinco áreas conectadas para que decisões, dificuldades e evolução sejam acompanhadas em conjunto.</p>
             </div>
@@ -813,15 +814,15 @@ export default function GioLandingPage() {
           <div className="shell final-cta-inner">
             <div className="final-cta-copy">
               <span className="kicker kicker-light">Uma jornada conectada</span>
-              <h2>Você já tentou emagrecer cuidando de partes isoladas</h2>
+              <h2>Você não precisa começar mais uma tentativa isolada.</h2>
               <p>
-                Agora, pode viver um processo que acompanha saúde, alimentação, comportamentos, atividade física
-                e evolução corporal em conjunto.
+                O Método Gio Integrado conecta saúde, alimentação, emoções, atividade física e cuidados estéticos
+                em uma estratégia construída para o seu momento.
               </p>
-              <strong>Uma equipe inteira acompanhando a sua jornada.</strong>
+              <strong>Um plano possível. Diferentes áreas cuidando de você por inteiro.</strong>
             </div>
             <div className="final-cta-card">
-              <p>Você não precisa começar mais uma tentativa sozinho.</p>
+              <p>Descubra se essa forma de cuidado faz sentido para você.</p>
               <a
                 className="button"
                 href={whatsappHref}
@@ -829,7 +830,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("cta_final")}
               >
-                Quero viver essa experiência <ArrowRight aria-hidden="true" />
+                Quero descobrir se faz sentido para mim <ArrowRight aria-hidden="true" />
               </a>
               <small>Fale com a equipe e descubra como iniciar sua avaliação.</small>
             </div>
@@ -840,7 +841,7 @@ export default function GioLandingPage() {
           <div className="shell lead-grid">
             <div className="lead-copy">
               <span className="kicker">Seu primeiro contato</span>
-              <h2>Descubra se o protocolo é indicado para você</h2>
+              <h2>Converse com a equipe e entenda seu próximo passo.</h2>
               <p>
                 Leva menos de um minuto. Preencha seus dados para montar uma mensagem e conversar diretamente
                 com a equipe pelo WhatsApp. As respostas não são enviadas para ferramentas de análise.
@@ -884,7 +885,7 @@ export default function GioLandingPage() {
                 {errors.consent && <span id="consent-error" className="field-error">{errors.consent}</span>}
               </div>
               <button className="button form-submit field-wide" type="submit">
-                Quero conversar com a equipe <MessageCircle aria-hidden="true" />
+                Montar minha mensagem no WhatsApp <MessageCircle aria-hidden="true" />
               </button>
             </form>
           </div>
@@ -937,7 +938,7 @@ export default function GioLandingPage() {
           rel="noreferrer"
           onClick={() => handleWhatsAppClick("mobile_bar")}
         >
-          Quero saber se o protocolo é para mim
+          Quero conversar com a equipe
           <ArrowRight aria-hidden="true" />
         </a>
       )}
