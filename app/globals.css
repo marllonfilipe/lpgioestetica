@@ -4337,3 +4337,643 @@ h3 {
     margin-right: 18px;
   }
 }
+
+/* Premium editorial direction — final composition layer */
+:root {
+  --editorial-radius: 20px;
+  --editorial-shadow: 0 22px 64px rgba(47, 33, 53, 0.12);
+  --editorial-shadow-soft: 0 14px 34px rgba(47, 33, 53, 0.075);
+}
+
+body {
+  background: #fcfaf7;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 3.7vw, 3.75rem);
+}
+
+h2 {
+  font-size: clamp(2.15rem, 2.8vw, 2.75rem);
+  line-height: 1.08;
+}
+
+.section-pad {
+  padding-block: clamp(7.5rem, 9vw, 9.75rem);
+}
+
+.button {
+  min-height: 58px;
+  border-radius: 15px;
+}
+
+.hero {
+  min-height: min(960px, 100svh);
+  padding-block: 132px 84px;
+  background-image:
+    linear-gradient(90deg, rgba(242, 235, 231, 0.32) 0%, rgba(242, 235, 231, 0.08) 56%, rgba(69, 45, 76, 0.03) 100%),
+    url("/images/gio/hero.png");
+  background-position: center, 61% center;
+}
+
+.hero-copy {
+  width: min(540px, 48%);
+  padding: clamp(30px, 3.5vw, 44px);
+  border-radius: var(--editorial-radius);
+  background: rgba(252, 250, 247, 0.925);
+  box-shadow: 0 30px 90px rgba(45, 31, 51, 0.16);
+}
+
+.hero h1 {
+  max-width: 470px;
+  font-size: clamp(2.35rem, 2.75vw, 2.85rem);
+  line-height: 1.06;
+}
+
+.hero-lead {
+  max-width: 470px;
+}
+
+.hero-support {
+  max-width: 450px;
+}
+
+.hero .button-outline {
+  min-height: auto;
+  padding: 12px 4px;
+  border: 0;
+  border-bottom: 1px solid rgba(89, 66, 99, 0.35);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero .button-outline:hover {
+  transform: translateY(-1px);
+  border-bottom-color: var(--lilac-deep);
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-indicators span {
+  min-height: auto;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.fronts-band {
+  position: relative;
+  z-index: 3;
+  margin-top: -1px;
+  background: #513b5b;
+}
+
+.front-item {
+  min-height: 112px;
+}
+
+.identification,
+.protocol,
+.audience,
+.personalization,
+.transformation {
+  min-height: 880px;
+  display: flex;
+  align-items: center;
+}
+
+.identification {
+  background-image:
+    linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.9) 45%, rgba(245, 240, 234, 0.25) 68%, rgba(245, 240, 234, 0.03) 100%),
+    url("/images/gio/identificacao.png");
+  background-position: center, 70% center;
+}
+
+.identification .section-heading {
+  width: min(680px, 55%);
+  padding: 30px 32px;
+  border-radius: var(--editorial-radius);
+}
+
+.identification .statement-grid {
+  width: min(700px, 57%);
+  gap: 10px;
+}
+
+.identification .statement {
+  min-height: 132px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.identification .statement p {
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.identification .editorial-callout {
+  width: min(700px, 57%);
+  padding: 30px 34px;
+  border-radius: 16px;
+}
+
+.cycle,
+.contrast,
+.process,
+.testimonials,
+.gallery,
+.faq,
+.lead-section {
+  background: #fcfaf7;
+}
+
+.cycle blockquote,
+.contrast-conclusion {
+  max-width: 720px;
+}
+
+.cycle-step {
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.protocol {
+  align-items: stretch;
+  background-image:
+    linear-gradient(90deg, rgba(241, 235, 244, 0.02) 0%, rgba(241, 235, 244, 0.08) 44%, rgba(241, 235, 244, 0.9) 67%, #f1ebf4 82%),
+    linear-gradient(180deg, rgba(241, 235, 244, 0.05), rgba(241, 235, 244, 0.92) 67%, #f1ebf4 100%),
+    url("/images/gio/protocolo.png");
+  background-position: center, center, 8% 88px;
+  background-size: cover, cover, auto 940px;
+}
+
+.protocol-intro {
+  min-height: 610px;
+}
+
+.protocol-intro > div:first-child {
+  width: min(590px, 48%);
+  padding: 34px 36px;
+  border-radius: var(--editorial-radius);
+}
+
+.protocol-bento {
+  gap: 14px;
+}
+
+.protocol-card {
+  min-height: 250px;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.protocol-medical,
+.protocol-tirzepatide {
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.protocol-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.protocol-footer {
+  border-radius: 18px;
+}
+
+.contrast-grid {
+  max-width: 1120px;
+  margin-inline: auto;
+  gap: 16px;
+}
+
+.contrast-grid article {
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.contrast-integrated {
+  box-shadow: var(--editorial-shadow-soft) !important;
+}
+
+.audience {
+  background-image:
+    linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.9) 46%, rgba(245, 240, 234, 0.2) 70%, rgba(245, 240, 234, 0.02) 100%),
+    url("/images/gio/para-quem-e.png");
+  background-position: center, 71% center;
+}
+
+.audience-photo,
+.audience-copy {
+  width: min(650px, 53%);
+}
+
+.audience-overlap {
+  padding: 24px 28px;
+  border-radius: 16px;
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.audience-copy {
+  padding: 34px 36px;
+  border-radius: var(--editorial-radius);
+}
+
+.audience .editorial-list {
+  display: block;
+  margin: 28px 0 32px;
+}
+
+.audience .editorial-list li {
+  min-height: auto;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(114, 87, 127, 0.16);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.personalization {
+  background-image:
+    linear-gradient(90deg, rgba(252, 250, 248, 0.98) 0%, rgba(252, 250, 248, 0.9) 45%, rgba(252, 250, 248, 0.18) 70%, rgba(252, 250, 248, 0.02) 100%),
+    url("/images/gio/para-quem-e.png");
+  background-position: center, 85% center;
+  background-size: cover, auto 115%;
+}
+
+.personalization-copy {
+  width: min(660px, 54%);
+  padding: 36px;
+  border-radius: var(--editorial-radius);
+}
+
+.personalization-photo {
+  width: min(660px, 54%);
+}
+
+.personalization-list {
+  gap: 0 20px;
+}
+
+.personalization-list span {
+  min-height: auto;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(114, 87, 127, 0.15);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.personalization-copy blockquote {
+  border-radius: 0 14px 14px 0;
+}
+
+.process {
+  background: #f5f0ea;
+}
+
+.process-thumbnails img {
+  width: 180px;
+  height: 220px;
+  border-radius: 16px;
+}
+
+.process-thumbnails img:last-child {
+  height: 172px;
+}
+
+.timeline {
+  gap: 12px;
+}
+
+.timeline li {
+  padding: 23px;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.timeline li:nth-child(3) {
+  background: var(--lilac-deep);
+  color: white;
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.timeline li:nth-child(3) p,
+.timeline li:nth-child(3) .timeline-number {
+  color: #e6dce9;
+}
+
+.transformation {
+  min-height: 980px;
+  background-image:
+    linear-gradient(270deg, rgba(67, 45, 76, 0.98) 0%, rgba(67, 45, 76, 0.91) 45%, rgba(67, 45, 76, 0.28) 70%, rgba(67, 45, 76, 0.04) 100%),
+    url("/images/gio/transformacao.png");
+  background-position: center, 35% center;
+}
+
+.transformation-copy {
+  width: min(650px, 54%);
+  margin-left: auto;
+  padding: 38px;
+  border-radius: var(--editorial-radius);
+}
+
+.transformation-copy li {
+  min-height: 62px;
+  border-radius: 14px;
+}
+
+.delay-section {
+  background: #f4eee7;
+}
+
+.delay-lines p,
+.delay-action,
+.objection-card,
+.team-card,
+.testimonial-placeholder,
+.faq details,
+.timeline li {
+  box-shadow: none;
+}
+
+.delay-lines p {
+  border-radius: 16px;
+}
+
+.objection-card {
+  border-radius: 18px;
+}
+
+.objection-4 {
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.team {
+  background: #f3edf3;
+}
+
+.team-grid {
+  gap: 14px;
+}
+
+.team-card,
+.team-card-1,
+.team-card-2,
+.team-card-3,
+.team-card-4,
+.team-card-5 {
+  border-radius: 18px;
+}
+
+.team-card-1 {
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.team-placeholder {
+  border-radius: 16px;
+}
+
+.testimonial-placeholder {
+  border-radius: 18px;
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.gallery {
+  background: #f4eee7;
+}
+
+.gallery-grid {
+  gap: 12px;
+}
+
+.gallery-item {
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.gallery-item-1,
+.gallery-item-3 {
+  box-shadow: var(--editorial-shadow-soft);
+}
+
+.gallery-item figcaption {
+  border-radius: 9px;
+}
+
+.location-card {
+  border-radius: 20px;
+}
+
+.faq details {
+  border-radius: 14px;
+}
+
+.final-cta-card,
+.lead-form {
+  border-radius: 20px;
+  box-shadow: var(--editorial-shadow);
+}
+
+@media (max-width: 940px) {
+  .hero {
+    min-height: 900px;
+  }
+
+  .hero-copy {
+    width: min(580px, 70%);
+  }
+
+  .identification .section-heading,
+  .identification .statement-grid,
+  .identification .editorial-callout,
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .personalization-photo,
+  .transformation-copy {
+    width: min(650px, 70%);
+  }
+
+  .protocol-intro > div:first-child {
+    width: min(590px, 60%);
+  }
+
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  h1 {
+    font-size: clamp(2.2rem, 10vw, 2.75rem);
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 8.5vw, 2.35rem);
+  }
+
+  .section-pad {
+    padding-block: 86px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 348px 0 74px;
+    background-image:
+      linear-gradient(180deg, rgba(243, 237, 243, 0) 0%, rgba(243, 237, 243, 0.08) 68%, #f3edf3 100%),
+      url("/images/gio/hero.png");
+    background-position: center 76px, 68% 76px;
+    background-size: 100% 340px, auto 340px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    margin-top: -18px;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.06rem);
+  }
+
+  .hero .button-outline {
+    width: auto;
+    margin-inline: auto;
+  }
+
+  .hero-indicators {
+    gap: 2px;
+  }
+
+  .identification,
+  .protocol,
+  .audience,
+  .personalization,
+  .transformation {
+    min-height: 0;
+    display: block;
+  }
+
+  .identification {
+    padding-top: 365px;
+    background-size: 100% 390px, auto 345px;
+  }
+
+  .identification .section-heading,
+  .identification .statement-grid,
+  .identification .editorial-callout,
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .personalization-photo,
+  .transformation-copy,
+  .protocol-intro > div:first-child {
+    width: 100%;
+  }
+
+  .identification .section-heading,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy,
+  .protocol-intro > div:first-child {
+    transform: translateY(-18px);
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .identification .statement-grid,
+  .personalization-list,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .identification .statement {
+    min-height: 120px;
+    border-radius: 14px;
+  }
+
+  .protocol {
+    padding-top: 405px;
+    background-size: 100% 430px, 100% 430px, auto 395px;
+  }
+
+  .protocol-intro {
+    margin-bottom: 16px;
+  }
+
+  .protocol-card,
+  .protocol-footer {
+    border-radius: 16px;
+  }
+
+  .audience {
+    padding-top: 345px;
+    background-size: 100% 370px, auto 325px;
+  }
+
+  .audience-overlap {
+    transform: translateY(-18px);
+    border-radius: 14px;
+  }
+
+  .audience-copy {
+    margin-top: -2px;
+  }
+
+  .personalization {
+    padding-top: 345px;
+    background-size: 100% 370px, auto 325px;
+  }
+
+  .process-thumbnails img {
+    width: 132px;
+    height: 164px;
+  }
+
+  .process-thumbnails img:last-child {
+    height: 126px;
+  }
+
+  .transformation {
+    padding-top: 430px;
+    background-image:
+      linear-gradient(180deg, rgba(89, 66, 99, 0.01) 0%, rgba(89, 66, 99, 0.16) 330px, var(--lilac-deep) 430px),
+      url("/images/gio/transformacao.png");
+    background-position: center top, center top;
+    background-size: 100% 455px, auto 420px;
+  }
+
+  .transformation-copy {
+    margin-left: 0;
+  }
+
+  .team-card,
+  .team-card-1,
+  .team-card-2,
+  .team-card-3,
+  .team-card-4,
+  .team-card-5,
+  .testimonial-placeholder,
+  .final-cta-card,
+  .lead-form,
+  .location-card {
+    border-radius: 18px;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: 380px;
+  }
+
+  .gallery-item {
+    border-radius: 16px;
+  }
+}
