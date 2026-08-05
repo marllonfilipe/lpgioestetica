@@ -42,7 +42,7 @@ const structuredData = [
     "@type": "MedicalBusiness",
     name: siteConfig.clinicName,
     url: siteConfig.canonicalUrl,
-    telephone: "+55 27 99232-5542",
+    telephone: "+55 27 99775-6738",
     areaServed: "Praia da Costa, Vila Velha, Espírito Santo",
     address: {
       "@type": "PostalAddress",

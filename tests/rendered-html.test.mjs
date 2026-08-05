@@ -36,7 +36,7 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /Descubra se o protocolo é indicado para você/i);
   assert.match(html, /aria-label="Navegação principal"/i);
   assert.match(html, /name="consent"/i);
-  assert.match(html, /wa\.me\/5527992325542/i);
+  assert.match(html, /wa\.me\/5527997756738/i);
   assert.match(html, /Av\. Henrique Moscoso, 530/i);
   assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
   assert.match(html, /images\/gio\/hero\.png/i);

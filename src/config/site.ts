@@ -5,7 +5,7 @@ export const siteConfig = {
   instagramUrl: "https://www.instagram.com/giopraiadacosta/",
   location: "Praia da Costa - Vila Velha, Espírito Santo",
   fullAddress: "Av. Henrique Moscoso, 530 - Praia da Costa, Vila Velha - ES, 29100-020",
-  whatsappNumber: "5527992325542",
+  whatsappNumber: "5527997756738",
   whatsappMessage:
     "Olá! Gostaria de saber se o protocolo de emagrecimento da Gio é indicado para mim.",
   googleMapsUrl:

@@ -906,7 +906,7 @@ export default function GioLandingPage() {
           </div>
           <div className="footer-pending">
             <strong>Atendimento</strong>
-            <p>{siteConfig.fullAddress} · {siteConfig.openingHours} · WhatsApp: (27) 99232-5542</p>
+            <p>{siteConfig.fullAddress} · {siteConfig.openingHours} · WhatsApp: (27) 99775-6738</p>
           </div>
         </div>
         <div className="shell footer-notice">
