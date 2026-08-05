@@ -407,16 +407,7 @@ export default function GioLandingPage() {
         <section id="protocolo" className="protocol section-pad">
           <div className="shell">
             <div className="protocol-intro">
-              <div className="protocol-photo image-frame">
-                <img
-                  src="/images/gio/tirzepatida-aplicacao.png"
-                  width="1680"
-                  height="945"
-                  alt="Profissional realizando aplicação de tirzepatida em paciente após avaliação personalizada"
-                  loading="lazy"
-                />
-              </div>
-              <div className="protocol-application-card">
+              <div className="protocol-application-heading">
                 <span className="kicker">Tirzepatida com acompanhamento</span>
                 <h2>A aplicação é apenas <em>uma parte do cuidado.</em></h2>
                 <p>
@@ -426,6 +417,15 @@ export default function GioLandingPage() {
                 <p className="protocol-medical-disclaimer">
                   <ShieldCheck aria-hidden="true" /> Somente mediante avaliação, prescrição e acompanhamento médico.
                 </p>
+              </div>
+              <div className="protocol-photo image-frame">
+                <img
+                  src="/images/gio/tirzepatida-aplicacao.png"
+                  width="1680"
+                  height="945"
+                  alt="Profissional realizando aplicação de tirzepatida em paciente após avaliação personalizada"
+                  loading="lazy"
+                />
               </div>
             </div>
 
