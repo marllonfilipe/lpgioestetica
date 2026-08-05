@@ -408,16 +408,19 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="protocol-intro">
               <div>
-                <span className="kicker">Método Gio Integrado</span>
-                <h2>Cinco áreas de cuidado conectadas por <em>um único plano.</em></h2>
-                <p>Cada profissional cuida de uma parte da sua realidade, mas as decisões fazem parte da mesma estratégia.</p>
+                <span className="kicker">Tirzepatida com acompanhamento</span>
+                <h2>Aplicação de tirzepatida com cinco áreas de cuidado conectadas por <em>um único plano.</em></h2>
+                <p>
+                  Quando houver indicação, prescrição e acompanhamento médico, a aplicação integra uma estratégia
+                  que também cuida de alimentação, emoções, atividade física e mudanças do corpo.
+                </p>
               </div>
               <div className="protocol-photo image-frame">
                 <img
-                  src="/images/gio/protocolo.png"
-                  width="1152"
-                  height="1440"
-                  alt="Profissional em ambiente premium apresentando o protocolo"
+                  src="/images/gio/tirzepatida-aplicacao.png"
+                  width="1680"
+                  height="945"
+                  alt="Profissional realizando aplicação de tirzepatida em paciente após avaliação personalizada"
                   loading="lazy"
                 />
               </div>
@@ -440,7 +443,7 @@ export default function GioLandingPage() {
             </div>
 
             <div className="protocol-footer">
-              <p>Não é apenas uma aplicação. É uma estratégia construída e acompanhada por diferentes áreas.</p>
+              <p>A aplicação é uma parte do plano. O cuidado continua com diferentes áreas trabalhando em conjunto.</p>
               <a
                 className="button button-light"
                 href={whatsappHref}

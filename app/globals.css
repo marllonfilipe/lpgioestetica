@@ -4977,3 +4977,119 @@ h2 {
     border-radius: 16px;
   }
 }
+
+/* Tirzepatida feature — supplied photography */
+.protocol {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--lilac-pale);
+  background-image: none;
+}
+
+.protocol::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 auto;
+  height: 880px;
+  background: url("/images/gio/tirzepatida-aplicacao.png") center 52% / cover no-repeat;
+}
+
+.protocol::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(244, 237, 232, 0.84) 0%, rgba(244, 237, 232, 0.38) 39%, rgba(241, 235, 244, 0.05) 70%),
+    linear-gradient(180deg, rgba(241, 235, 244, 0.02) 0%, rgba(241, 235, 244, 0.05) 510px, var(--lilac-pale) 850px);
+}
+
+.protocol > .shell {
+  position: relative;
+  z-index: 1;
+}
+
+.protocol-intro {
+  min-height: 690px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 44px;
+  padding-top: 18px;
+}
+
+.protocol-intro > div:first-child {
+  width: min(570px, 48%);
+  margin: 0;
+  padding: 34px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  background: rgba(252, 250, 248, 0.91);
+  box-shadow: 0 26px 74px rgba(48, 34, 53, 0.15);
+  backdrop-filter: blur(14px);
+}
+
+.protocol-intro h2 {
+  max-width: 520px;
+  font-size: clamp(2.15rem, 2.85vw, 2.85rem);
+}
+
+.protocol-intro p {
+  max-width: 500px;
+  color: #554b55;
+}
+
+@media (max-width: 940px) {
+  .protocol::before {
+    height: 760px;
+    background-position: 54% center;
+  }
+
+  .protocol::after {
+    background:
+      linear-gradient(90deg, rgba(244, 237, 232, 0.82), rgba(244, 237, 232, 0.16) 74%),
+      linear-gradient(180deg, rgba(241, 235, 244, 0.02), rgba(241, 235, 244, 0.08) 430px, var(--lilac-pale) 730px);
+  }
+
+  .protocol-intro {
+    min-height: 590px;
+  }
+
+  .protocol-intro > div:first-child {
+    width: min(560px, 66%);
+  }
+}
+
+@media (max-width: 680px) {
+  .protocol {
+    padding-top: 360px;
+    background-image: none;
+  }
+
+  .protocol::before {
+    height: 390px;
+    background-position: 55% center;
+  }
+
+  .protocol::after {
+    background: linear-gradient(180deg, rgba(241, 235, 244, 0.01) 0%, rgba(241, 235, 244, 0.08) 270px, var(--lilac-pale) 390px);
+  }
+
+  .protocol-intro {
+    min-height: 0;
+    margin-bottom: 12px;
+    padding-top: 0;
+  }
+
+  .protocol-intro > div:first-child {
+    width: 100%;
+    transform: translateY(-18px);
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .protocol-intro h2 {
+    font-size: clamp(1.9rem, 8.5vw, 2.3rem);
+  }
+}
