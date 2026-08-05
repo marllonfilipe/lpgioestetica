@@ -6229,3 +6229,181 @@ main > section.section-pad:not(.hero) {
     min-height: 220px;
   }
 }
+
+/* Preserve the native composition of every photographic section. */
+@media (min-width: 761px) {
+  .protocol::before {
+    inset: 40px auto auto 0;
+    width: 55%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .protocol::after {
+    inset: 40px auto auto 0;
+    width: 59%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, rgba(241, 235, 244, 0) 76%, var(--lilac-pale) 100%);
+  }
+
+  .protocol-intro {
+    min-height: clamp(430px, 39vw, 520px);
+    margin-bottom: 34px;
+  }
+
+  .audience::before,
+  .personalization::before {
+    inset: 50% auto auto 0;
+    width: 56%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .audience::after,
+  .personalization::after {
+    inset: 50% auto auto 0;
+    width: 60%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+  }
+
+  .audience::after {
+    background: linear-gradient(90deg, rgba(245, 240, 234, 0) 74%, var(--beige-pale) 100%);
+  }
+
+  .personalization::after {
+    background: linear-gradient(90deg, rgba(252, 250, 248, 0) 74%, var(--off-white) 100%);
+  }
+
+  .audience-grid,
+  .personalization-grid {
+    min-height: 650px;
+  }
+
+  .contrast {
+    min-height: 780px;
+  }
+
+  .contrast::before {
+    inset: 82px auto auto 0;
+    width: 60%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    transform: none;
+    background-size: cover;
+    background-position: left center;
+  }
+
+  .contrast::after {
+    inset: 82px auto auto 0;
+    width: 64%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(90deg, rgba(247, 242, 237, 0) 74%, #f7f2ed 100%);
+  }
+
+  .transformation::before {
+    inset: 50% auto auto 0;
+    width: 50%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    transform: translateY(-50%);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .transformation::after {
+    inset: 0 auto 0 0;
+    width: 55%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .protocol-application-heading,
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  main > section.protocol.section-pad,
+  main > section.audience.section-pad,
+  main > section.personalization.section-pad {
+    padding-top: calc(56.25vw + 44px);
+  }
+
+  .protocol::before,
+  .audience::before,
+  .personalization::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .protocol::after,
+  .audience::after,
+  .personalization::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(56.25vw + 30px);
+    transform: none;
+  }
+
+  main > section.contrast.section-pad {
+    padding-top: calc(66.6667vw + 44px);
+  }
+
+  .contrast::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    transform: none;
+    background-size: cover;
+    background-position: left center;
+  }
+
+  .contrast::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(66.6667vw + 30px);
+    transform: none;
+  }
+
+  main > section.transformation.section-pad {
+    padding-top: calc(min(150vw, 720px) + 44px);
+  }
+
+  .transformation::before {
+    inset: 0 auto auto 50%;
+    width: min(100%, 480px);
+    height: auto;
+    aspect-ratio: 2 / 3;
+    transform: translateX(-50%);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .transformation::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(min(150vw, 720px) + 30px);
+    transform: none;
+  }
+}
