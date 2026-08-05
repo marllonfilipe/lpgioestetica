@@ -5925,3 +5925,307 @@ main > section.section-pad:not(.hero) {
     gap: 10px;
   }
 }
+
+/* Filled media panels and smaller cards */
+.protocol::before,
+.audience::before,
+.personalization::before,
+.transformation::before {
+  inset: 0 auto 0 0;
+  width: 52%;
+  height: 100%;
+  transform: none;
+  background-size: cover;
+  background-position: center;
+}
+
+.protocol::after,
+.audience::after,
+.personalization::after,
+.transformation::after {
+  inset: 0 auto 0 0;
+  width: 56%;
+  height: 100%;
+}
+
+.contrast::before {
+  inset: 50% auto auto 0;
+  width: 58%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  transform: translateY(-50%);
+  background-size: cover;
+  background-position: left center;
+}
+
+.contrast::after {
+  inset: 0 auto 0 0;
+  width: 62%;
+  height: 100%;
+}
+
+.statement,
+.protocol-card,
+.delay-action,
+.objection-card,
+.team-card,
+.testimonial-placeholder,
+.timeline li,
+.final-cta-card,
+.lead-form {
+  border-radius: 16px;
+}
+
+.statement {
+  min-height: 118px;
+  padding: 18px 20px;
+}
+
+.statement p {
+  font-size: 0.94rem;
+}
+
+.protocol-card,
+.protocol-medical,
+.protocol-nutrition,
+.protocol-psychology,
+.protocol-movement,
+.protocol-aesthetics,
+.protocol-tirzepatide {
+  min-height: 190px;
+  padding: 22px;
+}
+
+.protocol-medical {
+  min-height: 300px;
+}
+
+.protocol-card h3 {
+  margin-block: 28px 12px;
+}
+
+.protocol-card p {
+  font-size: 0.86rem;
+  line-height: 1.58;
+}
+
+.protocol-footer {
+  padding: 26px 30px;
+}
+
+.audience-overlap {
+  padding: 20px 22px;
+  font-size: 1.12rem;
+}
+
+.audience-copy,
+.personalization-copy,
+.transformation-copy {
+  padding: 26px 28px;
+}
+
+.editorial-list li {
+  padding-block: 8px;
+  font-size: 0.9rem;
+}
+
+.personalization-list span {
+  padding-block: 9px;
+  font-size: 0.82rem;
+}
+
+.timeline li {
+  min-height: 178px;
+  padding: 20px;
+}
+
+.timeline h3 {
+  font-size: 1rem;
+}
+
+.timeline p {
+  font-size: 0.8rem;
+}
+
+.delay-action {
+  padding: 24px;
+}
+
+.delay-lines p {
+  min-height: 118px;
+  padding: 18px;
+  font-size: 0.9rem;
+}
+
+.objection-card,
+.objection-card:nth-child(n) {
+  min-height: 230px;
+  padding: 24px;
+}
+
+.objection-card > span {
+  font-size: 4rem;
+}
+
+.objection-card h3 {
+  margin: 26px 0 14px;
+  font-size: 1.28rem;
+}
+
+.team-card,
+.team-card-1,
+.team-card-2,
+.team-card-3,
+.team-card-4,
+.team-card-5 {
+  min-height: 270px;
+  padding: 22px;
+}
+
+.team-card-1 {
+  min-height: 330px;
+}
+
+.team-placeholder {
+  width: 78px;
+  height: 78px;
+  border-radius: 13px;
+  font-size: 2.2rem;
+}
+
+.team-card h3 {
+  font-size: 1.25rem;
+}
+
+.testimonial-placeholder {
+  padding: clamp(30px, 4vw, 48px);
+}
+
+.testimonial-placeholder > span {
+  font-size: 5rem;
+}
+
+.testimonial-placeholder p {
+  margin-top: 24px;
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+}
+
+.location dl div {
+  min-height: 78px;
+  padding: 14px 16px;
+}
+
+.location-card {
+  min-height: 420px;
+  padding: 38px;
+}
+
+.final-cta-card {
+  padding: 28px;
+}
+
+.lead-form {
+  padding: clamp(26px, 3.5vw, 38px);
+}
+
+@media (min-width: 761px) and (max-width: 940px) {
+  .protocol::before,
+  .audience::before,
+  .personalization::before,
+  .transformation::before {
+    inset: 0 auto 0 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .contrast::before {
+    inset: 50% auto auto 0;
+    width: 54%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    transform: translateY(-50%);
+    background-size: cover;
+  }
+}
+
+@media (max-width: 760px) {
+  .protocol,
+  .audience,
+  .personalization {
+    padding-top: calc(clamp(220px, 56.25vw, 360px) + 44px);
+  }
+
+  .protocol::before,
+  .audience::before,
+  .personalization::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: clamp(220px, 56.25vw, 360px);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .contrast {
+    padding-top: calc(clamp(250px, 66.67vw, 400px) + 44px);
+  }
+
+  .contrast::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: clamp(250px, 66.67vw, 400px);
+    aspect-ratio: auto;
+    transform: none;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .protocol::after,
+  .audience::after,
+  .personalization::after,
+  .contrast::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(clamp(220px, 56.25vw, 360px) + 28px);
+  }
+
+  .contrast::after {
+    height: calc(clamp(250px, 66.67vw, 400px) + 28px);
+  }
+
+  .transformation::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center 28%;
+  }
+
+  .transformation::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: 430px;
+  }
+
+  .protocol-card,
+  .protocol-medical,
+  .protocol-nutrition,
+  .protocol-psychology,
+  .protocol-movement,
+  .protocol-aesthetics,
+  .protocol-tirzepatide {
+    min-height: 170px;
+    padding: 20px;
+  }
+
+  .objection-card,
+  .objection-card:nth-child(n),
+  .team-card,
+  .team-card-1,
+  .team-card-2,
+  .team-card-3,
+  .team-card-4,
+  .team-card-5 {
+    min-height: 220px;
+  }
+}
