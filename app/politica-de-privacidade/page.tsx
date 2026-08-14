@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { siteConfig } from "../../src/config/site";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <main className="legal-page">
       <div className="legal-shell">
-        <a className="legal-back" href="/">← Voltar para a página inicial</a>
+        <Link className="legal-back" href="/">← Voltar para a página inicial</Link>
         <span className="kicker">Privacidade</span>
         <h1>Política de Privacidade</h1>
         <p className="legal-intro">
@@ -19,7 +20,7 @@ export default function PrivacyPage() {
         <section>
           <h2>Dados informados por você</h2>
           <p>
-            Ao preencher o formulário, os dados são usados apenas para montar uma mensagem no WhatsApp. O formulário não possui armazenamento próprio nem envia informações para ferramentas de análise.
+            Ao preencher o formulário, nome, WhatsApp, dificuldade relatada e registro do consentimento são enviados por e-mail à equipe da clínica para atendimento da solicitação. Esses dados não são enviados para ferramentas de análise.
           </p>
         </section>
         <section>
@@ -29,9 +30,9 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
-          <h2>WhatsApp e serviços de terceiros</h2>
+          <h2>E-mail, WhatsApp e serviços de terceiros</h2>
           <p>
-            Ao abrir o WhatsApp, o tratamento de dados também passa a seguir as regras e políticas do próprio serviço. Evite enviar informações médicas sensíveis antes de receber orientação adequada da equipe.
+            O envio do formulário utiliza a Resend como infraestrutura de entrega de e-mail. Ao continuar o contato pelo WhatsApp, o tratamento de dados também passa a seguir as regras e políticas desse serviço. Evite informar dados médicos além do necessário antes de receber orientação adequada da equipe.
           </p>
         </section>
         <section>

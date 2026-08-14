@@ -7,21 +7,23 @@ export const navigation = [
 ] as const;
 
 export const sixFronts = [
-  ["Medicina", "Saúde, indicação e evolução clínica"],
-  ["Psicologia", "Emoções, comportamentos e hábitos"],
-  ["Nutrição", "Estratégia alimentar para a sua rotina"],
-  ["Atividade física", "Movimento possível e progressivo"],
-  ["Estética", "Cuidados conforme as mudanças do corpo"],
-  ["Tirzepatida", "Mediante indicação médica"],
+  ["Consultas médicas", "Duas consultas previstas ao longo do plano"],
+  ["Exames laboratoriais", "Conforme avaliação e solicitação médica"],
+  ["Nutrição e psicologia", "Alimentação, emoções e comportamento"],
+  ["Cuidados estéticos", "Acompanhando as mudanças corporais"],
+  ["Atividade física", "Orientações compatíveis com seu momento"],
+  ["Tratamento medicamentoso", "Quando indicado pelo médico"],
 ] as const;
 
 export const identificationItems = [
-  "Já emagreceu, mas recuperou o peso.",
-  "Tem dificuldade para manter a rotina quando os compromissos aumentam.",
-  "Percebe que as emoções influenciam sua relação com a alimentação.",
-  "Já tentou diferentes estratégias sem um acompanhamento integrado.",
-  "Evita roupas, fotos ou situações porque não se sente confortável.",
-  "Quer cuidar da saúde sem depender apenas de uma medicação.",
+  "Começa decidido a mudar, mas tem dificuldade para manter a rotina.",
+  "Segue a alimentação por alguns dias, mas cansaço, ansiedade ou compromissos tiram você do plano.",
+  "Volta a treinar, mas não vê o resultado esperado ou perde a frequência.",
+  "Perde alguns quilos e, depois, sente que voltou ao ponto de partida.",
+  "Compra roupas pensando em quando vai emagrecer.",
+  "Evita fotos, eventos ou roupas porque não se sente confortável.",
+  "Recebe diferentes orientações, mas não consegue transformá-las em um plano possível.",
+  "Tenta organizar alimentação, exercícios, emoções e tratamento sem saber por onde começar.",
 ] as const;
 
 export const cycleSteps = [
@@ -30,7 +32,7 @@ export const cycleSteps = [
   "Tenta encaixar exercícios",
   "Percebe alguma evolução",
   "A rotina fica mais difícil",
-  "O peso volta",
+  "O plano deixa de ser seguido",
   "A frustração aumenta",
   "Uma nova tentativa começa",
 ] as const;
@@ -38,109 +40,109 @@ export const cycleSteps = [
 export const protocolCards = [
   {
     key: "medical",
-    number: "01",
-    title: "Medicina",
-    text: "Avaliação clínica, indicação medicamentosa e acompanhamento da evolução.",
+    title: "Duas consultas médicas",
+    text: "Duas consultas para avaliar seu histórico, sua saúde e a resposta ao tratamento.",
+  },
+  {
+    key: "exams",
+    title: "Exames laboratoriais",
+    text: "Exames definidos por avaliação e solicitação médica para orientar a estratégia.",
   },
   {
     key: "nutrition",
-    number: "02",
-    title: "Nutrição",
-    text: "Estratégia alimentar construída para a sua rotina, necessidades e objetivos.",
+    title: "Acompanhamento nutricional",
+    text: "Orientação para sua rotina, hábitos, dificuldades e objetivos, sem dieta pronta.",
   },
   {
     key: "psychology",
-    number: "03",
-    title: "Psicologia",
-    text: "Cuidado com comportamentos, emoções e padrões relacionados à alimentação.",
-  },
-  {
-    key: "movement",
-    number: "04",
-    title: "Atividade física",
-    text: "Movimento possível, progressivo e adequado ao seu momento atual.",
+    title: "Acompanhamento psicológico",
+    text: "Cuidado com fatores emocionais e comportamentais ligados à alimentação e à continuidade.",
   },
   {
     key: "aesthetics",
-    number: "05",
-    title: "Estética",
-    text: "Cuidados definidos conforme as necessidades percebidas durante as mudanças do corpo.",
+    title: "Cuidados estéticos",
+    text: "Tratamentos definidos conforme as necessidades das mudanças corporais.",
   },
   {
     key: "tirzepatide",
-    number: "06",
-    title: "Tirzepatida",
-    text: "Utilizada somente quando houver avaliação, indicação, prescrição e acompanhamento médico.",
+    title: "Tratamento medicamentoso",
+    text: "Pode integrar o protocolo mediante avaliação, indicação, prescrição e acompanhamento médico.",
+  },
+  {
+    key: "movement",
+    title: "Orientações para atividade física",
+    text: "Movimento compatível com seu momento, sem exigir uma rotina perfeita.",
   },
 ] as const;
 
 export const audienceItems = [
-  "Já emagreceu, mas recuperou o peso",
-  "Tem dificuldade para manter uma rotina",
-  "Percebe que as emoções influenciam a alimentação",
-  "Já tentou diferentes estratégias sem acompanhamento integrado",
-  "Busca um plano possível de sustentar",
-  "Não quer depender apenas de uma medicação",
-  "Quer entender o que faz sentido para o seu momento",
-  "Deseja cuidar de saúde, mente e corpo em conjunto",
+  "Luta contra o peso há anos e já tentou diferentes dietas",
+  "Já começou e interrompeu atividades físicas",
+  "Sente que o resultado não acompanha o esforço",
+  "Perde peso, mas tem dificuldade para manter",
+  "Percebe as emoções interferindo na alimentação",
+  "Tem dificuldade para organizar tantas orientações",
+  "Busca avaliação profissional e um plano personalizado",
+  "Não quer depender apenas de medicação",
+  "Quer cuidar de saúde, alimentação, comportamento, movimento e corpo de forma integrada",
 ] as const;
 
 export const personalizationItems = [
   "Seu histórico e suas condições de saúde",
   "Suas tentativas anteriores",
-  "Sua rotina e suas dificuldades",
+  "Sua rotina",
+  "Suas principais dificuldades",
   "Seus objetivos",
   "Sua relação com a alimentação",
+  "Sua relação com a atividade física",
   "Sua relação com o próprio corpo",
 ] as const;
 
 export const processSteps = [
-  ["Você conversa com a equipe", "No WhatsApp, você apresenta brevemente seu momento e recebe orientação sobre os próximos passos."],
-  ["A equipe entende sua realidade", "Histórico, rotina, dificuldades, tentativas anteriores e objetivos entram na conversa."],
-  ["A avaliação identifica necessidades", "Os profissionais avaliam quais áreas de cuidado podem contribuir para o seu caso."],
-  ["O plano é construído", "A estrutura do cuidado e a indicação da tirzepatida, quando pertinente, são definidas individualmente."],
-  ["A estratégia pode ser ajustada", "Respostas, dificuldades e evolução orientam os próximos passos do acompanhamento."],
+  ["Conversa com a equipe", "Conte seu objetivo, tire dúvidas e conheça os próximos passos pelo WhatsApp."],
+  ["Avaliação do seu caso", "Histórico, rotina, dificuldades e objetivos orientam a estratégia."],
+  ["Consulta e exames", "Duas consultas médicas e exames conforme avaliação e solicitação profissional."],
+  ["Definição do plano", "A equipe integra cuidados médicos, nutricionais, psicológicos, estéticos e atividade física."],
+  ["Avaliação do tratamento medicamentoso", "O médico avalia a indicação de tratamento medicamentoso."],
+  ["Acompanhamento da jornada", "Os profissionais acompanham respostas, dificuldades e evolução ao longo do protocolo."],
 ] as const;
 
 export const emotionalBenefits = [
   "Mais clareza sobre o próximo passo",
-  "Mais confiança ao escolher suas roupas",
-  "Mais disposição para a rotina",
-  "Menos sensação de começar e interromper",
-  "Um processo que não depende apenas da sua força de vontade",
+  "Mais segurança para começar",
+  "Mais apoio nas dificuldades",
+  "Uma estratégia possível para sua rotina",
+  "Menos sensação de começar e parar",
+  "Um plano que não depende só da força de vontade",
 ] as const;
 
 export const objections = [
-  ["Não sei se a tirzepatida é indicada para mim.", "A indicação é avaliada pelo médico após conhecer seu histórico e suas condições de saúde."],
-  ["Tenho medo de começar e desistir novamente.", "O protocolo reúne profissionais para acompanhar também as dificuldades que podem surgir durante o processo."],
-  ["Não consigo seguir uma rotina perfeita.", "O plano deve considerar sua realidade, suas possibilidades e seu momento atual."],
-  ["Não sei qual profissional procurar primeiro.", "O primeiro contato acontece com a equipe, que orienta os próximos passos."],
+  ["Não sei se o tratamento medicamentoso é indicado para mim.", "A indicação depende da avaliação médica, do seu histórico e das suas condições de saúde."],
+  ["Tenho medo de começar e desistir novamente.", "Diferentes profissionais acompanham também as dificuldades da jornada."],
+  ["Não consigo seguir uma rotina perfeita.", "O plano considera sua realidade, suas possibilidades e seu momento."],
+  ["Já tentei dieta e exercício e não consegui manter.", "As tentativas anteriores ajudam a equipe a entender o que precisa mudar."],
+  ["Não sei qual profissional procurar primeiro.", "A equipe da Gio apresenta os próximos passos no primeiro contato."],
 ] as const;
 
 export const teamRoles = [
-  ["Profissional médico", "Avalia o histórico de saúde, a indicação medicamentosa e a evolução clínica."],
-  ["Profissional de psicologia", "Acompanha fatores emocionais e comportamentais relacionados à jornada."],
-  ["Profissional de nutrição", "Constrói uma estratégia alimentar adequada à rotina e aos objetivos."],
-  ["Profissional de educação física", "Orienta um plano de movimento possível, progressivo e individualizado."],
-  ["Equipe de estética", "Define cuidados estéticos conforme as necessidades percebidas durante o processo."],
+  ["Médico responsável", "Avalia histórico, saúde, resposta ao tratamento e indicação medicamentosa."],
+  ["Psicologia", "Considera fatores emocionais e comportamentais ligados à alimentação e à continuidade."],
+  ["Nutrição", "Organiza uma estratégia alimentar possível para rotina, hábitos e objetivos."],
+  ["Atividade física", "Orienta o movimento de forma progressiva e compatível com o momento atual."],
+  ["Estética", "Conecta os cuidados corporais às necessidades do protocolo."],
 ] as const;
 
 export const faqs = [
-  ["A tirzepatida é indicada para todas as pessoas?", "Não. A indicação depende de avaliação clínica realizada pelo médico responsável. Cada paciente possui um histórico e condições de saúde diferentes."],
-  ["A aplicação acontece de forma isolada?", "Não. Quando indicada, a tirzepatida integra uma estratégia que também envolve acompanhamento médico, nutricional, psicológico, físico e estético."],
-  ["O protocolo é igual para todos?", "Não. O acompanhamento é definido conforme o histórico, as necessidades, a rotina e os objetivos de cada pessoa."],
-  ["Quais profissionais participam?", "O protocolo reúne médico, psicólogo, nutricionista, educador físico e equipe de estética."],
-  ["Preciso já praticar atividade física?", "Não. O educador físico desenvolve um plano adequado ao seu momento, às suas condições e à sua rotina."],
-  ["Posso participar mesmo já tendo tentado outros tratamentos?", "Sim. As tentativas anteriores fazem parte do histórico e devem ser consideradas durante a avaliação."],
-  ["Os resultados são iguais para todas as pessoas?", "Não. Os resultados podem variar conforme as condições de saúde, a resposta do organismo, a rotina e a adesão ao acompanhamento."],
-  ["Quanto tempo dura o acompanhamento?", "A duração é individual. A equipe define e ajusta os próximos passos conforme a avaliação, os objetivos e a evolução de cada pessoa."],
-  ["O que pode fazer parte do protocolo?", "O plano pode integrar acompanhamento médico, psicológico, nutricional, físico e estético. A composição e a frequência são definidas de forma individualizada."],
-  ["E se a tirzepatida não for indicada para mim?", "A medicação não é obrigatória para que exista cuidado multidisciplinar. O médico conversa sobre as estratégias adequadas ao seu caso após a avaliação."],
-  ["Como os efeitos e a evolução são acompanhados?", "A resposta ao plano, as dificuldades e eventuais sintomas são acompanhados pela equipe. Condutas e frequência podem ser ajustadas conforme a evolução."],
-  ["Existe acompanhamento para manutenção dos resultados?", "Os próximos passos são definidos conforme a evolução e os objetivos de cada pessoa. A equipe orienta como dar continuidade ao cuidado no momento apropriado."],
-  ["A avaliação tem algum custo?", "A equipe informa as condições da avaliação e do acompanhamento no primeiro contato, antes de qualquer decisão."],
-  ["Como faço para começar?", "Clique em um dos botões da página e converse com a equipe pelo WhatsApp."],
+  ["O que está incluído no protocolo?", "Duas consultas médicas, exames, nutrição, psicologia, estética, atividade física e medicação quando indicada."],
+  ["O tratamento medicamentoso é indicado para todas as pessoas?", "Não. A indicação depende da avaliação médica e das condições de cada paciente."],
+  ["O protocolo é igual para todos?", "Não. As condutas consideram histórico, saúde, rotina, dificuldades e objetivos."],
+  ["Quais exames estão incluídos?", "O profissional responsável define e solicita os exames. A clínica informa a relação na avaliação."],
+  ["Quantas aplicações estão incluídas?", "A quantidade depende da avaliação e da estratégia médica."],
+  ["Preciso já praticar atividade física?", "Não. As orientações ajudam a inserir movimento conforme seu momento e suas possibilidades."],
+  ["Posso participar mesmo já tendo tentado outros tratamentos?", "Sim. Suas tentativas anteriores serão consideradas na avaliação."],
+  ["Os resultados são iguais para todas as pessoas?", "Não. A resposta varia conforme saúde, organismo, rotina e adesão ao plano."],
+  ["Como faço para começar?", "Clique em um botão e converse com a equipe pelo WhatsApp."],
 ] as const;
 
 export const medicalNotice =
-  "As informações desta página possuem caráter informativo e não substituem avaliação, consulta ou orientação profissional. A indicação de medicamentos, procedimentos e estratégias depende da avaliação individual de cada paciente. A aplicação de tirzepatida somente é realizada mediante avaliação, indicação, prescrição e acompanhamento médico. Os resultados podem variar.";
+  "As informações desta página possuem caráter informativo e não substituem avaliação, consulta ou orientação profissional. A participação no protocolo, a realização de procedimentos e a utilização de medicamentos dependem da avaliação individual e da indicação dos profissionais responsáveis. Os resultados podem variar conforme as condições de saúde, a resposta do organismo, a rotina e a adesão de cada pessoa ao plano.";

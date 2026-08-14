@@ -35,7 +35,15 @@ O número oficial ainda não foi informado. Até que `whatsappNumber` seja preen
 
 ## Formulário
 
-O formulário valida os campos, aplica máscara brasileira no telefone e monta uma mensagem personalizada. As respostas não são enviadas para analytics nem armazenadas no projeto. A estrutura de rastreamento usa apenas nomes de eventos e localização do CTA.
+O formulário valida os campos, aplica máscara brasileira no telefone e envia a solicitação para a equipe por meio da Resend. As respostas não são enviadas para analytics nem armazenadas no projeto. A estrutura de rastreamento usa apenas nomes de eventos e localização do CTA.
+
+Variáveis necessárias:
+
+```bash
+RESEND_API_KEY=
+LEAD_DESTINATION_EMAIL=
+RESEND_FROM_EMAIL=
+```
 
 ## Publicação
 

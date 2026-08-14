@@ -8,9 +8,8 @@ export const siteConfig = {
   whatsappNumber: "5527997756738",
   whatsappMessage:
     "Olá! Gostaria de entender se o Método Gio Integrado faz sentido para o meu momento.",
-  googleMapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=Av.%20Henrique%20Moscoso%2C%20530%20-%20Praia%20da%20Costa%2C%20Vila%20Velha%20-%20ES%2C%2029100-020",
-  email: "",
+  googleMapsUrl: "https://maps.app.goo.gl/ttdbpcYVpsMCGKeK7",
+  email: "giolaserpraiadacosta@gmail.com",
   openingHours:
     "Seg., qua. e sex., das 8h às 18h · Ter. e qui., das 8h às 20h · Sáb., das 8h às 16h",
   canonicalUrl: "https://gio-praia-da-costa.mfcs1510.chatgpt.site",

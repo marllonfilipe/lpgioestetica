@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { medicalNotice } from "../../src/config/copy";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export default function TermsPage() {
   return (
     <main className="legal-page">
       <div className="legal-shell">
-        <a className="legal-back" href="/">← Voltar para a página inicial</a>
+        <Link className="legal-back" href="/">← Voltar para a página inicial</Link>
         <span className="kicker">Uso responsável</span>
         <h1>Termos de Uso</h1>
         <p className="legal-intro">

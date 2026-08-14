@@ -5,7 +5,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Brain,
-  Camera,
   Check,
   ChevronDown,
   ClipboardList,
@@ -13,13 +12,14 @@ import {
   HeartPulse,
   MapPin,
   Menu,
-  MessageCircle,
+  Send,
   ShieldCheck,
   Sparkles,
   Syringe,
   UsersRound,
   X,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   audienceItems,
@@ -38,10 +38,11 @@ import {
 } from "../src/config/copy";
 import { siteConfig } from "../src/config/site";
 import { trackEvent } from "../src/lib/analytics";
-import { buildLeadMessage, buildWhatsAppUrl } from "../src/lib/whatsapp";
+import { buildWhatsAppUrl } from "../src/lib/whatsapp";
 
 const protocolIcons = {
   medical: HeartPulse,
+  exams: ClipboardList,
   nutrition: Apple,
   psychology: Brain,
   movement: Dumbbell,
@@ -49,16 +50,13 @@ const protocolIcons = {
   tirzepatide: Syringe,
 };
 
-const galleryImages = [
-  ["/images/gio/hero.png", "Acolhimento em ambiente premium na Gio"],
-  ["/images/gio/identificacao.png", "Momento cotidiano de escolha e autocuidado"],
-  ["/images/gio/protocolo.png", "Atendimento personalizado em ambiente elegante"],
-  ["/images/gio/para-quem-e.png", "Profissional e paciente analisando um plano"],
-] as const;
+const teamAreaIcons = [Brain, Apple, Dumbbell, Sparkles] as const;
 
 type FormErrors = Partial<
   Record<"name" | "phone" | "difficulty" | "consent", string>
 >;
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 function formatPhone(value: string) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
@@ -74,9 +72,14 @@ export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
+  const [contextualActionsVisible, setContextualActionsVisible] = useState(false);
   const [heroActionsVisible, setHeroActionsVisible] = useState(true);
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
+  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const heroActionsRef = useRef<HTMLDivElement | null>(null);
+  const packageSectionRef = useRef<HTMLElement | null>(null);
+  const clinicSectionRef = useRef<HTMLElement | null>(null);
   const formSectionRef = useRef<HTMLElement | null>(null);
   const formStartedRef = useRef(false);
 
@@ -85,6 +88,28 @@ export default function GioLandingPage() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = [packageSectionRef.current, clinicSectionRef.current].filter(
+      (section): section is HTMLElement => Boolean(section),
+    );
+    if (sections.length === 0) return;
+
+    const visibleSections = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleSections.add(entry.target);
+          else visibleSections.delete(entry.target);
+        });
+        setContextualActionsVisible(visibleSections.size > 0);
+      },
+      { threshold: 0.08 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -105,11 +130,11 @@ export default function GioLandingPage() {
   }, []);
 
   useEffect(() => {
-    const heroActions = document.querySelector(".hero");
+    const heroActions = heroActionsRef.current;
     if (!heroActions) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setHeroActionsVisible(entry.isIntersecting),
-      { threshold: 0.15 },
+      ([entry]) => setHeroActionsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.6),
+      { threshold: 0.6 },
     );
     observer.observe(heroActions);
     return () => observer.disconnect();
@@ -135,12 +160,15 @@ export default function GioLandingPage() {
   }, []);
 
   const whatsappHref = buildWhatsAppUrl();
+  const packageWhatsappHref = buildWhatsAppUrl(
+    "Olá! Vi o protocolo completo no site e gostaria de entender o investimento, as condições de pagamento e como funciona a avaliação.",
+  );
 
   function handleWhatsAppClick(location: string) {
     trackEvent("whatsapp_click", { location });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
@@ -149,6 +177,7 @@ export default function GioLandingPage() {
       phone: String(form.get("phone") ?? "").replace(/\D/g, ""),
       difficulty: String(form.get("difficulty") ?? "").trim(),
       consent: form.get("consent") === "on",
+      website: String(form.get("website") ?? "").trim(),
     };
 
     const nextErrors: FormErrors = {};
@@ -158,6 +187,7 @@ export default function GioLandingPage() {
     if (!values.consent) nextErrors.consent = "Você precisa autorizar o contato da equipe.";
 
     setErrors(nextErrors);
+    setFormStatus("idle");
     if (Object.keys(nextErrors).length > 0) {
       window.requestAnimationFrame(() => {
         formElement.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
@@ -165,9 +195,28 @@ export default function GioLandingPage() {
       return;
     }
 
-    trackEvent("lead_form_submit", { location: "lead_form" });
-    const message = buildLeadMessage(values);
-    window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    setFormStatus("submitting");
+
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error("Lead submission failed");
+      }
+
+      trackEvent("lead_form_submit", { location: "lead_form" });
+      formElement.reset();
+      setPhone("");
+      setErrors({});
+      setFormStatus("success");
+      formStartedRef.current = false;
+    } catch {
+      setFormStatus("error");
+    }
   }
 
   return (
@@ -242,20 +291,17 @@ export default function GioLandingPage() {
         <section id="hero" className="hero section-pad">
           <div className="shell hero-grid">
             <div className="hero-copy reveal">
-              <div className="eyebrow">Método Gio Integrado · acompanhamento personalizado</div>
+              <div className="eyebrow">Protocolo de emagrecimento multidisciplinar</div>
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
-                Emagrecer pode ser mais leve quando <em>você não precisa fazer tudo sozinho.</em>
+                Você já tentou fazer dieta, voltar a treinar e mudar sua rotina.{" "}
+                <em>O que talvez tenha faltado não foi esforço - foi um plano acompanhando você por inteiro.</em>
               </h1>
               <p className="hero-lead">
-                Um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e
-                estética em uma única estratégia.
+                Um protocolo personalizado que reúne consultas médicas, exames laboratoriais, acompanhamento
+                nutricional, psicológico, estético e orientações para atividade física.
               </p>
-              <p className="hero-support">
-                A tirzepatida pode fazer parte do Método Gio Integrado quando houver indicação, prescrição e
-                acompanhamento médico.
-              </p>
-              <div className="button-row">
+              <div className="button-row" ref={heroActionsRef}>
                 <a
                   className="button"
                   href={whatsappHref}
@@ -263,7 +309,7 @@ export default function GioLandingPage() {
                   rel="noreferrer"
                   onClick={() => handleWhatsAppClick("hero")}
                 >
-                  Quero conversar com a equipe
+                  Quero saber se é para mim
                   <ArrowRight aria-hidden="true" />
                 </a>
                 <a
@@ -271,9 +317,13 @@ export default function GioLandingPage() {
                   href="#protocolo"
                   onClick={() => trackEvent("secondary_cta_click", { location: "hero" })}
                 >
-                  Conhecer o Método Gio
+                  Conhecer o protocolo
                 </a>
               </div>
+              <p className="hero-support">
+                Na Gio, profissionais acompanham saúde, alimentação, comportamento, movimento e evolução
+                corporal. O tratamento medicamentoso entra quando indicado pelo médico.
+              </p>
               <div className="hero-indicators" aria-label="Diferenciais">
                 {["Avaliação individual", "Equipe multidisciplinar", "Acompanhamento próximo"].map((item) => (
                   <span key={item}>
@@ -282,8 +332,8 @@ export default function GioLandingPage() {
                 ))}
               </div>
               <p className="medical-note">
-                <ShieldCheck aria-hidden="true" /> O protocolo é definido individualmente. A tirzepatida
-                depende de avaliação, indicação, prescrição e acompanhamento médico.
+                <ShieldCheck aria-hidden="true" /> O protocolo é definido individualmente. Tratamentos e
+                medicamentos dependem de avaliação, indicação, prescrição e acompanhamento médico.
               </p>
             </div>
 
@@ -305,7 +355,6 @@ export default function GioLandingPage() {
                 <ClipboardList aria-hidden="true" />
                 <span>Plano pensado para a sua realidade</span>
               </div>
-              <span className="photo-index">01</span>
               <span className="photo-caption">Cuidado completo</span>
             </div>
           </div>
@@ -313,11 +362,15 @@ export default function GioLandingPage() {
 
         <section className="fronts-band" aria-label="As seis frentes do protocolo">
           <div className="shell fronts-grid">
-            {sixFronts.map(([title, text]) => (
-              <div key={title} className="front-item">
+            {sixFronts.map(([title, text], index) => (
+              <a
+                key={title}
+                className="front-item"
+                href={`#protocolo-${["medical", "exams", "nutrition", "aesthetics", "movement", "tirzepatide"][index]}`}
+              >
                 <strong>{title}</strong>
                 <span>{text}</span>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -326,12 +379,12 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="section-heading split-heading">
               <div>
-                <span className="kicker">Sem culpa, com contexto</span>
-                <h2>Você não falhou. Talvez só tenha tentado cuidar de algo complexo com soluções isoladas.</h2>
+                <span className="kicker">Quando o esforço parece não acompanhar o resultado</span>
+                <h2>Talvez você não esteja cansado de tentar. Talvez esteja cansado de tentar sozinho.</h2>
               </div>
               <p>
-                Dietas, treinos e medicamentos podem ajudar. Mas, quando cada parte acontece separadamente,
-                manter a evolução pode se tornar mais difícil.
+                Emagrecer envolve mais que comer menos e treinar. Saúde, rotina, emoções, movimento e resposta
+                ao tratamento também precisam ser considerados.
               </p>
             </div>
 
@@ -344,12 +397,11 @@ export default function GioLandingPage() {
                   alt="Pessoa escolhendo uma roupa em uma situação cotidiana"
                   loading="lazy"
                 />
-                <span className="image-note">“Sente que sempre precisa começar novamente.”</span>
+                <span className="image-note">“Você se reconhece em alguma dessas situações?”</span>
               </div>
               <div className="statement-grid">
                 {identificationItems.map((item, index) => (
                   <article key={item} className={`statement statement-${index + 1}`}>
-                    <span>0{index + 1}</span>
                     <p>{item}</p>
                   </article>
                 ))}
@@ -358,8 +410,7 @@ export default function GioLandingPage() {
 
             <div className="editorial-callout">
               <p>
-                Quando saúde, alimentação, emoções, atividade física e estética conversam entre si, o cuidado
-                pode fazer mais sentido para a sua realidade.
+                Talvez não tenha faltado disciplina, mas um plano que considere você por completo.
               </p>
               <a
                 href={whatsappHref}
@@ -367,7 +418,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("identificacao")}
               >
-                Quero entender meu próximo passo <ArrowRight aria-hidden="true" />
+                Quero conhecer esse acompanhamento <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -379,7 +430,6 @@ export default function GioLandingPage() {
               <span className="cycle-orbit" aria-hidden="true" />
               {cycleSteps.map((step, index) => (
                 <div className={`cycle-step cycle-step-${index + 1}`} key={step}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
                   <strong>{step}</strong>
                 </div>
               ))}
@@ -389,16 +439,15 @@ export default function GioLandingPage() {
               <span className="kicker">Quebra de culpa</span>
               <h2>O ciclo não começa na falta de esforço</h2>
               <p>
-                Você começa motivado, organiza a alimentação, tenta encaixar exercícios e percebe alguma
-                evolução. Mas, quando a rotina aperta, manter tantas mudanças sozinho pode se tornar difícil.
+                Você reorganiza a alimentação, retoma os exercícios e percebe mudanças. Quando a rotina aperta,
+                sustentar tudo sozinho fica mais difícil.
               </p>
               <blockquote>
-                Talvez o que esteja falhando não seja você. Talvez sejam as tentativas de cuidar de um processo
-                complexo por meio de soluções isoladas.
+                Talvez o problema não seja você, mas tentar cuidar de algo complexo com soluções isoladas.
               </blockquote>
               <p>
-                Foi pensando em pessoas que vivem essa luta há anos que a Gio estruturou um protocolo
-                multidisciplinar e personalizado.
+                Por isso, a Gio estruturou um protocolo com cuidados médicos, nutricionais, psicológicos,
+                estéticos e atividade física.
               </p>
             </div>
           </div>
@@ -408,14 +457,14 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="protocol-intro">
               <div className="protocol-application-heading">
-                <span className="kicker">Tirzepatida com acompanhamento</span>
-                <h2>A aplicação é apenas <em>uma parte do cuidado.</em></h2>
+                <span className="kicker">O protocolo</span>
+                <h2>Um plano de tratamento estruturado para acompanhar <em>diferentes partes do seu processo.</em></h2>
                 <p>
-                  Quando indicada pelo médico, a tirzepatida é integrada a um plano que também cuida da alimentação,
-                  das emoções, da atividade física e das mudanças do corpo.
+                  A Gio reúne avaliações, profissionais e cuidados em uma única jornada.
                 </p>
                 <p className="protocol-medical-disclaimer">
-                  <ShieldCheck aria-hidden="true" /> Somente mediante avaliação, prescrição e acompanhamento médico.
+                  <ShieldCheck aria-hidden="true" /> O médico define as condutas clínicas e avalia a indicação de
+                  tratamento medicamentoso.
                 </p>
               </div>
               <div className="protocol-photo image-frame">
@@ -430,19 +479,22 @@ export default function GioLandingPage() {
             </div>
 
             <div className="protocol-areas-intro">
-              <span className="kicker">O cuidado continua</span>
-              <h3>Cinco áreas conectadas ao mesmo plano.</h3>
-              <p>A medicação pode fazer parte da estratégia. O cuidado continua em todas estas áreas:</p>
+              <span className="kicker">O que está incluído</span>
+              <h3>Um plano acompanhado por diferentes áreas.</h3>
+              <p>Conheça os cuidados que integram o plano:</p>
             </div>
 
             <div className="protocol-bento">
               {protocolCards.map((card) => {
                 const Icon = protocolIcons[card.key as keyof typeof protocolIcons];
                 return (
-                  <article key={card.key} className={`protocol-card protocol-${card.key}`}>
+                  <article
+                    key={card.key}
+                    id={`protocolo-${card.key}`}
+                    className={`protocol-card protocol-${card.key}`}
+                  >
                     <div className="protocol-card-top">
                       <Icon aria-hidden="true" />
-                      <span>{card.number}</span>
                     </div>
                     <h3>{card.title}</h3>
                     <p>{card.text}</p>
@@ -452,7 +504,7 @@ export default function GioLandingPage() {
             </div>
 
             <div className="protocol-footer">
-              <p>A aplicação é uma parte do plano. O cuidado continua com diferentes áreas trabalhando em conjunto.</p>
+              <p>Um plano, diferentes cuidados trabalhando em conjunto.</p>
               <a
                 className="button button-light"
                 href={whatsappHref}
@@ -460,7 +512,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("protocolo")}
               >
-                Quero conhecer o Método Gio <ArrowRight aria-hidden="true" />
+                Quero iniciar minha avaliação <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -470,26 +522,25 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="section-heading centered-narrow">
               <span className="kicker">Integração</span>
-              <h2>Soluções isoladas podem ajudar. Um plano conectado ajuda a dar continuidade.</h2>
-              <p>O diferencial está em entender como cada parte pode contribuir para a mesma estratégia.</p>
+              <h2>Não é escolher entre dieta, exercício, estética ou medicação.</h2>
+              <p>É entender como cada parte pode contribuir para o seu processo.</p>
             </div>
             <div className="contrast-grid">
               <article className="contrast-isolated">
                 <span className="contrast-label">Quando tudo acontece de forma isolada</span>
-                {["Dieta sem suporte emocional", "Treino incompatível com a rotina", "Medicação sem acompanhamento dos hábitos", "Orientações desconectadas"].map((item) => (
+                {["Dieta sem considerar sua rotina", "Exercício difícil de sustentar", "Medicação sem cuidado com hábitos", "Estética desconectada do plano", "Orientações desconectadas", "Organizar tudo sozinho"].map((item) => (
                   <p key={item}><span aria-hidden="true" />{item}</p>
                 ))}
               </article>
               <article className="contrast-integrated">
-                <span className="contrast-label">Quando cada parte trabalha em conjunto</span>
-                {["Saúde acompanhada pelo médico", "Alimentação orientada", "Emoções acompanhadas", "Atividade física planejada", "Tirzepatida dentro de estratégia médica"].map((item) => (
+                <span className="contrast-label">Quando existe um plano integrado</span>
+                {["Saúde avaliada pelo médico", "Exames orientando condutas", "Alimentação acompanhada", "Emoções e comportamentos considerados", "Atividade física possível", "Cuidados estéticos integrados", "Medicação dentro da estratégia médica"].map((item) => (
                   <p key={item}><Check aria-hidden="true" />{item}</p>
                 ))}
               </article>
             </div>
             <p className="contrast-conclusion">
-              Você não precisa escolher uma única solução. Precisa entender quais cuidados fazem sentido para
-              o seu momento e como eles podem trabalhar em conjunto.
+              Cada parte tem uma função dentro do mesmo plano.
             </p>
           </div>
         </section>
@@ -498,19 +549,19 @@ export default function GioLandingPage() {
           <div className="shell audience-grid">
             <div className="audience-photo image-frame">
               <img
-                src="/images/gio/para-quem-e.png"
+                src="/images/gio/protocolo-para-voce.png"
                 width="2048"
                 height="1152"
-                alt="Pessoa adulta em atendimento, com aparência real, elegante e confiante"
+                alt="Profissional apresentando o protocolo personalizado da Gio"
                 loading="lazy"
               />
               <div className="audience-overlap">
-                Para quem não procura uma promessa rápida, mas um cuidado pensado para a própria realidade.
+                Para quem deseja avaliação e acompanhamento de acordo com a própria realidade — não uma fórmula pronta.
               </div>
             </div>
             <div className="audience-copy">
               <span className="kicker">Para quem é</span>
-              <h2>Para quem cansou de recomeçar e procura um plano possível de sustentar.</h2>
+              <h2>Este protocolo foi pensado para você que:</h2>
               <ul className="editorial-list">
                 {audienceItems.map((item) => (
                   <li key={item}><span aria-hidden="true">✦</span>{item}</li>
@@ -523,7 +574,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("para_quem_e")}
               >
-                Quero saber se faz sentido para mim <ArrowRight aria-hidden="true" />
+                Quero saber se é para mim <ArrowRight aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -532,14 +583,13 @@ export default function GioLandingPage() {
         <section className="personalization section-pad">
           <div className="shell personalization-grid">
             <div className="personalization-copy">
-              <span className="kicker">Personalização</span>
-              <h2>Seu histórico deve definir o plano — não o contrário.</h2>
+              <span className="kicker">Escuta antes da estratégia</span>
+              <h2>O seu processo não deveria ser igual ao de todo mundo.</h2>
               <p className="large-copy">
-                Antes de recomendar qualquer estratégia, a equipe procura entender sua saúde, rotina,
-                dificuldades, tentativas anteriores e objetivos.
+                Cada pessoa tem um histórico, uma rotina e uma resposta diferente.
               </p>
               <p>
-                O Método Gio Integrado não começa com uma solução pronta. Ele começa com escuta e avaliação.
+                Por isso, o plano começa compreendendo:
               </p>
               <div className="personalization-list">
                 {personalizationItems.map((item) => (
@@ -547,16 +597,15 @@ export default function GioLandingPage() {
                 ))}
               </div>
               <blockquote>
-                Você não precisa se encaixar em um método genérico. O plano é que precisa fazer sentido para a
-                sua realidade.
+                Você não precisa se encaixar em um método genérico. O plano deve caber na sua realidade.
               </blockquote>
             </div>
             <div className="personalization-photo image-frame">
               <img
-                src="/images/gio/para-quem-e.png"
+                src="/images/gio/processo-personalizado.png"
                 width="2048"
                 height="1152"
-                alt="Profissional e paciente analisando exames e um plano personalizado"
+                alt="Profissional e paciente analisando um plano alimentar personalizado"
                 loading="lazy"
               />
               <span className="photo-caption light">Escuta antes da estratégia</span>
@@ -569,7 +618,7 @@ export default function GioLandingPage() {
             <div className="process-heading">
               <div>
                 <span className="kicker">Como funciona</span>
-                <h2>Você não precisa decidir tudo agora. O primeiro passo é uma conversa.</h2>
+                <h2>Sua jornada começa com uma avaliação.</h2>
               </div>
               <div className="process-thumbnails" aria-label="Momentos da avaliação e do acompanhamento">
                 <img src="/images/gio/hero.png" alt="Conversa inicial durante a avaliação" loading="lazy" />
@@ -577,9 +626,8 @@ export default function GioLandingPage() {
               </div>
             </div>
             <ol className="timeline">
-              {processSteps.map(([title, text], index) => (
+              {processSteps.map(([title, text]) => (
                 <li key={title}>
-                  <span className="timeline-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="timeline-dot" aria-hidden="true" />
                   <h3>{title}</h3>
                   <p>{text}</p>
@@ -593,8 +641,50 @@ export default function GioLandingPage() {
               rel="noreferrer"
               onClick={() => handleWhatsAppClick("como_funciona")}
             >
-              Quero iniciar uma conversa <ArrowRight aria-hidden="true" />
+              Quero agendar minha avaliação <ArrowRight aria-hidden="true" />
             </a>
+          </div>
+        </section>
+
+        <section id="investimento" className="package-section section-pad" ref={packageSectionRef}>
+          <div className="shell package-grid">
+            <div className="package-copy">
+              <h2>O protocolo completo, em um só investimento.</h2>
+              <p>
+                Veja o que está previsto e consulte as condições com a equipe.
+              </p>
+              <div className="package-items" aria-label="Itens previstos no protocolo">
+                {protocolCards.map((card) => (
+                  <div key={card.key} className="package-item">
+                    <Check aria-hidden="true" />
+                    <span>{card.title}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="package-disclaimer">
+                <ShieldCheck aria-hidden="true" />
+                Exames, aplicações e medicamentos dependem de avaliação e indicação profissional.
+              </p>
+            </div>
+
+            <aside className="package-offer" aria-label="Investimento no protocolo">
+              <p className="package-offer-title">Investimento</p>
+              <strong className="package-price">Sob consulta</strong>
+              <p className="package-payment">
+                Receba valores e condições antes de decidir.
+              </p>
+              <a
+                className="button button-light package-button"
+                href={packageWhatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleWhatsAppClick("investimento")}
+              >
+                Consultar investimento pelo WhatsApp
+                <ArrowRight aria-hidden="true" />
+              </a>
+              <small>O contato não representa contratação nem indicação de tratamento.</small>
+            </aside>
           </div>
         </section>
 
@@ -602,17 +692,16 @@ export default function GioLandingPage() {
           <div className="shell transformation-grid">
             <div className="transformation-copy">
               <span className="kicker kicker-light">Transformação emocional</span>
-              <h2>O objetivo não é apenas perder peso. É voltar a viver com mais confiança e disposição.</h2>
+              <h2>Imagine viver esse processo sem precisar juntar todas as peças sozinho.</h2>
               <p>
-                Vestir-se com mais segurança, participar de momentos sem desconforto e sentir que existe um
-                caminho possível também fazem parte da transformação.
+                Profissionais acompanhando saúde, alimentação, comportamento, atividade física e mudanças corporais.
               </p>
               <ul>
                 {emotionalBenefits.map((item) => (
                   <li key={item}><Check aria-hidden="true" />{item}</li>
                 ))}
               </ul>
-              <p className="transformation-statement">Você não precisa juntar todas as peças sozinho.</p>
+              <p className="transformation-statement">Desta vez, você não precisa organizar tudo sozinho.</p>
               <a
                 className="button button-beige"
                 href={whatsappHref}
@@ -620,15 +709,15 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("transformacao")}
               >
-                Quero entender meu próximo passo <ArrowRight aria-hidden="true" />
+                Quero viver essa experiência <ArrowRight aria-hidden="true" />
               </a>
             </div>
             <div className="transformation-photo image-frame">
               <img
-                src="/images/gio/transformacao.png"
-                width="1024"
-                height="1536"
-                alt="Pessoa vivendo sua rotina com confiança e bem-estar"
+                src="/images/gio/jornada-acompanhada.png"
+                width="2048"
+                height="1152"
+                alt="Equipe multidisciplinar reunida com paciente durante o acompanhamento"
                 loading="lazy"
               />
               <span className="transformation-orbit" aria-hidden="true" />
@@ -639,19 +728,19 @@ export default function GioLandingPage() {
         <section className="delay-section section-pad">
           <div className="shell delay-grid">
             <div>
-              <span className="kicker">Comece com clareza</span>
-              <h2>O primeiro passo pode ser mais simples do que parece.</h2>
+              <span className="kicker">Primeiro passo</span>
+              <h2>Você não precisa esperar estar completamente preparado.</h2>
             </div>
             <div className="delay-lines">
-              <p>Mais uma semana evitando determinadas roupas.</p>
-              <p>Mais uma ocasião sem se sentir confortável com o próprio corpo.</p>
-              <p>Mais uma tentativa que começa com entusiasmo e termina em frustração.</p>
-              <p>Mais tempo sentindo que precisa resolver tudo sozinho.</p>
+              <p>Talvez você ainda tenha dúvidas.</p>
+              <p>Talvez não saiba se o tratamento medicamentoso é indicado para você.</p>
+              <p>Talvez tenha receio de começar e interromper novamente.</p>
+              <p>Talvez não saiba qual profissional procurar primeiro.</p>
             </div>
             <div className="delay-action">
               <p>
-                Você não precisa chegar com tudo decidido. Uma conversa com a equipe ajuda a entender as
-                possibilidades antes de qualquer escolha.
+                Por isso, tudo começa com uma avaliação. Você não precisa ter todas as respostas — a equipe
+                começa conhecendo seu caso.
               </p>
               <a
                 className="button button-outline"
@@ -660,7 +749,7 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("custo_adiar")}
               >
-                Quero iniciar uma conversa
+                Quero dar o primeiro passo
               </a>
             </div>
           </div>
@@ -669,11 +758,10 @@ export default function GioLandingPage() {
         <section className="objections section-pad">
           <div className="shell objections-layout">
             <div className="objections-heading">
-              <span className="kicker">Suas dúvidas importam</span>
-              <h2>Você não precisa chegar com todas as respostas</h2>
+              <span className="kicker">Quebra de objeções</span>
+              <h2>Suas dúvidas fazem parte do processo.</h2>
               <p>
-                É justamente por isso que o processo começa com uma avaliação. Você não precisa organizar todas
-                as partes sozinho.
+                A avaliação esclarece possibilidades e o que faz sentido para o seu momento.
               </p>
             </div>
             <div className="objection-cards">
@@ -692,104 +780,215 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="team-heading">
               <div>
-                <span className="kicker">Equipe e autoridade</span>
-                <h2>Um plano integrado pede áreas de cuidado que conversem entre si.</h2>
+                <h2>Conheça os profissionais que acompanharão sua jornada.</h2>
               </div>
-              <p>Cinco áreas conectadas para que decisões, dificuldades e evolução sejam acompanhadas em conjunto.</p>
+              <p>Cada área cumpre uma função dentro do plano.</p>
             </div>
-            <div className="team-grid">
-              {teamRoles.map(([role, description], index) => (
-                <article key={role} className={`team-card team-card-${index + 1}`}>
-                  <span className="team-placeholder" aria-hidden="true">G.</span>
+
+            <div className="team-showcase">
+              <article className="team-lead-card">
+                <div className="team-lead-visual">
+                  <span className="team-lead-symbol" aria-hidden="true">
+                    <HeartPulse />
+                  </span>
                   <div>
-                    <span className="team-number">0{index + 1}</span>
-                    <h3>{role}</h3>
-                    <p>{description}</p>
+                    <span>Coordenação clínica</span>
+                    <strong>Avaliação individual</strong>
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+                </div>
+                <div className="team-lead-content">
+                  <span className="team-role-tag">Médico responsável</span>
+                  <h3>Daniel Gomes de Figueiredo</h3>
+                  <p>{teamRoles[0][1]}</p>
+                </div>
+              </article>
 
-        <section className="testimonials section-pad" aria-labelledby="experiencias-title">
-          <div className="shell testimonials-grid">
-            <div>
-              <span className="kicker">Transparência e responsabilidade</span>
-              <h2 id="experiencias-title">Resultados reais começam com expectativas individualizadas</h2>
-            </div>
-            <div className="testimonial-placeholder">
-              <span aria-hidden="true">“</span>
-              <p>
-                Cada pessoa responde de forma diferente. O plano considera histórico, rotina, objetivos e
-                resposta individual ao acompanhamento.
-              </p>
-              <small>A evolução é acompanhada pela equipe e as condutas podem ser ajustadas durante a jornada.</small>
-            </div>
-          </div>
-        </section>
+              <div className="team-area-grid">
+                {teamRoles.slice(1).map(([role, description], index) => {
+                  const TeamAreaIcon = teamAreaIcons[index];
 
-        <section className="gallery section-pad" aria-labelledby="galeria-title">
-          <div className="shell">
-            <div className="gallery-heading">
-              <div>
-                <span className="kicker">A experiência Gio</span>
-                <h2 id="galeria-title">Cuidado percebido em cada detalhe</h2>
+                  if (role === "Estética") {
+                    return (
+                      <article key={role} className="team-area-card team-area-card-profile">
+                        <img
+                          src="/images/gio/thassia-garcia-estetica.jpeg"
+                          alt="Thassia Garcia, profissional da área de estética da Gio Praia da Costa"
+                          width="1365"
+                          height="2048"
+                          loading="lazy"
+                        />
+                        <div className="team-profile-content">
+                          <span className="team-area-label">Profissional de estética</span>
+                          <h3>Thassia Garcia</h3>
+                          <p>{description}</p>
+                        </div>
+                      </article>
+                    );
+                  }
+
+                  return (
+                    <article key={role} className="team-area-card">
+                      <div className="team-area-card-top">
+                        <span className="team-area-icon" aria-hidden="true">
+                          <TeamAreaIcon />
+                        </span>
+                      </div>
+                      <div>
+                        <span className="team-area-label">Área do cuidado</span>
+                        <h3>{role}</h3>
+                        {role === "Nutrição" && (
+                          <span className="team-assignment-note">Profissional definido conforme o caso</span>
+                        )}
+                        <p>{description}</p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
-              <p>Imagens fornecidas para apresentar acolhimento, conversa, personalização e bem-estar.</p>
             </div>
-            <div className="gallery-grid">
-              {galleryImages.map(([src, alt], index) => (
-                <figure key={src} className={`gallery-item gallery-item-${index + 1}`}>
-                  <img src={src} alt={alt} loading="lazy" />
-                  <figcaption>{["Recepção e acolhimento", "Rotina e identificação", "Cuidado individual", "Avaliação e planejamento"][index]}</figcaption>
-                </figure>
-              ))}
+
+            <div className="team-integration">
+              <div>
+                <span>Trabalho integrado</span>
+                <strong>Diferentes especialidades, um plano construído em conjunto.</strong>
+              </div>
+              <a
+                className="button team-cta"
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleWhatsAppClick("equipe")}
+              >
+                Quero conhecer como funciona a avaliação <ArrowRight aria-hidden="true" />
+              </a>
             </div>
           </div>
         </section>
 
-        <section className="location section-pad">
-          <div className="shell location-grid">
-            <div className="location-copy">
-              <span className="kicker kicker-light">Praia da Costa</span>
-              <h2>Cuidado completo perto de você</h2>
+        <section id="depoimentos" className="testimonials section-pad" aria-labelledby="experiencias-title">
+          <div className="shell">
+            <div className="testimonials-heading">
+              <div>
+                <h2 id="experiencias-title">Histórias de quem escolheu cuidar do processo por inteiro.</h2>
+              </div>
               <p>
-                Uma experiência premium de saúde, estética e bem-estar em Vila Velha, Espírito Santo.
+                Um relato real sobre evolução, constância e motivação ao longo do processo.
               </p>
-              <dl>
-                <div><dt>Unidade</dt><dd>{siteConfig.clinicName}</dd></div>
-                <div><dt>Região</dt><dd>{siteConfig.location}</dd></div>
-                <div><dt>Instagram</dt><dd>{siteConfig.instagram}</dd></div>
-                <div><dt>Endereço</dt><dd>{siteConfig.fullAddress}</dd></div>
-                <div><dt>Atendimento</dt><dd>{siteConfig.openingHours}</dd></div>
-              </dl>
-              <div className="button-row">
+            </div>
+
+            <div className="testimonials-stage">
+              <article className="testimonial-featured">
+                <div className="testimonial-media">
+                  <img
+                    src="/images/gio/depoimento-resultado-9kg.jpeg"
+                    alt="Registro comparativo da evolução de um paciente durante sua jornada"
+                    width="720"
+                    height="1280"
+                    loading="lazy"
+                  />
+                  <div>
+                    <span>Registro da jornada</span>
+                    <strong>Imagem enviada pelo paciente</strong>
+                  </div>
+                </div>
+                <div className="testimonial-story">
+                  <span className="testimonial-story-label">Depoimento de paciente</span>
+                  <h3>“Um marco importante da minha jornada.”</h3>
+                  <blockquote className="testimonial-quote">
+                    <p>
+                      Passando para registrar um marco importante da minha jornada! Há dois meses e meio dei o
+                      pontapé inicial pesando 94 kg. Há dois meses passei a usar a tirzepatida de um novo
+                      fornecedor e segui firme no processo.
+                    </p>
+                    <p>
+                      Hoje, ao subir na balança, marquei 85 kg totalizando 9 kg a menos! Fico muito feliz em ver
+                      como meu corpo respondeu bem ao tratamento e à constância. Seguimos em frente com ainda
+                      mais motivação!
+                    </p>
+                  </blockquote>
+                  <div className="testimonial-person">
+                    <span aria-hidden="true">G</span>
+                    <div>
+                      <strong>Paciente Gio</strong>
+                      <small>Identificação preservada.</small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <div className="testimonials-side">
+                <article className="testimonial-note">
+                  <div className="testimonial-note-top">
+                    <span>−9 kg</span>
+                    <small>Marco relatado</small>
+                  </div>
+                  <h3>De 94 kg para 85 kg</h3>
+                  <p>Resultado informado pelo paciente no momento deste depoimento.</p>
+                </article>
+                <article className="testimonial-note testimonial-note-dark">
+                  <div className="testimonial-note-top">
+                    <span>2,5 meses</span>
+                    <small>Jornada</small>
+                  </div>
+                  <h3>Constância</h3>
+                  <p>Tempo entre o início da jornada e o registro compartilhado.</p>
+                </article>
+              </div>
+            </div>
+
+            <div className="testimonials-trust">
+              <p>
+                <ShieldCheck aria-hidden="true" />
+                <span>Relatos individuais e autorizados. Cada organismo pode responder de forma diferente.</span>
+              </p>
+              <a
+                className="button testimonials-cta"
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleWhatsAppClick("depoimentos")}
+              >
+                Quero entender se faz sentido para mim <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="clinic-showcase section-pad" ref={clinicSectionRef}>
+          <div className="shell clinic-showcase-grid">
+            <div className="clinic-showcase-copy">
+              <h2>Conheça a Gio Praia da Costa.</h2>
+              <p>
+                Conforto, privacidade e cuidado para receber você.
+              </p>
+              <div className="clinic-features">
+                {[
+                  "Atendimento integrado",
+                  "Estrutura na Praia da Costa",
+                ].map((item) => (
+                  <span key={item}><Check aria-hidden="true" />{item}</span>
+                ))}
+              </div>
+              <div className="clinic-actions">
                 <a
                   className="button button-beige"
-                  href={whatsappHref}
+                  href={siteConfig.googleMapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => handleWhatsAppClick("localizacao")}
+                  onClick={() => trackEvent("maps_click", { location: "clinica" })}
                 >
-                  Falar com a equipe <MessageCircle aria-hidden="true" />
+                  Abrir no Google Maps <MapPin aria-hidden="true" />
                 </a>
                 <a
                   className="button button-ghost-light"
-                  href={siteConfig.instagramUrl}
+                  href={whatsappHref}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackEvent("instagram_click", { location: "localizacao" })}
+                  onClick={() => handleWhatsAppClick("clinica")}
                 >
-                  Ver Instagram <Camera aria-hidden="true" />
+                  Falar com a equipe <FaWhatsapp className="whatsapp-icon" aria-hidden="true" />
                 </a>
               </div>
-            </div>
-            <div className="location-card">
-              <MapPin aria-hidden="true" />
-              <p>Praia da Costa</p>
-              <strong>Vila Velha · ES</strong>
-              <span>{siteConfig.fullAddress}</span>
+              <address>{siteConfig.fullAddress}</address>
             </div>
           </div>
         </section>
@@ -797,9 +996,8 @@ export default function GioLandingPage() {
         <section id="duvidas" className="faq section-pad">
           <div className="shell faq-grid">
             <div className="faq-heading">
-              <span className="kicker">Informação com clareza</span>
-              <h2>Tire suas dúvidas sobre o protocolo</h2>
-              <p>Respostas diretas para você entender o processo antes do primeiro contato.</p>
+              <h2>Entenda o protocolo antes do primeiro contato.</h2>
+              <p>Veja o que está incluído e como iniciar sua avaliação.</p>
             </div>
             <div className="faq-list">
               {faqs.map(([question, answer], index) => (
@@ -826,15 +1024,14 @@ export default function GioLandingPage() {
           <div className="shell final-cta-inner">
             <div className="final-cta-copy">
               <span className="kicker kicker-light">Uma jornada conectada</span>
-              <h2>Você não precisa começar mais uma tentativa isolada.</h2>
+              <h2>Você já tentou emagrecer cuidando de partes isoladas.</h2>
               <p>
-                O Método Gio Integrado conecta saúde, alimentação, emoções, atividade física e cuidados estéticos
-                em uma estratégia construída para o seu momento.
+                Conheça um plano que integra saúde, alimentação, comportamento, movimento e evolução corporal.
               </p>
-              <strong>Um plano possível. Diferentes áreas cuidando de você por inteiro.</strong>
+              <strong>Um plano acompanhado por diferentes profissionais.</strong>
             </div>
             <div className="final-cta-card">
-              <p>Descubra se essa forma de cuidado faz sentido para você.</p>
+              <p>Você não precisa organizar todas as partes sozinho.</p>
               <a
                 className="button"
                 href={whatsappHref}
@@ -842,9 +1039,9 @@ export default function GioLandingPage() {
                 rel="noreferrer"
                 onClick={() => handleWhatsAppClick("cta_final")}
               >
-                Quero descobrir se faz sentido para mim <ArrowRight aria-hidden="true" />
+                Quero saber se é para mim <ArrowRight aria-hidden="true" />
               </a>
-              <small>Fale com a equipe e descubra como iniciar sua avaliação.</small>
+              <small>Fale com a equipe e saiba como começar.</small>
             </div>
           </div>
         </section>
@@ -852,15 +1049,14 @@ export default function GioLandingPage() {
         <section id="contato" className="lead-section section-pad" ref={formSectionRef}>
           <div className="shell lead-grid">
             <div className="lead-copy">
-              <span className="kicker">Seu primeiro contato</span>
-              <h2>Converse com a equipe e entenda seu próximo passo.</h2>
+              <span className="kicker">Formulário</span>
+              <h2>Descubra se o protocolo pode ser adequado para você.</h2>
               <p>
-                Leva menos de um minuto. Preencha seus dados para montar uma mensagem e conversar diretamente
-                com a equipe pelo WhatsApp. As respostas não são enviadas para ferramentas de análise.
+                Preencha seus dados para receber o contato da equipe pelo WhatsApp.
               </p>
               <div className="lead-security">
                 <ShieldCheck aria-hidden="true" />
-                <span>Contato direto, acolhedor e sem compromisso com um tratamento.</span>
+                <span>O preenchimento não representa indicação, prescrição nem contratação.</span>
               </div>
             </div>
 
@@ -868,6 +1064,9 @@ export default function GioLandingPage() {
               className="lead-form"
               onSubmit={handleSubmit}
               onFocusCapture={() => {
+                if (formStatus === "success" || formStatus === "error") {
+                  setFormStatus("idle");
+                }
                 if (formStartedRef.current) return;
                 formStartedRef.current = true;
                 trackEvent("lead_form_start", { location: "lead_form" });
@@ -885,20 +1084,44 @@ export default function GioLandingPage() {
                 {errors.phone && <span id="phone-error" className="field-error">{errors.phone}</span>}
               </div>
               <div className="field field-wide">
-                <label htmlFor="difficulty">Principal dificuldade atualmente</label>
+                <label htmlFor="difficulty">Qual é sua principal dificuldade atualmente?</label>
                 <textarea id="difficulty" name="difficulty" rows={4} placeholder="Conte brevemente o que mais dificulta seu processo hoje" aria-invalid={Boolean(errors.difficulty)} aria-describedby={errors.difficulty ? "difficulty-error" : undefined} />
                 {errors.difficulty && <span id="difficulty-error" className="field-error">{errors.difficulty}</span>}
+              </div>
+              <div className="form-honeypot" aria-hidden="true">
+                <label htmlFor="website">Deixe este campo vazio</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
               </div>
               <div className="consent field-wide">
                 <input id="consent" name="consent" type="checkbox" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "consent-error" : "consent-help"} />
                 <label htmlFor="consent" id="consent-help">
-                  Concordo em ser contatado pela equipe da Gio e declaro estar ciente da Política de Privacidade.
+                  Concordo em ser contatado pela equipe da Gio Estética Avançada Praia da Costa e declaro estar
+                  ciente da Política de Privacidade.
                 </label>
                 {errors.consent && <span id="consent-error" className="field-error">{errors.consent}</span>}
               </div>
-              <button className="button form-submit field-wide" type="submit">
-                Montar minha mensagem no WhatsApp <MessageCircle aria-hidden="true" />
+              <button
+                className="button form-submit field-wide"
+                type="submit"
+                disabled={formStatus === "submitting"}
+                aria-busy={formStatus === "submitting"}
+              >
+                {formStatus === "submitting" ? "Enviando..." : "Enviar meus dados"}
+                <Send aria-hidden="true" />
               </button>
+              {formStatus === "success" && (
+                <div className="form-feedback form-feedback-success field-wide" role="status" aria-live="polite">
+                  Dados enviados. A equipe da Gio entrará em contato pelo WhatsApp informado.
+                </div>
+              )}
+              {formStatus === "error" && (
+                <div className="form-feedback form-feedback-error field-wide" role="alert">
+                  Não foi possível enviar agora. Tente novamente ou{" "}
+                  <a href={whatsappHref} target="_blank" rel="noreferrer">
+                    fale com a equipe pelo WhatsApp
+                  </a>.
+                </div>
+              )}
             </form>
           </div>
         </section>
@@ -928,7 +1151,7 @@ export default function GioLandingPage() {
         </div>
       </footer>
 
-      {!formVisible && !heroActionsVisible && (
+      {!formVisible && !contextualActionsVisible && !heroActionsVisible && (
         <a
           className="floating-whatsapp"
           href={whatsappHref}
@@ -937,12 +1160,12 @@ export default function GioLandingPage() {
           aria-label="Falar com a equipe pelo WhatsApp"
           onClick={() => handleWhatsAppClick("floating_button")}
         >
-          <MessageCircle aria-hidden="true" />
+          <FaWhatsapp className="whatsapp-icon" aria-hidden="true" />
           <span>Falar com a equipe</span>
         </a>
       )}
 
-      {!formVisible && !heroActionsVisible && (
+      {!formVisible && !contextualActionsVisible && !heroActionsVisible && (
         <a
           className="mobile-fixed-cta"
           href={whatsappHref}

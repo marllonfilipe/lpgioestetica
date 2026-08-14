@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./ui-refinements.css";
 
 :root {
   --lilac: #8e6ba8;
@@ -2039,6 +2040,47 @@ em {
 .form-submit {
   width: 100%;
   border: 0;
+}
+
+.form-submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.form-feedback {
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.form-feedback-success {
+  border: 1px solid rgba(49, 112, 76, 0.22);
+  background: rgba(226, 242, 231, 0.8);
+  color: #285b3c;
+}
+
+.form-feedback-error {
+  border: 1px solid rgba(163, 59, 79, 0.2);
+  background: rgba(252, 235, 238, 0.82);
+  color: #7d2738;
+}
+
+.form-feedback a {
+  color: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .site-footer {
@@ -5926,6 +5968,541 @@ main > section.section-pad:not(.hero) {
   }
 }
 
+/* Copy do protocolo 2026: mídia lateral e cartões mais compactos. */
+.hero-copy h1 {
+  font-size: clamp(2.15rem, 3.15vw, 3.15rem);
+  line-height: 1.08;
+}
+
+.section-heading h2,
+.protocol-application-heading h2,
+.audience-copy h2,
+.personalization-copy h2,
+.process-heading h2,
+.transformation-copy h2,
+.delay-grid h2,
+.objections-heading h2,
+.team-heading h2,
+.testimonials h2,
+.gallery-heading h2,
+.location-copy h2,
+.faq-heading h2,
+.final-cta-copy h2,
+.lead-copy h2 {
+  font-size: clamp(1.85rem, 2.55vw, 2.55rem);
+  line-height: 1.08;
+}
+
+main > section.section-pad:not(.hero) {
+  padding-block: clamp(4.5rem, 6vw, 6.5rem);
+}
+
+.section-heading,
+.team-heading,
+.gallery-heading {
+  margin-bottom: clamp(34px, 4vw, 54px);
+}
+
+.statement-grid {
+  gap: 10px;
+}
+
+.statement {
+  min-height: 0;
+  padding: 16px 18px;
+  border-radius: 16px;
+}
+
+.statement p {
+  font-size: 0.82rem;
+  line-height: 1.48;
+}
+
+.statement > span {
+  margin-bottom: 22px;
+}
+
+.protocol-bento {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  gap: 12px;
+}
+
+.protocol-card,
+.protocol-medical,
+.protocol-exams,
+.protocol-nutrition,
+.protocol-psychology,
+.protocol-movement,
+.protocol-aesthetics,
+.protocol-tirzepatide {
+  grid-column: auto;
+  min-height: 178px;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.protocol-card h3 {
+  margin: 22px 0 10px;
+  font-size: 1.05rem;
+  line-height: 1.18;
+}
+
+.protocol-card p {
+  font-size: 0.8rem;
+  line-height: 1.48;
+}
+
+.protocol-card-top svg {
+  width: 23px;
+  height: 23px;
+}
+
+.protocol-footer {
+  margin-top: 12px;
+  padding: 22px 26px;
+}
+
+.contrast .section-heading,
+.contrast-grid,
+.contrast-conclusion {
+  width: min(660px, 48%);
+}
+
+.contrast-grid {
+  gap: 10px;
+}
+
+.contrast-grid article {
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.contrast-grid article p {
+  padding: 8px 0;
+  font-size: 0.78rem;
+  line-height: 1.38;
+}
+
+.contrast-label {
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+}
+
+.contrast-conclusion {
+  margin-top: 12px;
+  padding: 18px 20px;
+  font-size: 0.95rem;
+}
+
+.audience-copy,
+.personalization-copy,
+.transformation-copy {
+  padding: 24px 26px;
+  border-radius: 16px;
+}
+
+.audience .editorial-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  margin-block: 18px 22px;
+}
+
+.editorial-list li {
+  padding-block: 7px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.audience-overlap {
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.personalization-copy .large-copy {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.48;
+}
+
+.personalization-list {
+  gap: 0 16px;
+}
+
+.personalization-list span {
+  padding-block: 7px;
+  font-size: 0.78rem;
+}
+
+.personalization-copy blockquote {
+  margin-top: 22px;
+  font-size: 1.15rem;
+}
+
+.timeline {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.timeline::before {
+  display: none;
+}
+
+.timeline li {
+  min-height: 174px;
+  padding: 18px;
+  border: 1px solid rgba(114, 87, 127, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 26px rgba(52, 39, 57, 0.045);
+}
+
+.timeline-number {
+  margin-bottom: 10px;
+  font-size: 1.45rem;
+}
+
+.timeline-dot {
+  width: 9px;
+  height: 9px;
+  margin-bottom: 18px;
+  border-width: 2px;
+}
+
+.timeline h3 {
+  min-height: 0;
+  margin-bottom: 9px;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.timeline p {
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.transformation-copy ul {
+  gap: 8px;
+}
+
+.transformation-copy li {
+  min-height: 0;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+}
+
+.delay-lines {
+  gap: 10px;
+}
+
+.delay-lines p {
+  min-height: 0;
+  padding: 16px;
+  font-size: 0.84rem;
+}
+
+.delay-action {
+  padding: 22px;
+  border-radius: 16px;
+}
+
+.objection-cards {
+  gap: 12px;
+}
+
+.objection-card,
+.objection-card:nth-child(n) {
+  min-height: 190px;
+  padding: 20px;
+  border-radius: 16px;
+  transform: none;
+}
+
+.objection-card > span {
+  font-size: 3.2rem;
+}
+
+.objection-card h3 {
+  margin: 20px 0 10px;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.objection-card p {
+  font-size: 0.8rem;
+  line-height: 1.48;
+}
+
+.team-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.team-card,
+.team-card-1,
+.team-card-2,
+.team-card-3,
+.team-card-4,
+.team-card-5 {
+  grid-column: auto;
+  min-height: 220px;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.team-placeholder {
+  width: 68px;
+  height: 68px;
+  border-radius: 12px;
+}
+
+.team-card h3 {
+  font-size: 1.05rem;
+}
+
+.team-card p {
+  font-size: 0.8rem;
+  line-height: 1.48;
+}
+
+.faq-list {
+  gap: 8px;
+}
+
+.faq-list details {
+  border-radius: 14px;
+}
+
+.faq-list summary {
+  padding: 18px 20px;
+  font-size: 0.9rem;
+}
+
+.faq-list details p {
+  padding: 0 20px 18px;
+  font-size: 0.82rem;
+}
+
+@media (min-width: 761px) {
+  .contrast::before {
+    background-image: url("/images/gio/plano-integrado.png");
+    aspect-ratio: 16 / 9;
+  }
+
+  .contrast::after {
+    aspect-ratio: 16 / 9;
+  }
+
+  .audience::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    aspect-ratio: 16 / 9;
+    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-position: center;
+  }
+
+  .audience::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, var(--beige-pale) 0%, rgba(245, 240, 234, 0) 28%);
+  }
+
+  .personalization::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    aspect-ratio: 16 / 9;
+    background-image: url("/images/gio/processo-personalizado.png");
+    background-position: center;
+  }
+
+  .personalization::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, var(--off-white) 0%, rgba(252, 250, 248, 0) 28%);
+  }
+
+  .transformation::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .transformation::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, var(--lilac-deep) 0%, rgba(89, 66, 99, 0) 28%);
+  }
+
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy {
+    width: min(610px, 46%);
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .audience-grid,
+  .personalization-grid,
+  .transformation-grid {
+    min-height: 620px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-copy h1 {
+    font-size: clamp(1.9rem, 8vw, 2.28rem);
+  }
+
+  .section-heading h2,
+  .protocol-application-heading h2,
+  .audience-copy h2,
+  .personalization-copy h2,
+  .process-heading h2,
+  .transformation-copy h2,
+  .delay-grid h2,
+  .objections-heading h2,
+  .team-heading h2,
+  .testimonials h2,
+  .gallery-heading h2,
+  .location-copy h2,
+  .faq-heading h2,
+  .final-cta-copy h2,
+  .lead-copy h2 {
+    font-size: clamp(1.65rem, 7vw, 2rem);
+  }
+
+  main > section.protocol.section-pad,
+  main > section.contrast.section-pad,
+  main > section.audience.section-pad,
+  main > section.personalization.section-pad,
+  main > section.transformation.section-pad {
+    padding-top: calc(56.25vw + 36px);
+  }
+
+  .contrast::before,
+  .audience::before,
+  .personalization::before,
+  .transformation::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+    background:
+      linear-gradient(180deg, #f7f2ed 0%, rgba(247, 242, 237, 0) 13%, rgba(247, 242, 237, 0) 87%, #f7f2ed 100%),
+      linear-gradient(270deg, #f7f2ed 0%, rgba(247, 242, 237, 0) 24%);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .contrast::before {
+    background-image: url("/images/gio/plano-integrado.png");
+  }
+
+  .audience::before {
+    background-image: url("/images/gio/protocolo-para-voce.png");
+  }
+
+  .personalization::before {
+    background-image: url("/images/gio/processo-personalizado.png");
+  }
+
+  .transformation::before {
+    background-image: url("/images/gio/jornada-acompanhada.png");
+  }
+
+  .contrast::after,
+  .audience::after,
+  .personalization::after,
+  .transformation::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(56.25vw + 24px);
+    transform: none;
+  }
+
+  .contrast::after {
+    background: linear-gradient(180deg, rgba(247, 242, 237, 0) 72%, #f7f2ed 100%);
+  }
+
+  .audience::after {
+    background: linear-gradient(180deg, rgba(245, 240, 234, 0) 72%, var(--beige-pale) 100%);
+  }
+
+  .personalization::after {
+    background: linear-gradient(180deg, rgba(252, 250, 248, 0) 72%, var(--off-white) 100%);
+  }
+
+  .transformation::after {
+    background: linear-gradient(180deg, rgba(89, 66, 99, 0) 72%, var(--lilac-deep) 100%);
+  }
+
+  .contrast .section-heading,
+  .contrast-grid,
+  .contrast-conclusion,
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .statement-grid,
+  .protocol-bento,
+  .timeline,
+  .objection-cards,
+  .team-grid,
+  .audience .editorial-list {
+    grid-template-columns: 1fr;
+  }
+
+  .statement,
+  .protocol-card,
+  .protocol-medical,
+  .protocol-exams,
+  .protocol-nutrition,
+  .protocol-psychology,
+  .protocol-movement,
+  .protocol-aesthetics,
+  .protocol-tirzepatide,
+  .timeline li,
+  .objection-card,
+  .objection-card:nth-child(n),
+  .team-card,
+  .team-card-1,
+  .team-card-2,
+  .team-card-3,
+  .team-card-4,
+  .team-card-5 {
+    min-height: 0;
+  }
+
+  .protocol-card,
+  .timeline li,
+  .objection-card,
+  .team-card {
+    padding: 18px;
+  }
+
+  .personalization-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Filled media panels and smaller cards */
 .protocol::before,
 .audience::before,
@@ -6405,5 +6982,288 @@ main > section.section-pad:not(.hero) {
     width: 100%;
     height: calc(min(150vw, 720px) + 30px);
     transform: none;
+  }
+}
+
+/* Regras finais: mantêm a nova composição acima das camadas editoriais anteriores. */
+.statement {
+  min-height: 0;
+  padding: 16px 18px;
+}
+
+.protocol-card,
+.protocol-medical,
+.protocol-exams,
+.protocol-nutrition,
+.protocol-psychology,
+.protocol-movement,
+.protocol-aesthetics,
+.protocol-tirzepatide {
+  grid-column: auto;
+  min-height: 178px;
+  padding: 20px;
+}
+
+.protocol-medical {
+  min-height: 178px;
+}
+
+.audience-copy,
+.personalization-copy,
+.transformation-copy {
+  padding: 24px 26px;
+}
+
+.timeline li {
+  min-height: 174px;
+  padding: 18px;
+}
+
+.objection-card,
+.objection-card:nth-child(n) {
+  min-height: 190px;
+  padding: 20px;
+  transform: none;
+}
+
+.team-card,
+.team-card-1,
+.team-card-2,
+.team-card-3,
+.team-card-4,
+.team-card-5 {
+  grid-column: auto;
+  min-height: 220px;
+  padding: 20px;
+}
+
+@media (min-width: 761px) {
+  main > section.contrast.section-pad,
+  main > section.audience.section-pad,
+  main > section.personalization.section-pad,
+  main > section.transformation.section-pad {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .contrast::before,
+  .contrast::after,
+  .audience::before,
+  .audience::after,
+  .personalization::before,
+  .personalization::after,
+  .transformation::before,
+  .transformation::after {
+    border: 0;
+    border-radius: 0;
+    clip-path: none;
+    box-shadow: none;
+  }
+
+  .contrast::before {
+    inset: 64px auto auto 0;
+    width: 60%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+    background-image: url("/images/gio/plano-integrado.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .contrast::after {
+    inset: 64px auto auto 0;
+    width: 64%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+  }
+
+  .audience::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .audience::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background:
+      linear-gradient(180deg, var(--beige-pale) 0%, rgba(245, 240, 234, 0) 13%, rgba(245, 240, 234, 0) 87%, var(--beige-pale) 100%),
+      linear-gradient(90deg, var(--beige-pale) 0%, rgba(245, 240, 234, 0) 28%);
+  }
+
+  .personalization::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background-image: url("/images/gio/processo-personalizado.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .personalization::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background:
+      linear-gradient(180deg, var(--off-white) 0%, rgba(252, 250, 248, 0) 13%, rgba(252, 250, 248, 0) 87%, var(--off-white) 100%),
+      linear-gradient(90deg, var(--off-white) 0%, rgba(252, 250, 248, 0) 28%);
+  }
+
+  .transformation::before {
+    inset: 50% 0 auto auto;
+    width: 58%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .transformation::after {
+    inset: 50% 0 auto auto;
+    width: 62%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    background:
+      linear-gradient(180deg, var(--lilac-deep) 0%, rgba(89, 66, 99, 0) 13%, rgba(89, 66, 99, 0) 87%, var(--lilac-deep) 100%),
+      linear-gradient(90deg, var(--lilac-deep) 0%, rgba(89, 66, 99, 0) 28%);
+  }
+
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy {
+    width: min(610px, 46%);
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .audience-grid,
+  .personalization-grid,
+  .transformation-grid {
+    min-height: 580px;
+  }
+}
+
+@media (max-width: 760px) {
+  main > section.protocol.section-pad,
+  main > section.contrast.section-pad,
+  main > section.audience.section-pad,
+  main > section.personalization.section-pad,
+  main > section.transformation.section-pad {
+    padding-top: calc(56.25vw + 36px);
+  }
+
+  .contrast::before,
+  .audience::before,
+  .personalization::before,
+  .transformation::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
+    background-position: center;
+    background-size: cover;
+    border: 0;
+    border-radius: 0;
+    clip-path: none;
+    box-shadow: none;
+  }
+
+  .contrast::before {
+    background-image: url("/images/gio/plano-integrado.png");
+  }
+
+  .audience::before {
+    background-image: url("/images/gio/protocolo-para-voce.png");
+  }
+
+  .personalization::before {
+    background-image: url("/images/gio/processo-personalizado.png");
+  }
+
+  .transformation::before {
+    background-image: url("/images/gio/jornada-acompanhada.png");
+  }
+
+  .contrast::after,
+  .audience::after,
+  .personalization::after,
+  .transformation::after {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(56.25vw + 24px);
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    clip-path: none;
+    box-shadow: none;
+  }
+
+  .contrast::after {
+    background: linear-gradient(180deg, rgba(247, 242, 237, 0) 72%, #f7f2ed 100%);
+  }
+
+  .audience::after {
+    background: linear-gradient(180deg, rgba(245, 240, 234, 0) 72%, var(--beige-pale) 100%);
+  }
+
+  .personalization::after {
+    background: linear-gradient(180deg, rgba(252, 250, 248, 0) 72%, var(--off-white) 100%);
+  }
+
+  .transformation::after {
+    background: linear-gradient(180deg, rgba(89, 66, 99, 0) 72%, var(--lilac-deep) 100%);
+  }
+
+  .protocol-application-heading,
+  .contrast .section-heading,
+  .contrast-grid,
+  .contrast-conclusion,
+  .audience-photo,
+  .audience-copy,
+  .personalization-copy,
+  .transformation-copy {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .statement,
+  .protocol-card,
+  .protocol-medical,
+  .protocol-exams,
+  .protocol-nutrition,
+  .protocol-psychology,
+  .protocol-movement,
+  .protocol-aesthetics,
+  .protocol-tirzepatide,
+  .timeline li,
+  .objection-card,
+  .objection-card:nth-child(n),
+  .team-card,
+  .team-card-1,
+  .team-card-2,
+  .team-card-3,
+  .team-card-4,
+  .team-card-5 {
+    min-height: 0;
   }
 }

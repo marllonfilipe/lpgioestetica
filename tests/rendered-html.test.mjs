@@ -1,15 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-async function render(path = "/") {
+async function dispatch(path = "/", init = {}) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request(`http://localhost${path}`, {
-      headers: { accept: "text/html" },
-    }),
+    new Request(`http://localhost${path}`, init),
     {
       ASSETS: {
         fetch: async () => new Response("Not found", { status: 404 }),
@@ -22,6 +20,10 @@ async function render(path = "/") {
   );
 }
 
+async function render(path = "/") {
+  return dispatch(path, { headers: { accept: "text/html" } });
+}
+
 test("server-renders the Gio landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
@@ -29,20 +31,84 @@ test("server-renders the Gio landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /Emagrecimento Multidisciplinar \| Gio Praia da Costa/i);
-  assert.match(html, /Emagrecer pode ser mais leve/i);
-  assert.match(html, /você não precisa fazer tudo sozinho/i);
-  assert.match(html, /A aplicação é apenas/i);
-  assert.match(html, /Cinco áreas conectadas ao mesmo plano/i);
+  assert.match(html, /Você já tentou fazer dieta, voltar a treinar e mudar sua rotina/i);
+  assert.match(html, /foi um plano acompanhando você por inteiro/i);
+  assert.match(html, /Não é escolher entre dieta, exercício, estética ou medicação/i);
+  assert.match(html, /O seu processo não deveria ser igual ao de todo mundo/i);
   assert.match(html, /tirzepatida-aplicacao\.png/i);
-  assert.match(html, /Tire suas dúvidas sobre o protocolo/i);
-  assert.match(html, /Converse com a equipe e entenda seu próximo passo/i);
+  assert.match(html, /processo-personalizado\.png/i);
+  assert.match(html, /jornada-acompanhada\.png/i);
+  assert.match(html, /protocolo-para-voce\.png/i);
+  assert.match(html, /O protocolo completo, em um só investimento/i);
+  assert.match(html, /Sob consulta/i);
+  assert.match(html, /Diferentes especialidades, um plano construído em conjunto/i);
+  assert.match(html, /Daniel Gomes de Figueiredo/i);
+  assert.match(html, /Profissional definido conforme o caso/i);
+  assert.match(html, /Thassia Garcia/i);
+  assert.match(html, /thassia-garcia-estetica\.jpeg/i);
+  assert.match(html, /Histórias de quem escolheu cuidar do processo por inteiro/i);
+  assert.match(html, /depoimento-resultado-9kg\.jpeg/i);
+  assert.match(html, /totalizando 9 kg a menos/i);
+  assert.doesNotMatch(html, /Em processo de autorização|O primeiro relato será publicado/i);
+  assert.match(html, /Conheça a Gio Praia da Costa/i);
+  assert.doesNotMatch(html, /A experiência Gio|Cuidado percebido em cada detalhe/i);
+  assert.match(html, /maps\.app\.goo\.gl\/ttdbpcYVpsMCGKeK7/i);
+  assert.match(html, /Entenda o protocolo antes do primeiro contato/i);
+  assert.match(html, /Descubra se o protocolo pode ser adequado para você/i);
   assert.match(html, /aria-label="Navegação principal"/i);
   assert.match(html, /name="consent"/i);
+  assert.match(html, /Enviar meus dados/i);
   assert.match(html, /wa\.me\/5527997756738/i);
+  assert.match(html, /whatsapp-icon/i);
+  assert.doesNotMatch(html, /lucide-message-circle/i);
   assert.match(html, /Av\. Henrique Moscoso, 530/i);
   assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
   assert.match(html, /images\/gio\/hero\.png/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+});
+
+test("rejects invalid lead submissions before contacting the email provider", async () => {
+  const response = await dispatch("/api/lead", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      name: "A",
+      phone: "123",
+      difficulty: "",
+      consent: false,
+    }),
+  });
+
+  assert.equal(response.status, 400);
+  assert.deepEqual(await response.json(), {
+    error: "Revise os campos do formulário e tente novamente.",
+  });
+});
+
+test("blocks cross-origin lead submissions and silently filters honeypot spam", async () => {
+  const blockedResponse = await dispatch("/api/lead", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      origin: "https://example.com",
+    },
+    body: JSON.stringify({}),
+  });
+  assert.equal(blockedResponse.status, 403);
+
+  const spamResponse = await dispatch("/api/lead", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      name: "Robô de teste",
+      phone: "27999999999",
+      difficulty: "Teste automatizado",
+      consent: true,
+      website: "https://spam.example",
+    }),
+  });
+  assert.equal(spamResponse.status, 200);
+  assert.deepEqual(await spamResponse.json(), { ok: true });
 });
 
 test("server-renders the legal pages", async () => {
