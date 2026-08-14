@@ -47,7 +47,12 @@ RESEND_FROM_EMAIL=
 
 ## Publicação
 
-O projeto utiliza vinext e está preparado para publicação pelo OpenAI Sites, com saída compatível com Cloudflare Workers. O build de produção é gerado por `npm run build`.
+O projeto utiliza vinext e mantém dois destinos de publicação:
+
+- OpenAI Sites/Cloudflare Workers: `npm run build`
+- Netlify: `npm run build:netlify` (configurado automaticamente pelo `netlify.toml`)
+
+O build do Netlify usa Nitro e gera a saída em `dist`. Configure no painel da plataforma as variáveis `RESEND_API_KEY`, `LEAD_DESTINATION_EMAIL` e `RESEND_FROM_EMAIL` antes de publicar.
 
 ## Informações pendentes
 
