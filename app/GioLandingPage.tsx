@@ -68,6 +68,12 @@ function formatPhone(value: string) {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
 }
 
+function previewText(value: string, maxLength = 86) {
+  if (value.length <= maxLength) return value;
+  const shortened = value.slice(0, maxLength).replace(/\s+\S*$/, "");
+  return `${shortened}…`;
+}
+
 export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -488,17 +494,27 @@ export default function GioLandingPage() {
               {protocolCards.map((card) => {
                 const Icon = protocolIcons[card.key as keyof typeof protocolIcons];
                 return (
-                  <article
+                  <details
                     key={card.key}
                     id={`protocolo-${card.key}`}
                     className={`protocol-card protocol-${card.key}`}
                   >
-                    <div className="protocol-card-top">
-                      <Icon aria-hidden="true" />
+                    <summary className="expandable-summary protocol-card-summary">
+                      <div className="protocol-card-top">
+                        <Icon aria-hidden="true" />
+                      </div>
+                      <h3>{card.title}</h3>
+                      <p className="expandable-preview">{previewText(card.text)}</p>
+                      <span className="expandable-action">
+                        <span className="expandable-action-closed">Ver detalhes</span>
+                        <span className="expandable-action-open">Fechar detalhes</span>
+                        <ChevronDown aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="expandable-content">
+                      <p>{card.text}</p>
                     </div>
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
-                  </article>
+                  </details>
                 );
               })}
             </div>
@@ -563,10 +579,24 @@ export default function GioLandingPage() {
               <span className="kicker">Para quem é</span>
               <h2>Este protocolo foi pensado para você que:</h2>
               <ul className="editorial-list">
-                {audienceItems.map((item) => (
+                {audienceItems.slice(0, 4).map((item) => (
                   <li key={item}><span aria-hidden="true">✦</span>{item}</li>
                 ))}
               </ul>
+              <details className="audience-more expandable-details">
+                <summary className="expandable-summary">
+                  <span className="expandable-action">
+                    <span className="expandable-action-closed">Ver todos os perfis</span>
+                    <span className="expandable-action-open">Ocultar perfis</span>
+                    <ChevronDown aria-hidden="true" />
+                  </span>
+                </summary>
+                <ul className="editorial-list audience-more-list">
+                  {audienceItems.slice(4).map((item) => (
+                    <li key={item}><span aria-hidden="true">✦</span>{item}</li>
+                  ))}
+                </ul>
+              </details>
               <a
                 className="button"
                 href={whatsappHref}
@@ -630,7 +660,18 @@ export default function GioLandingPage() {
                 <li key={title}>
                   <span className="timeline-dot" aria-hidden="true" />
                   <h3>{title}</h3>
-                  <p>{text}</p>
+                  <details className="expandable-details">
+                    <summary className="expandable-summary">
+                      <span className="expandable-action">
+                        <span className="expandable-action-closed">Entender esta etapa</span>
+                        <span className="expandable-action-open">Ocultar explicação</span>
+                        <ChevronDown aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="expandable-content">
+                      <p>{text}</p>
+                    </div>
+                  </details>
                 </li>
               ))}
             </ol>
@@ -769,7 +810,18 @@ export default function GioLandingPage() {
                 <article key={question} className={`objection-card objection-${index + 1}`}>
                   <span>“</span>
                   <h3>{question}</h3>
-                  <p>{answer}</p>
+                  <details className="expandable-details">
+                    <summary className="expandable-summary">
+                      <span className="expandable-action">
+                        <span className="expandable-action-closed">Ver resposta</span>
+                        <span className="expandable-action-open">Ocultar resposta</span>
+                        <ChevronDown aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="expandable-content">
+                      <p>{answer}</p>
+                    </div>
+                  </details>
                 </article>
               ))}
             </div>
@@ -799,7 +851,18 @@ export default function GioLandingPage() {
                 <div className="team-lead-content">
                   <span className="team-role-tag">Médico responsável</span>
                   <h3>Daniel Gomes de Figueiredo</h3>
-                  <p>{teamRoles[0][1]}</p>
+                  <details className="expandable-details">
+                    <summary className="expandable-summary">
+                      <span className="expandable-action">
+                        <span className="expandable-action-closed">Conhecer atuação</span>
+                        <span className="expandable-action-open">Ocultar atuação</span>
+                        <ChevronDown aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <div className="expandable-content">
+                      <p>{teamRoles[0][1]}</p>
+                    </div>
+                  </details>
                 </div>
               </article>
 
@@ -820,7 +883,18 @@ export default function GioLandingPage() {
                         <div className="team-profile-content">
                           <span className="team-area-label">Profissional de estética</span>
                           <h3>Thassia Garcia</h3>
-                          <p>{description}</p>
+                          <details className="expandable-details">
+                            <summary className="expandable-summary">
+                              <span className="expandable-action">
+                                <span className="expandable-action-closed">Conhecer atuação</span>
+                                <span className="expandable-action-open">Ocultar atuação</span>
+                                <ChevronDown aria-hidden="true" />
+                              </span>
+                            </summary>
+                            <div className="expandable-content">
+                              <p>{description}</p>
+                            </div>
+                          </details>
                         </div>
                       </article>
                     );
@@ -839,7 +913,18 @@ export default function GioLandingPage() {
                         {role === "Nutrição" && (
                           <span className="team-assignment-note">Profissional definido conforme o caso</span>
                         )}
-                        <p>{description}</p>
+                        <details className="expandable-details">
+                          <summary className="expandable-summary">
+                            <span className="expandable-action">
+                              <span className="expandable-action-closed">Conhecer atuação</span>
+                              <span className="expandable-action-open">Ocultar atuação</span>
+                              <ChevronDown aria-hidden="true" />
+                            </span>
+                          </summary>
+                          <div className="expandable-content">
+                            <p>{description}</p>
+                          </div>
+                        </details>
                       </div>
                     </article>
                   );
