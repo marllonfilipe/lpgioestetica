@@ -68,12 +68,6 @@ function formatPhone(value: string) {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
 }
 
-function previewText(value: string, maxLength = 86) {
-  if (value.length <= maxLength) return value;
-  const shortened = value.slice(0, maxLength).replace(/\s+\S*$/, "");
-  return `${shortened}…`;
-}
-
 export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -504,7 +498,6 @@ export default function GioLandingPage() {
                         <Icon aria-hidden="true" />
                       </div>
                       <h3>{card.title}</h3>
-                      <p className="expandable-preview">{previewText(card.text)}</p>
                       <span className="expandable-action">
                         <span className="expandable-action-closed">Ver detalhes</span>
                         <span className="expandable-action-open">Fechar detalhes</span>

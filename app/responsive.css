@@ -1065,17 +1065,6 @@ body .statement p {
   display: none;
 }
 
-.expandable-preview {
-  display: -webkit-box;
-  margin: 8px 0 0;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-
 .protocol-card-summary {
   display: block;
 }
@@ -1141,17 +1130,12 @@ body .team-lead-card {
   }
 
   .protocol-card-summary .protocol-card-top,
-  .protocol-card-summary h3,
-  .protocol-card-summary .expandable-preview {
+  .protocol-card-summary h3 {
     grid-column: 1 / -1;
   }
 
   .protocol-card-summary h3 {
     margin-bottom: 8px;
-  }
-
-  .protocol-card-summary .expandable-preview {
-    margin-top: 0;
   }
 
   .protocol-card-summary .expandable-action,
