@@ -1051,19 +1051,29 @@ body .statement p {
   transition: transform 180ms ease;
 }
 
-.expandable-action-open,
-.expandable-preview {
+.expandable-action-open {
   display: none;
 }
 
 .expandable-details > .expandable-summary .expandable-action,
 .protocol-card-summary .expandable-action,
 .audience-more > .expandable-summary .expandable-action {
-  display: none;
+  display: inline-flex;
 }
 
 .expandable-content {
-  display: block;
+  display: none;
+}
+
+.expandable-preview {
+  display: -webkit-box;
+  margin: 8px 0 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .protocol-card-summary {
@@ -1082,6 +1092,36 @@ body .statement p {
 .protocol-card[open] > .protocol-card-summary .expandable-action svg,
 .audience-more[open] > .expandable-summary .expandable-action svg {
   transform: rotate(180deg);
+}
+
+.expandable-details[open] > .expandable-content,
+.protocol-card[open] > .expandable-content {
+  display: block;
+}
+
+.expandable-details[open] > .expandable-summary .expandable-action-closed,
+.protocol-card[open] > .protocol-card-summary .expandable-action-closed,
+.audience-more[open] > .expandable-summary .expandable-action-closed {
+  display: none;
+}
+
+.expandable-details[open] > .expandable-summary .expandable-action-open,
+.protocol-card[open] > .protocol-card-summary .expandable-action-open,
+.audience-more[open] > .expandable-summary .expandable-action-open {
+  display: inline;
+}
+
+body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
+  min-height: 0;
+  padding: 20px;
+}
+
+body :is(.protocol-bento, .objection-cards, .team-area-grid, .timeline) {
+  align-items: start;
+}
+
+body .team-lead-card {
+  min-height: 0;
 }
 
 .audience-more-list {
@@ -1111,14 +1151,7 @@ body .statement p {
   }
 
   .protocol-card-summary .expandable-preview {
-    display: -webkit-box;
-    margin: 0;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    color: var(--muted);
-    font-size: 0.82rem;
-    line-height: 1.5;
+    margin-top: 0;
   }
 
   .protocol-card-summary .expandable-action,
@@ -1126,28 +1159,6 @@ body .statement p {
   .audience-more > .expandable-summary .expandable-action {
     display: inline-flex;
     margin-top: 14px;
-  }
-
-  .protocol-card > .expandable-content,
-  .expandable-details > .expandable-content {
-    display: none;
-  }
-
-  .protocol-card[open] > .expandable-content,
-  .expandable-details[open] > .expandable-content {
-    display: block;
-  }
-
-  .protocol-card[open] > .protocol-card-summary .expandable-action-closed,
-  .expandable-details[open] > .expandable-summary .expandable-action-closed,
-  .audience-more[open] > .expandable-summary .expandable-action-closed {
-    display: none;
-  }
-
-  .protocol-card[open] > .protocol-card-summary .expandable-action-open,
-  .expandable-details[open] > .expandable-summary .expandable-action-open,
-  .audience-more[open] > .expandable-summary .expandable-action-open {
-    display: inline;
   }
 
   .audience-more > .audience-more-list {
