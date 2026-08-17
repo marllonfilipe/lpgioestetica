@@ -3,8 +3,8 @@ export const siteConfig = {
   shortName: "Gio Praia da Costa",
   instagram: "@giopraiadacosta",
   instagramUrl: "https://www.instagram.com/giopraiadacosta/",
-  location: "Praia da Costa - Vila Velha, Espírito Santo",
-  fullAddress: "Av. Henrique Moscoso, 530 - Praia da Costa, Vila Velha - ES, 29100-020",
+  location: "Praia da Costa, Vila Velha, Espírito Santo",
+  fullAddress: "Av. Henrique Moscoso, 530, Praia da Costa, Vila Velha, ES, 29100-020",
   whatsappNumber: "5527997756738",
   whatsappMessage:
     "Olá! Gostaria de entender se o Método Gio Integrado faz sentido para o meu momento.",

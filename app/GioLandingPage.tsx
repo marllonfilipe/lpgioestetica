@@ -227,7 +227,7 @@ export default function GioLandingPage() {
 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <div className="header-inner shell">
-          <a className="brand" href="#hero" aria-label="Gio Estética Avançada - início">
+          <a className="brand" href="#hero" aria-label="Gio Estética Avançada, início">
             <span className="brand-mark">Gio.</span>
             <span className="brand-line">Estética Avançada</span>
           </a>
@@ -295,7 +295,7 @@ export default function GioLandingPage() {
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
                 Você já tentou fazer dieta, voltar a treinar e mudar sua rotina.{" "}
-                <em>O que faltou não foi esforço — foi um plano acompanhando você por inteiro.</em>
+                <em>O que faltou não foi esforço. Foi um plano acompanhando você por inteiro.</em>
               </h1>
               <p className="hero-lead">
                 Um protocolo personalizado que reúne consultas médicas, exames laboratoriais, acompanhamento
@@ -391,10 +391,10 @@ export default function GioLandingPage() {
             <div className="identification-layout">
               <div className="identification-image image-frame">
                 <img
-                  src="/images/gio/identificacao.png"
-                  width="2048"
-                  height="1152"
-                  alt="Pessoa escolhendo uma roupa em uma situação cotidiana"
+                  src="/images/gio/identificacao-avaliacao.png"
+                  width="1672"
+                  height="941"
+                  alt="Profissional avaliando medidas corporais de uma paciente durante o acompanhamento"
                   loading="lazy"
                 />
                 <span className="image-note">“Você se reconhece em alguma dessas situações?”</span>
@@ -410,7 +410,7 @@ export default function GioLandingPage() {
 
             <div className="editorial-callout">
               <p>
-                Não faltou disciplina — faltou um plano que considere você por completo.
+                Não faltou disciplina. Faltou um plano que considere você por completo.
               </p>
               <a
                 href={whatsappHref}
@@ -443,7 +443,7 @@ export default function GioLandingPage() {
                 sustentar tudo sozinho fica mais difícil.
               </p>
               <blockquote>
-                O problema não é você — é tentar cuidar de algo complexo com soluções isoladas.
+                O problema não é você. É tentar cuidar de algo complexo com soluções isoladas.
               </blockquote>
               <p>
                 Por isso, a Gio estruturou um protocolo com cuidados médicos, nutricionais, psicológicos,
@@ -565,7 +565,7 @@ export default function GioLandingPage() {
                 loading="lazy"
               />
               <div className="audience-overlap">
-                Para quem deseja avaliação e acompanhamento de acordo com a própria realidade — não uma fórmula pronta.
+                Para quem deseja avaliação e acompanhamento de acordo com a própria realidade, sem uma fórmula pronta.
               </div>
             </div>
             <div className="audience-copy">
@@ -773,7 +773,7 @@ export default function GioLandingPage() {
             </div>
             <div className="delay-action">
               <p>
-                Por isso, tudo começa com uma avaliação. Você não precisa ter todas as respostas — a equipe
+                Por isso, tudo começa com uma avaliação. Você não precisa ter todas as respostas. A equipe
                 começa conhecendo seu caso.
               </p>
               <a
