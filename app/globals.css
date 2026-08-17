@@ -3932,7 +3932,7 @@ h3 {
   background-color: var(--beige-pale);
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.92) 50%, rgba(245, 240, 234, 0.24) 76%, rgba(245, 240, 234, 0.12) 100%),
-    url("/images/gio/identificacao.png");
+    url("/images/gio/identificacao-avaliacao.png");
   background-position: center, 64% center;
   background-size: cover;
 }
@@ -4281,7 +4281,7 @@ h3 {
     padding-top: 390px;
     background-image:
       linear-gradient(180deg, rgba(245, 240, 234, 0.03) 0%, rgba(245, 240, 234, 0.15) 290px, var(--beige-pale) 390px),
-      url("/images/gio/identificacao.png");
+      url("/images/gio/identificacao-avaliacao.png");
     background-position: center top, 68% top;
     background-size: 100% 410px, auto 370px;
   }
@@ -4490,7 +4490,7 @@ h2 {
 .identification {
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.9) 45%, rgba(245, 240, 234, 0.25) 68%, rgba(245, 240, 234, 0.03) 100%),
-    url("/images/gio/identificacao.png");
+    url("/images/gio/identificacao-avaliacao.png");
   background-position: center, 70% center;
 }
 

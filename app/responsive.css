@@ -32,6 +32,11 @@ body :is(p, h1, h2, h3, h4, a, button, span, strong, small, label, address, li, 
   overflow-wrap: anywhere;
 }
 
+/* Keep section labels clean and editorial, without the draft-like dash mark. */
+body :is(.eyebrow, .kicker)::before {
+  display: none;
+}
+
 body table {
   width: 100%;
   max-width: 100%;
