@@ -464,10 +464,10 @@ export default function GioLandingPage() {
               </div>
               <div className="protocol-photo image-frame">
                 <img
-                  src="/images/gio/tirzepatida-aplicacao.png"
-                  width="1680"
-                  height="945"
-                  alt="Profissional realizando aplicação de tirzepatida em paciente após avaliação personalizada"
+                  src="/images/gio/protocolo-avaliacao.png"
+                  width="1672"
+                  height="941"
+                  alt="Profissional realizando avaliação personalizada de uma paciente na Gio"
                   loading="lazy"
                 />
               </div>
@@ -829,8 +829,8 @@ export default function GioLandingPage() {
                   </div>
                 </div>
                 <div className="team-lead-content">
-                  <span className="team-role-tag">Médico responsável</span>
-                  <h3>Daniel Gomes de Figueiredo</h3>
+                  <span className="team-role-tag">Coordenação médica</span>
+                  <h3>Dr. Daniel Gomes de Figueiredo</h3>
                   <details className="expandable-details">
                     <summary className="expandable-summary">
                       <span className="expandable-action">
@@ -888,7 +888,6 @@ export default function GioLandingPage() {
                         </span>
                       </div>
                       <div>
-                        <span className="team-area-label">Área do cuidado</span>
                         <h3>{role}</h3>
                         {role === "Nutrição" && (
                           <span className="team-assignment-note">Profissional definido conforme o caso</span>

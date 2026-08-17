@@ -125,7 +125,7 @@ export const objections = [
 ] as const;
 
 export const teamRoles = [
-  ["Médico responsável", "Avalia histórico, saúde, resposta ao tratamento e indicação medicamentosa."],
+  ["Médico responsável", "Dr. Daniel Gomes de Figueiredo é médico cardiologista e avalia histórico, saúde, resposta ao tratamento e indicação medicamentosa."],
   ["Psicologia", "Considera fatores emocionais e comportamentais ligados à alimentação e à continuidade."],
   ["Nutrição", "Organiza uma estratégia alimentar possível para rotina, hábitos e objetivos."],
   ["Atividade física", "Orienta o movimento de forma progressiva e compatível com o momento atual."],

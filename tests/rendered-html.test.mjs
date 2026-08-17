@@ -35,7 +35,7 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /foi um plano acompanhando você por inteiro/i);
   assert.match(html, /Não é escolher entre dieta, exercício, estética ou medicação/i);
   assert.match(html, /O seu processo não deveria ser igual ao de todo mundo/i);
-  assert.match(html, /tirzepatida-aplicacao\.png/i);
+  assert.match(html, /protocolo-avaliacao\.png/i);
   assert.match(html, /processo-personalizado\.png/i);
   assert.match(html, /jornada-acompanhada\.png/i);
   assert.match(html, /protocolo-para-voce\.png/i);

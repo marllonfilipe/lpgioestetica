@@ -62,7 +62,7 @@ body :is(.text-link, .editorial-callout a) {
  * section-button scale, keeping its visual weight proportional to the logo
  * and navigation at desktop widths. */
 @media (min-width: 941px) {
-  body .header-cta {
+body .header-cta {
     width: fit-content;
     min-width: 0;
     min-height: clamp(40px, calc(34px + 0.7vw), 48px);
@@ -77,6 +77,12 @@ body :is(.text-link, .editorial-callout a) {
     width: clamp(14px, 1.15vw, 17px);
     height: clamp(14px, 1.15vw, 17px);
   }
+}
+
+/* Purple expandable cards need a light action label for sufficient contrast. */
+body .protocol-tirzepatide .expandable-action,
+body .protocol-tirzepatide .expandable-action svg {
+  color: #f0e8f3;
 }
 
 body main > section:not(.hero) h2 {
