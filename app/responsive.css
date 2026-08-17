@@ -1024,6 +1024,132 @@ body .statement p {
   }
 }
 
+/* Final fluid sizing pass: one scale follows the viewport across the whole LP. */
+:root {
+  --lp-body-size: clamp(13px, calc(12px + 0.28vw), 16px);
+  --lp-button-size: clamp(13px, calc(11px + 0.32vw), 16px);
+  --lp-card-padding: clamp(16px, calc(12px + 0.85vw), 26px);
+  --lp-section-padding: clamp(56px, calc(40px + 3.4vw), 82px);
+}
+
+body {
+  font-size: var(--lp-body-size);
+}
+
+body .shell {
+  width: min(calc(100% - clamp(28px, 6vw, 96px)), 1220px);
+}
+
+body main > section.section-pad:not(.hero) {
+  padding-block: var(--lp-section-padding);
+}
+
+body main > section:not(.hero) h2 {
+  font-size: clamp(24px, calc(19px + 1.25vw), 38px);
+  line-height: 1.12;
+}
+
+body main > section:not(.hero) :is(h3, .package-price) {
+  font-size: clamp(18px, calc(16px + 0.65vw), 26px);
+  line-height: 1.18;
+}
+
+body main > section:not(.hero) :is(p, li, summary, label, address, small) {
+  font-size: var(--lp-body-size);
+  line-height: 1.52;
+}
+
+body :is(.kicker, .team-role-tag, .team-area-label, .contrast-label, .package-offer-title) {
+  font-size: clamp(10px, calc(9px + 0.22vw), 13px);
+  line-height: 1.3;
+}
+
+body :is(
+  .statement,
+  .protocol-card,
+  .contrast-grid article,
+  .package-item,
+  .package-offer,
+  .timeline li,
+  .delay-lines p,
+  .delay-action,
+  .objection-card,
+  .team-lead-card,
+  .team-area-card,
+  .team-integration,
+  .testimonial-featured,
+  .testimonial-note,
+  .testimonials-trust,
+  .final-cta-card,
+  .lead-form
+) {
+  padding: var(--lp-card-padding);
+}
+
+body :is(.protocol-bento, .objection-cards, .team-area-grid, .timeline, .statement-grid) {
+  gap: clamp(10px, 1.25vw, 20px);
+}
+
+body :is(
+  .button,
+  button[type="submit"],
+  .text-link,
+  .editorial-callout a,
+  .team-cta,
+  .testimonials-cta,
+  .clinic-actions a
+) {
+  min-height: clamp(44px, calc(40px + 0.7vw), 54px);
+  padding-block: clamp(12px, calc(10px + 0.45vw), 16px);
+  padding-inline: clamp(16px, calc(12px + 1vw), 28px);
+  font-size: var(--lp-button-size);
+  line-height: 1.25;
+}
+
+body :is(img, picture, video) {
+  max-width: 100%;
+}
+
+@media (min-width: 681px) {
+  body :is(
+    .button,
+    button[type="submit"],
+    .text-link,
+    .editorial-callout a,
+    .team-cta,
+    .testimonials-cta,
+    .clinic-actions a
+  ) {
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  body .shell {
+    width: min(calc(100% - 28px), 620px);
+  }
+
+  body :is(
+    .button,
+    button[type="submit"],
+    .text-link,
+    .editorial-callout a,
+    .team-cta,
+    .testimonials-cta,
+    .clinic-actions a
+  ) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
+    padding: clamp(16px, 4.5vw, 20px);
+  }
+}
+
 /* Compact expandable content: collapsed on mobile, fully readable on larger screens. */
 .expandable-summary {
   list-style: none;
