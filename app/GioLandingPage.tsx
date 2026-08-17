@@ -291,7 +291,6 @@ export default function GioLandingPage() {
         <section id="hero" className="hero section-pad">
           <div className="shell hero-grid">
             <div className="hero-copy reveal">
-              <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
                 Você já tentou fazer dieta, voltar a treinar e mudar sua rotina.{" "}
                 <em>O que faltou não foi esforço. Foi um plano acompanhando você por inteiro.</em>
