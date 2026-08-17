@@ -1024,6 +1024,57 @@ body .statement p {
   }
 }
 
+/* CTA emphasis: links that invite an action use the same pill treatment as buttons. */
+body :is(.text-link, .editorial-callout a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: clamp(44px, calc(40px + 0.7vw), 54px);
+  padding-block: clamp(12px, calc(10px + 0.45vw), 16px);
+  padding-inline: clamp(16px, calc(12px + 1vw), 28px);
+  border: 1px solid var(--lilac-deep);
+  border-radius: 999px;
+  background: var(--lilac-deep);
+  color: var(--white);
+  font-size: var(--lp-button-size);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: 0 10px 24px rgba(89, 66, 99, 0.16);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+body :is(.text-link, .editorial-callout a):hover {
+  transform: translateY(-2px);
+  background: #493653;
+  box-shadow: 0 14px 30px rgba(89, 66, 99, 0.24);
+}
+
+body :is(.text-link, .editorial-callout a) svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+body .editorial-callout a {
+  justify-self: start;
+}
+
+body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
+  padding: var(--lp-card-padding);
+}
+
+@media (max-width: 680px) {
+  body .editorial-callout a,
+  body .text-link {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* Final fluid sizing pass: one scale follows the viewport across the whole LP. */
 :root {
   --lp-body-size: clamp(13px, calc(12px + 0.28vw), 16px);
@@ -1283,5 +1334,16 @@ body .team-lead-card {
     outline: 2px solid var(--lilac);
     outline-offset: 4px;
     border-radius: 4px;
+  }
+}
+
+/* Keep card sizing fluid after all legacy breakpoint rules. */
+body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
+  padding: var(--lp-card-padding);
+}
+
+@media (max-width: 680px) {
+  body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
+    padding: clamp(16px, 4.5vw, 20px);
   }
 }

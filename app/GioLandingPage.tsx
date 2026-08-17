@@ -295,7 +295,7 @@ export default function GioLandingPage() {
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
                 Você já tentou fazer dieta, voltar a treinar e mudar sua rotina.{" "}
-                <em>O que talvez tenha faltado não foi esforço - foi um plano acompanhando você por inteiro.</em>
+                <em>O que faltou não foi esforço — foi um plano acompanhando você por inteiro.</em>
               </h1>
               <p className="hero-lead">
                 Um protocolo personalizado que reúne consultas médicas, exames laboratoriais, acompanhamento
@@ -380,7 +380,7 @@ export default function GioLandingPage() {
             <div className="section-heading split-heading">
               <div>
                 <span className="kicker">Quando o esforço parece não acompanhar o resultado</span>
-                <h2>Talvez você não esteja cansado de tentar. Talvez esteja cansado de tentar sozinho.</h2>
+                <h2>Não é só cansaço de tentar. É o peso de tentar sozinho.</h2>
               </div>
               <p>
                 Emagrecer envolve mais que comer menos e treinar. Saúde, rotina, emoções, movimento e resposta
@@ -410,7 +410,7 @@ export default function GioLandingPage() {
 
             <div className="editorial-callout">
               <p>
-                Talvez não tenha faltado disciplina, mas um plano que considere você por completo.
+                Não faltou disciplina — faltou um plano que considere você por completo.
               </p>
               <a
                 href={whatsappHref}
@@ -443,7 +443,7 @@ export default function GioLandingPage() {
                 sustentar tudo sozinho fica mais difícil.
               </p>
               <blockquote>
-                Talvez o problema não seja você, mas tentar cuidar de algo complexo com soluções isoladas.
+                O problema não é você — é tentar cuidar de algo complexo com soluções isoladas.
               </blockquote>
               <p>
                 Por isso, a Gio estruturou um protocolo com cuidados médicos, nutricionais, psicológicos,
@@ -766,10 +766,10 @@ export default function GioLandingPage() {
               <h2>Você não precisa esperar estar completamente preparado.</h2>
             </div>
             <div className="delay-lines">
-              <p>Talvez você ainda tenha dúvidas.</p>
-              <p>Talvez não saiba se o tratamento medicamentoso é indicado para você.</p>
-              <p>Talvez tenha receio de começar e interromper novamente.</p>
-              <p>Talvez não saiba qual profissional procurar primeiro.</p>
+              <p>Você ainda tem dúvidas.</p>
+              <p>A indicação do tratamento medicamentoso precisa ser avaliada para o seu caso.</p>
+              <p>Você tem receio de começar e interromper novamente.</p>
+              <p>Ainda não ficou claro qual profissional procurar primeiro.</p>
             </div>
             <div className="delay-action">
               <p>
