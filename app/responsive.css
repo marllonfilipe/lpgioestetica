@@ -53,6 +53,27 @@ body :is(.text-link, .editorial-callout a) {
   text-align: center;
 }
 
+/* The header CTA follows the compact header scale instead of the larger
+ * section-button scale, keeping its visual weight proportional to the logo
+ * and navigation at desktop widths. */
+@media (min-width: 941px) {
+  body .header-cta {
+    width: fit-content;
+    min-width: 0;
+    min-height: clamp(40px, calc(34px + 0.7vw), 48px);
+    padding: clamp(8px, 0.6vw, 11px) clamp(11px, 1vw, 17px);
+    gap: clamp(5px, 0.45vw, 8px);
+    font-size: clamp(0.7rem, 0.58vw, 0.8rem);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  body .header-cta svg {
+    width: clamp(14px, 1.15vw, 17px);
+    height: clamp(14px, 1.15vw, 17px);
+  }
+}
+
 body main > section:not(.hero) h2 {
   margin-top: 16px;
   font-size: var(--section-title-size);
