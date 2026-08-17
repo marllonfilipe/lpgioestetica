@@ -291,7 +291,6 @@ export default function GioLandingPage() {
         <section id="hero" className="hero section-pad">
           <div className="shell hero-grid">
             <div className="hero-copy reveal">
-              <div className="eyebrow">Protocolo de emagrecimento multidisciplinar</div>
               <p className="section-index">Praia da Costa · Vila Velha</p>
               <h1>
                 Você já tentou fazer dieta, voltar a treinar e mudar sua rotina.{" "}
@@ -379,7 +378,6 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="section-heading split-heading">
               <div>
-                <span className="kicker">Quando o esforço parece não acompanhar o resultado</span>
                 <h2>Não é só cansaço de tentar. É o peso de tentar sozinho.</h2>
               </div>
               <p>
@@ -436,7 +434,6 @@ export default function GioLandingPage() {
               <p className="cycle-center">O ciclo<br />recomeça</p>
             </div>
             <div className="cycle-copy">
-              <span className="kicker">Quebra de culpa</span>
               <h2>O ciclo não começa na falta de esforço</h2>
               <p>
                 Você reorganiza a alimentação, retoma os exercícios e percebe mudanças. Quando a rotina aperta,
@@ -457,7 +454,6 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="protocol-intro">
               <div className="protocol-application-heading">
-                <span className="kicker">O protocolo</span>
                 <h2>Um plano de tratamento estruturado para acompanhar <em>diferentes partes do seu processo.</em></h2>
                 <p>
                   A Gio reúne avaliações, profissionais e cuidados em uma única jornada.
@@ -479,7 +475,6 @@ export default function GioLandingPage() {
             </div>
 
             <div className="protocol-areas-intro">
-              <span className="kicker">O que está incluído</span>
               <h3>Um plano acompanhado por diferentes áreas.</h3>
               <p>Conheça os cuidados que integram o plano:</p>
             </div>
@@ -530,7 +525,6 @@ export default function GioLandingPage() {
         <section className="contrast section-pad">
           <div className="shell">
             <div className="section-heading centered-narrow">
-              <span className="kicker">Integração</span>
               <h2>Não é escolher entre dieta, exercício, estética ou medicação.</h2>
               <p>É entender como cada parte pode contribuir para o seu processo.</p>
             </div>
@@ -569,7 +563,6 @@ export default function GioLandingPage() {
               </div>
             </div>
             <div className="audience-copy">
-              <span className="kicker">Para quem é</span>
               <h2>Este protocolo foi pensado para você que:</h2>
               <ul className="editorial-list">
                 {audienceItems.slice(0, 4).map((item) => (
@@ -606,7 +599,6 @@ export default function GioLandingPage() {
         <section className="personalization section-pad">
           <div className="shell personalization-grid">
             <div className="personalization-copy">
-              <span className="kicker">Escuta antes da estratégia</span>
               <h2>O seu processo não deveria ser igual ao de todo mundo.</h2>
               <p className="large-copy">
                 Cada pessoa tem um histórico, uma rotina e uma resposta diferente.
@@ -640,7 +632,6 @@ export default function GioLandingPage() {
           <div className="shell">
             <div className="process-heading">
               <div>
-                <span className="kicker">Como funciona</span>
                 <h2>Sua jornada começa com uma avaliação.</h2>
               </div>
               <div className="process-thumbnails" aria-label="Momentos da avaliação e do acompanhamento">
@@ -725,7 +716,6 @@ export default function GioLandingPage() {
         <section className="transformation section-pad">
           <div className="shell transformation-grid">
             <div className="transformation-copy">
-              <span className="kicker kicker-light">Transformação emocional</span>
               <h2>Imagine viver esse processo sem precisar juntar todas as peças sozinho.</h2>
               <p>
                 Profissionais acompanhando saúde, alimentação, comportamento, atividade física e mudanças corporais.
@@ -762,7 +752,6 @@ export default function GioLandingPage() {
         <section className="delay-section section-pad">
           <div className="shell delay-grid">
             <div>
-              <span className="kicker">Primeiro passo</span>
               <h2>Você não precisa esperar estar completamente preparado.</h2>
             </div>
             <div className="delay-lines">
@@ -792,7 +781,6 @@ export default function GioLandingPage() {
         <section className="objections section-pad">
           <div className="shell objections-layout">
             <div className="objections-heading">
-              <span className="kicker">Quebra de objeções</span>
               <h2>Suas dúvidas fazem parte do processo.</h2>
               <p>
                 A avaliação esclarece possibilidades e o que faz sentido para o seu momento.
@@ -1101,7 +1089,6 @@ export default function GioLandingPage() {
         <section className="final-cta section-pad">
           <div className="shell final-cta-inner">
             <div className="final-cta-copy">
-              <span className="kicker kicker-light">Uma jornada conectada</span>
               <h2>Você já tentou emagrecer cuidando de partes isoladas.</h2>
               <p>
                 Conheça um plano que integra saúde, alimentação, comportamento, movimento e evolução corporal.
@@ -1127,7 +1114,6 @@ export default function GioLandingPage() {
         <section id="contato" className="lead-section section-pad" ref={formSectionRef}>
           <div className="shell lead-grid">
             <div className="lead-copy">
-              <span className="kicker">Formulário</span>
               <h2>Descubra se o protocolo pode ser adequado para você.</h2>
               <p>
                 Preencha seus dados para receber o contato da equipe pelo WhatsApp.
