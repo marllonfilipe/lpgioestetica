@@ -1371,6 +1371,38 @@ body .team-lead-card {
   }
 }
 
+/* Align the hero headline with the site's editorial title system. */
+body .hero-copy h1,
+body .hero-copy h1 em {
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 500;
+}
+
+body .hero-copy h1 {
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+@media (min-width: 1001px) {
+  body .hero-copy h1 {
+    font-size: clamp(30px, 2.45vw, 38px);
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1000px) {
+  body .hero-copy h1 {
+    font-size: clamp(28px, 4.55vw, 35px);
+  }
+}
+
+@media (max-width: 680px) {
+  body .hero-copy h1 {
+    font-size: clamp(24px, 7.2vw, 29px);
+    line-height: 1.15;
+  }
+}
+
 /* Keep card sizing fluid after all legacy breakpoint rules. */
 body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
   padding: var(--lp-card-padding);
