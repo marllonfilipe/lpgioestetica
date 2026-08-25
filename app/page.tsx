@@ -12,13 +12,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = host ? `${protocol}://${host}/og.png` : undefined;
 
   return {
-    title: { absolute: "Emagrecimento Multidisciplinar | Gio Praia da Costa" },
+    title: { absolute: "Estética Avançada | Protocolo de Emagrecimento" },
     description:
-      "Conheça o Método Gio Integrado: um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e estética na Praia da Costa.",
+      "Conheça o protocolo de emagrecimento da Gio: um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e estética na Praia da Costa.",
+    keywords: [
+      "estética avançada",
+      "protocolo de emagrecimento",
+      "emagrecimento multidisciplinar",
+      "emagrecimento na Praia da Costa",
+      "emagrecimento em Vila Velha",
+    ],
     openGraph: {
-      title: "Emagrecimento Multidisciplinar | Gio Praia da Costa",
+      title: "Estética Avançada | Protocolo de Emagrecimento",
       description:
-        "Emagrecer pode ser mais leve quando você não precisa fazer tudo sozinho. Conheça o Método Gio Integrado.",
+        "Um plano personalizado de emagrecimento com acompanhamento médico e diferentes áreas de cuidado.",
       type: "website",
       locale: "pt_BR",
       siteName: "Gio Estética Avançada Praia da Costa",
@@ -28,9 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Emagrecimento Multidisciplinar | Gio Praia da Costa",
+      title: "Estética Avançada | Protocolo de Emagrecimento",
       description:
-        "Um plano personalizado com diferentes áreas de cuidado conectadas na Praia da Costa.",
+        "Protocolo personalizado com diferentes áreas de cuidado na Praia da Costa.",
       ...(ogImage ? { images: [ogImage] } : {}),
     },
   };

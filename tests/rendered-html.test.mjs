@@ -30,7 +30,7 @@ test("server-renders the Gio landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Emagrecimento Multidisciplinar \| Gio Praia da Costa/i);
+  assert.match(html, /Estética Avançada \| Protocolo de Emagrecimento/i);
   assert.match(html, /Você já tentou fazer dieta, voltar a treinar e mudar sua rotina/i);
   assert.match(html, /foi um plano acompanhando você por inteiro/i);
   assert.match(html, /Não é escolher entre dieta, exercício, estética ou medicação/i);
@@ -40,7 +40,7 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /jornada-acompanhada\.png/i);
   assert.match(html, /protocolo-para-voce\.png/i);
   assert.match(html, /O protocolo completo, em um só investimento/i);
-  assert.match(html, /Sob consulta/i);
+  assert.match(html, /Sob agendamento/i);
   assert.match(html, /Diferentes especialidades, um plano construído em conjunto/i);
   assert.match(html, /Daniel Gomes de Figueiredo/i);
   assert.match(html, /Profissional definido conforme o caso/i);
@@ -54,10 +54,8 @@ test("server-renders the Gio landing page", async () => {
   assert.doesNotMatch(html, /A experiência Gio|Cuidado percebido em cada detalhe/i);
   assert.match(html, /maps\.app\.goo\.gl\/ttdbpcYVpsMCGKeK7/i);
   assert.match(html, /Entenda o protocolo antes do primeiro contato/i);
-  assert.match(html, /Descubra se o protocolo pode ser adequado para você/i);
   assert.match(html, /aria-label="Navegação principal"/i);
-  assert.match(html, /name="consent"/i);
-  assert.match(html, /Enviar meus dados/i);
+  assert.doesNotMatch(html, /<form\b|Enviar meus dados|id="contato"/i);
   assert.match(html, /wa\.me\/5527997756738/i);
   assert.match(html, /whatsapp-icon/i);
   assert.doesNotMatch(html, /lucide-message-circle/i);

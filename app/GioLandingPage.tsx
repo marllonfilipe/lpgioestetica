@@ -12,7 +12,6 @@ import {
   HeartPulse,
   MapPin,
   Menu,
-  Send,
   ShieldCheck,
   Sparkles,
   Syringe,
@@ -20,7 +19,7 @@ import {
   X,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   audienceItems,
   cycleSteps,
@@ -52,36 +51,14 @@ const protocolIcons = {
 
 const teamAreaIcons = [Brain, Apple, Dumbbell, Sparkles] as const;
 
-type FormErrors = Partial<
-  Record<"name" | "phone" | "difficulty" | "consent", string>
->;
-
-type FormStatus = "idle" | "submitting" | "success" | "error";
-
-function formatPhone(value: string) {
-  const digits = value.replace(/\D/g, "").slice(0, 11);
-  if (digits.length <= 2) return digits;
-  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-  if (digits.length <= 10) {
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
-  }
-  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
-}
-
 export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formVisible, setFormVisible] = useState(false);
   const [contextualActionsVisible, setContextualActionsVisible] = useState(false);
   const [heroActionsVisible, setHeroActionsVisible] = useState(true);
-  const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
   const heroActionsRef = useRef<HTMLDivElement | null>(null);
   const packageSectionRef = useRef<HTMLElement | null>(null);
   const clinicSectionRef = useRef<HTMLElement | null>(null);
-  const formSectionRef = useRef<HTMLElement | null>(null);
-  const formStartedRef = useRef(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -120,16 +97,6 @@ export default function GioLandingPage() {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!formSectionRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setFormVisible(entry.isIntersecting),
-      { threshold: 0.15 },
-    );
-    observer.observe(formSectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const heroActions = heroActionsRef.current;
     if (!heroActions) return;
     const observer = new IntersectionObserver(
@@ -166,57 +133,6 @@ export default function GioLandingPage() {
 
   function handleWhatsAppClick(location: string) {
     trackEvent("whatsapp_click", { location });
-  }
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formElement = event.currentTarget;
-    const form = new FormData(formElement);
-    const values = {
-      name: String(form.get("name") ?? "").trim(),
-      phone: String(form.get("phone") ?? "").replace(/\D/g, ""),
-      difficulty: String(form.get("difficulty") ?? "").trim(),
-      consent: form.get("consent") === "on",
-      website: String(form.get("website") ?? "").trim(),
-    };
-
-    const nextErrors: FormErrors = {};
-    if (values.name.length < 3) nextErrors.name = "Informe seu nome completo.";
-    if (values.phone.length < 10) nextErrors.phone = "Informe um WhatsApp válido com DDD.";
-    if (!values.difficulty) nextErrors.difficulty = "Conte brevemente sua principal dificuldade.";
-    if (!values.consent) nextErrors.consent = "Você precisa autorizar o contato da equipe.";
-
-    setErrors(nextErrors);
-    setFormStatus("idle");
-    if (Object.keys(nextErrors).length > 0) {
-      window.requestAnimationFrame(() => {
-        formElement.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
-      });
-      return;
-    }
-
-    setFormStatus("submitting");
-
-    try {
-      const response = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-
-      if (!response.ok) {
-        throw new Error("Lead submission failed");
-      }
-
-      trackEvent("lead_form_submit", { location: "lead_form" });
-      formElement.reset();
-      setPhone("");
-      setErrors({});
-      setFormStatus("success");
-      formStartedRef.current = false;
-    } catch {
-      setFormStatus("error");
-    }
   }
 
   return (
@@ -693,7 +609,7 @@ export default function GioLandingPage() {
 
             <aside className="package-offer" aria-label="Investimento no protocolo">
               <p className="package-offer-title">Investimento</p>
-              <strong className="package-price">Sob consulta</strong>
+              <strong className="package-price">Sob agendamento</strong>
               <p className="package-payment">
                 Receba valores e condições antes de decidir.
               </p>
@@ -1109,84 +1025,6 @@ export default function GioLandingPage() {
           </div>
         </section>
 
-        <section id="contato" className="lead-section section-pad" ref={formSectionRef}>
-          <div className="shell lead-grid">
-            <div className="lead-copy">
-              <h2>Descubra se o protocolo pode ser adequado para você.</h2>
-              <p>
-                Preencha seus dados para receber o contato da equipe pelo WhatsApp.
-              </p>
-              <div className="lead-security">
-                <ShieldCheck aria-hidden="true" />
-                <span>O preenchimento não representa indicação, prescrição nem contratação.</span>
-              </div>
-            </div>
-
-            <form
-              className="lead-form"
-              onSubmit={handleSubmit}
-              onFocusCapture={() => {
-                if (formStatus === "success" || formStatus === "error") {
-                  setFormStatus("idle");
-                }
-                if (formStartedRef.current) return;
-                formStartedRef.current = true;
-                trackEvent("lead_form_start", { location: "lead_form" });
-              }}
-              noValidate
-            >
-              <div className="field field-wide">
-                <label htmlFor="name">Nome completo</label>
-                <input id="name" name="name" type="text" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />
-                {errors.name && <span id="name-error" className="field-error">{errors.name}</span>}
-              </div>
-              <div className="field field-wide">
-                <label htmlFor="phone">WhatsApp</label>
-                <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(formatPhone(event.target.value))} placeholder="(27) 99999-9999" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} />
-                {errors.phone && <span id="phone-error" className="field-error">{errors.phone}</span>}
-              </div>
-              <div className="field field-wide">
-                <label htmlFor="difficulty">Qual é sua principal dificuldade atualmente?</label>
-                <textarea id="difficulty" name="difficulty" rows={4} placeholder="Conte brevemente o que mais dificulta seu processo hoje" aria-invalid={Boolean(errors.difficulty)} aria-describedby={errors.difficulty ? "difficulty-error" : undefined} />
-                {errors.difficulty && <span id="difficulty-error" className="field-error">{errors.difficulty}</span>}
-              </div>
-              <div className="form-honeypot" aria-hidden="true">
-                <label htmlFor="website">Deixe este campo vazio</label>
-                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-              </div>
-              <div className="consent field-wide">
-                <input id="consent" name="consent" type="checkbox" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "consent-error" : "consent-help"} />
-                <label htmlFor="consent" id="consent-help">
-                  Concordo em ser contatado pela equipe da Gio Estética Avançada Praia da Costa e declaro estar
-                  ciente da Política de Privacidade.
-                </label>
-                {errors.consent && <span id="consent-error" className="field-error">{errors.consent}</span>}
-              </div>
-              <button
-                className="button form-submit field-wide"
-                type="submit"
-                disabled={formStatus === "submitting"}
-                aria-busy={formStatus === "submitting"}
-              >
-                {formStatus === "submitting" ? "Enviando..." : "Enviar meus dados"}
-                <Send aria-hidden="true" />
-              </button>
-              {formStatus === "success" && (
-                <div className="form-feedback form-feedback-success field-wide" role="status" aria-live="polite">
-                  Dados enviados. A equipe da Gio entrará em contato pelo WhatsApp informado.
-                </div>
-              )}
-              {formStatus === "error" && (
-                <div className="form-feedback form-feedback-error field-wide" role="alert">
-                  Não foi possível enviar agora. Tente novamente ou{" "}
-                  <a href={whatsappHref} target="_blank" rel="noreferrer">
-                    fale com a equipe pelo WhatsApp
-                  </a>.
-                </div>
-              )}
-            </form>
-          </div>
-        </section>
       </main>
 
       <footer className="site-footer">
@@ -1213,7 +1051,7 @@ export default function GioLandingPage() {
         </div>
       </footer>
 
-      {!formVisible && !contextualActionsVisible && !heroActionsVisible && (
+      {!contextualActionsVisible && !heroActionsVisible && (
         <a
           className="floating-whatsapp"
           href={whatsappHref}
@@ -1227,7 +1065,7 @@ export default function GioLandingPage() {
         </a>
       )}
 
-      {!formVisible && !contextualActionsVisible && !heroActionsVisible && (
+      {!contextualActionsVisible && !heroActionsVisible && (
         <a
           className="mobile-fixed-cta"
           href={whatsappHref}

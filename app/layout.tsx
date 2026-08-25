@@ -23,11 +23,11 @@ const body = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalUrl),
   title: {
-    default: "Gio Estética Avançada Praia da Costa",
+    default: "Estética Avançada | Protocolo de Emagrecimento",
     template: "%s | Gio Praia da Costa",
   },
   description:
-    "Método de emagrecimento multidisciplinar com plano personalizado na Praia da Costa, Vila Velha.",
+    "Protocolo de emagrecimento personalizado com acompanhamento médico e diferentes áreas de cuidado na Praia da Costa, Vila Velha.",
   robots: {
     index: true,
     follow: true,
