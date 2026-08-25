@@ -653,7 +653,7 @@ export default function GioLandingPage() {
             </div>
             <div className="transformation-photo image-frame">
               <img
-                src="/images/gio/jornada-acompanhada-v3.png"
+                src="/images/gio/jornada-acompanhada.png"
                 width="1672"
                 height="941"
                 alt="Equipe multidisciplinar reunida com paciente durante o acompanhamento"
