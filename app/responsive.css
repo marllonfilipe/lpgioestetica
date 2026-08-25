@@ -550,7 +550,7 @@ body .statement p {
     width: 100%;
     height: min(52vw, 460px);
     max-height: 460px;
-    background-position: 68% center;
+    background-position: center;
   }
 
   body .clinic-showcase::after {
@@ -967,7 +967,7 @@ body .statement p {
     width: 100%;
     height: 60vw;
     max-height: 360px;
-    background-position: 70% center;
+    background-position: center;
   }
 
   body .clinic-showcase::after {
