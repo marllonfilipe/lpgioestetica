@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalUrl),
   title: {
     default: "Estética Avançada | Protocolo de Emagrecimento",
-    template: "%s | Gio Praia da Costa",
+    template: "%s | Estética Avançada Praia da Costa",
   },
   description:
     "Protocolo de emagrecimento personalizado com acompanhamento médico e diferentes áreas de cuidado na Praia da Costa, Vila Velha.",

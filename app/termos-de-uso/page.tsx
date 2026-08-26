@@ -4,7 +4,7 @@ import { medicalNotice } from "../../src/config/copy";
 
 export const metadata: Metadata = {
   title: "Termos de Uso",
-  description: "Termos de uso da página informativa da Gio Praia da Costa.",
+  description: "Termos de uso da página informativa da clínica na Praia da Costa.",
 };
 
 export default function TermsPage() {

@@ -24,7 +24,7 @@ async function render(path = "/") {
   return dispatch(path, { headers: { accept: "text/html" } });
 }
 
-test("server-renders the Gio landing page", async () => {
+test("server-renders the landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -37,7 +37,7 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /O seu processo não deveria ser igual ao de todo mundo/i);
   assert.match(html, /protocolo-avaliacao\.png/i);
   assert.match(html, /processo-personalizado\.png/i);
-  assert.match(html, /jornada-acompanhada-v3\.png/i);
+  assert.match(html, /jornada-acompanhada\.png/i);
   assert.match(html, /protocolo-para-voce\.png/i);
   assert.match(html, /O protocolo completo, em um só investimento/i);
   assert.match(html, /Sob agendamento/i);
@@ -50,7 +50,8 @@ test("server-renders the Gio landing page", async () => {
   assert.match(html, /depoimento-resultado-9kg\.jpeg/i);
   assert.match(html, /totalizando 9 kg a menos/i);
   assert.doesNotMatch(html, /Em processo de autorização|O primeiro relato será publicado/i);
-  assert.match(html, /Conheça a Gio Praia da Costa/i);
+  assert.match(html, /Conheça nossa estrutura na Praia da Costa/i);
+  assert.doesNotMatch(html, /Na Gio|Por isso, a Gio|Paciente Gio|Conheça a Gio|Gio Estética Avançada/i);
   assert.doesNotMatch(html, /A experiência Gio|Cuidado percebido em cada detalhe/i);
   assert.match(html, /maps\.app\.goo\.gl\/ttdbpcYVpsMCGKeK7/i);
   assert.match(html, /Entenda o protocolo antes do primeiro contato/i);

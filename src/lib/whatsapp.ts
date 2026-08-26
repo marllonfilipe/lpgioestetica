@@ -12,7 +12,7 @@ export function buildLeadMessage(data: {
 }) {
   return [
     `Olá! Meu nome é ${data.name}.`,
-    "Gostaria de entender se o Método Gio Integrado faz sentido para o meu momento.",
+    "Gostaria de entender se o protocolo integrado faz sentido para o meu momento.",
     `Minha principal dificuldade é: ${data.difficulty}`,
     "Quero entender se o protocolo é indicado para mim e quais são os próximos passos.",
   ].join("\n");

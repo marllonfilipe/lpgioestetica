@@ -1,13 +1,13 @@
 export const siteConfig = {
-  clinicName: "Gio Estética Avançada Praia da Costa",
-  shortName: "Gio Praia da Costa",
+  clinicName: "Estética Avançada Praia da Costa",
+  shortName: "clínica da Praia da Costa",
   instagram: "@giopraiadacosta",
   instagramUrl: "https://www.instagram.com/giopraiadacosta/",
   location: "Praia da Costa, Vila Velha, Espírito Santo",
   fullAddress: "Av. Henrique Moscoso, 530, Praia da Costa, Vila Velha, ES, 29100-020",
   whatsappNumber: "5527997756738",
   whatsappMessage:
-    "Olá! Gostaria de entender se o Método Gio Integrado faz sentido para o meu momento.",
+    "Olá! Gostaria de entender se o protocolo integrado faz sentido para o meu momento.",
   googleMapsUrl: "https://maps.app.goo.gl/ttdbpcYVpsMCGKeK7",
   email: "giolaserpraiadacosta@gmail.com",
   openingHours:

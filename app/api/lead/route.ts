@@ -1,7 +1,7 @@
 import { siteConfig } from "../../../src/config/site";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
-const DEFAULT_FROM_EMAIL = "Gio Praia da Costa <onboarding@resend.dev>";
+const DEFAULT_FROM_EMAIL = "Estética Avançada Praia da Costa <onboarding@resend.dev>";
 
 type LeadPayload = {
   name?: unknown;
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
         to: [destinationEmail],
         subject: `Novo contato pelo site — ${name}`,
         text: [
-          "Novo contato recebido pelo site da Gio Praia da Costa",
+          "Novo contato recebido pelo site de Estética Avançada Praia da Costa",
           "",
           `Nome: ${name}`,
           `WhatsApp: ${displayedPhone}`,
@@ -134,7 +134,7 @@ export async function POST(request: Request) {
           <div style="background:#f5f0ea;padding:32px;font-family:Arial,sans-serif;color:#3f3046">
             <div style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden">
               <div style="background:#594263;padding:24px 28px;color:#ffffff">
-                <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8">Gio Praia da Costa</div>
+                <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8">Estética Avançada Praia da Costa</div>
                 <h1 style="font-size:24px;margin:8px 0 0">Novo contato pelo site</h1>
               </div>
               <div style="padding:28px">

@@ -4,7 +4,7 @@ import { siteConfig } from "../../src/config/site";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
-  description: "Informações sobre privacidade e tratamento de dados na página da Gio Praia da Costa.",
+  description: "Informações sobre privacidade e tratamento de dados da clínica na Praia da Costa.",
 };
 
 export default function PrivacyPage() {

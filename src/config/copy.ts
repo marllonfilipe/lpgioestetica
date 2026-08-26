@@ -121,7 +121,7 @@ export const objections = [
   ["Tenho medo de começar e desistir novamente.", "Diferentes profissionais acompanham também as dificuldades da jornada."],
   ["Não consigo seguir uma rotina perfeita.", "O plano considera sua realidade, suas possibilidades e seu momento."],
   ["Já tentei dieta e exercício e não consegui manter.", "As tentativas anteriores ajudam a equipe a entender o que precisa mudar."],
-  ["Não sei qual profissional procurar primeiro.", "A equipe da Gio apresenta os próximos passos no primeiro contato."],
+  ["Não sei qual profissional procurar primeiro.", "A equipe apresenta os próximos passos no primeiro contato."],
 ] as const;
 
 export const teamRoles = [

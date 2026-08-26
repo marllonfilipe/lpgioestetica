@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { absolute: "Estética Avançada | Protocolo de Emagrecimento" },
     description:
-      "Conheça o protocolo de emagrecimento da Gio: um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e estética na Praia da Costa.",
+      "Conheça o protocolo de emagrecimento: um plano personalizado que conecta cuidado médico, nutrição, psicologia, atividade física e estética na Praia da Costa.",
     keywords: [
       "estética avançada",
       "protocolo de emagrecimento",
@@ -28,9 +28,9 @@ export async function generateMetadata(): Promise<Metadata> {
         "Um plano personalizado de emagrecimento com acompanhamento médico e diferentes áreas de cuidado.",
       type: "website",
       locale: "pt_BR",
-      siteName: "Gio Estética Avançada Praia da Costa",
+      siteName: "Estética Avançada Praia da Costa",
       ...(ogImage
-        ? { images: [{ url: ogImage, width: 1733, height: 907, alt: "Gio - Emagrecimento multidisciplinar e personalizado" }] }
+        ? { images: [{ url: ogImage, width: 1733, height: 907, alt: "Emagrecimento multidisciplinar e personalizado" }] }
         : {}),
     },
     twitter: {

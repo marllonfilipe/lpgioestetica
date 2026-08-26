@@ -143,9 +143,9 @@ export default function GioLandingPage() {
 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <div className="header-inner shell">
-          <a className="brand" href="#hero" aria-label="Gio Estética Avançada, início">
-            <span className="brand-mark">Gio.</span>
-            <span className="brand-line">Estética Avançada</span>
+          <a className="brand" href="#hero" aria-label="Estética Avançada, início">
+            <span className="brand-mark">Estética</span>
+            <span className="brand-line">Avançada</span>
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
@@ -235,7 +235,7 @@ export default function GioLandingPage() {
                 </a>
               </div>
               <p className="hero-support">
-                Na Gio, profissionais acompanham saúde, alimentação, comportamento, movimento e evolução
+                Aqui, profissionais acompanham saúde, alimentação, comportamento, movimento e evolução
                 corporal. O tratamento medicamentoso entra quando indicado pelo médico.
               </p>
               <div className="hero-indicators" aria-label="Diferenciais">
@@ -257,7 +257,7 @@ export default function GioLandingPage() {
                   src="/images/gio/hero.png"
                   width="2048"
                   height="1152"
-                  alt="Profissional acolhendo uma paciente em ambiente premium da Gio"
+                  alt="Profissional acolhendo uma paciente em ambiente premium"
                   fetchPriority="high"
                 />
               </div>
@@ -358,7 +358,7 @@ export default function GioLandingPage() {
                 O problema não é você. É tentar cuidar de algo complexo com soluções isoladas.
               </blockquote>
               <p>
-                Por isso, a Gio estruturou um protocolo com cuidados médicos, nutricionais, psicológicos,
+                Por isso, foi estruturado um protocolo com cuidados médicos, nutricionais, psicológicos,
                 estéticos e atividade física.
               </p>
             </div>
@@ -371,7 +371,7 @@ export default function GioLandingPage() {
               <div className="protocol-application-heading">
                 <h2>Um plano de tratamento estruturado para acompanhar <em>diferentes partes do seu processo.</em></h2>
                 <p>
-                  A Gio reúne avaliações, profissionais e cuidados em uma única jornada.
+                  O protocolo reúne avaliações, profissionais e cuidados em uma única jornada.
                 </p>
                 <p className="protocol-medical-disclaimer">
                   <ShieldCheck aria-hidden="true" /> O médico define as condutas clínicas e avalia a indicação de
@@ -383,7 +383,7 @@ export default function GioLandingPage() {
                   src="/images/gio/protocolo-avaliacao.png"
                   width="1672"
                   height="941"
-                  alt="Profissional realizando avaliação personalizada de uma paciente na Gio"
+                  alt="Profissional realizando avaliação personalizada de uma paciente"
                   loading="lazy"
                 />
               </div>
@@ -470,7 +470,7 @@ export default function GioLandingPage() {
                 src="/images/gio/protocolo-para-voce.png"
                 width="2048"
                 height="1152"
-                alt="Profissional apresentando o protocolo personalizado da Gio"
+                alt="Profissional apresentando o protocolo personalizado"
                 loading="lazy"
               />
               <div className="audience-overlap">
@@ -771,7 +771,7 @@ export default function GioLandingPage() {
                       <article key={role} className="team-area-card team-area-card-profile">
                         <img
                           src="/images/gio/thassia-garcia-estetica.jpeg"
-                          alt="Thassia Garcia, profissional da área de estética da Gio Praia da Costa"
+                          alt="Thassia Garcia, profissional da área de estética na Praia da Costa"
                           width="1365"
                           height="2048"
                           loading="lazy"
@@ -887,9 +887,9 @@ export default function GioLandingPage() {
                     </p>
                   </blockquote>
                   <div className="testimonial-person">
-                    <span aria-hidden="true">G</span>
+                    <span aria-hidden="true">P</span>
                     <div>
-                      <strong>Paciente Gio</strong>
+                      <strong>Paciente</strong>
                       <small>Identificação preservada.</small>
                     </div>
                   </div>
@@ -936,7 +936,7 @@ export default function GioLandingPage() {
         <section className="clinic-showcase section-pad" ref={clinicSectionRef}>
           <div className="shell clinic-showcase-grid">
             <div className="clinic-showcase-copy">
-              <h2>Conheça a Gio Praia da Costa.</h2>
+              <h2>Conheça nossa estrutura na Praia da Costa.</h2>
               <p>
                 Conforto, privacidade e cuidado para receber você.
               </p>
@@ -1030,13 +1030,13 @@ export default function GioLandingPage() {
       <footer className="site-footer">
         <div className="shell footer-grid">
           <div className="footer-brand">
-            <span className="brand-mark">Gio.</span>
+            <span className="brand-mark">Estética</span>
             <p>{siteConfig.clinicName}</p>
             <span>{siteConfig.location}</span>
           </div>
           <div className="footer-links">
             <strong>Informações</strong>
-            <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagram}</a>
+            <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>
             <a href="/politica-de-privacidade">Política de Privacidade</a>
             <a href="/termos-de-uso">Termos de Uso</a>
           </div>

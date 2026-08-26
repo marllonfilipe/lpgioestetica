@@ -828,7 +828,7 @@ body .team-lead-visual {
 }
 
 body .team-lead-visual::after {
-  content: "Gio.";
+  content: "Cuidado.";
   position: absolute;
   right: 24px;
   bottom: 12px;
