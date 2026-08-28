@@ -14,3 +14,16 @@ export function trackEvent(event: string, payload: TrackingPayload = {}) {
   target.gtag?.("event", event, payload);
   target.fbq?.("trackCustom", event, payload);
 }
+
+export function trackGoogleAdsConversion(sendTo: string, payload: TrackingPayload = {}) {
+  if (typeof window === "undefined") return;
+
+  const target = window as Window & {
+    gtag?: (...args: unknown[]) => void;
+  };
+
+  target.gtag?.("event", "conversion", {
+    send_to: sendTo,
+    ...payload,
+  });
+}

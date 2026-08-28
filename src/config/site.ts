@@ -13,6 +13,13 @@ export const siteConfig = {
   openingHours:
     "Seg., qua. e sex., das 8h às 18h · Ter. e qui., das 8h às 20h · Sáb., das 8h às 16h",
   canonicalUrl: "https://gio-praia-da-costa.mfcs1510.chatgpt.site",
+  googleTagId: "GT-5R8SLSNT",
+  googleAdsId: "AW-17712476440",
+  googleAdsConversion: {
+    name: "Consulta Emagrecimento",
+    label: "793lCMqOhekcEJji-_1B",
+    sendTo: "AW-17712476440/793lCMqOhekcEJji-_1B",
+  },
   googleAnalyticsId: "",
   googleTagManagerId: "",
   metaPixelId: "",
@@ -22,5 +29,4 @@ export const pendingInformation = [
   "Logo oficial",
   "Nomes, registros, biografias e fotos dos profissionais",
   "Depoimentos autorizados",
-  "IDs de ferramentas de análise",
 ] as const;

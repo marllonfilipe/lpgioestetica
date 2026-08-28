@@ -36,7 +36,7 @@ import {
   teamRoles,
 } from "../src/config/copy";
 import { siteConfig } from "../src/config/site";
-import { trackEvent } from "../src/lib/analytics";
+import { trackEvent, trackGoogleAdsConversion } from "../src/lib/analytics";
 import { buildWhatsAppUrl } from "../src/lib/whatsapp";
 
 const protocolIcons = {
@@ -133,6 +133,7 @@ export default function GioLandingPage() {
 
   function handleWhatsAppClick(location: string) {
     trackEvent("whatsapp_click", { location });
+    trackGoogleAdsConversion(siteConfig.googleAdsConversion.sendTo, { location });
   }
 
   return (

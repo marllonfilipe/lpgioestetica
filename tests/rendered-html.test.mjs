@@ -60,6 +60,8 @@ test("server-renders the landing page", async () => {
   assert.match(html, /wa\.me\/5527997756738/i);
   assert.match(html, /whatsapp-icon/i);
   assert.doesNotMatch(html, /lucide-message-circle/i);
+  assert.match(html, /GT-5R8SLSNT/i);
+  assert.match(html, /AW-17712476440/i);
   assert.match(html, /Av\. Henrique Moscoso, 530/i);
   assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
   assert.match(html, /images\/gio\/hero\.png/i);
