@@ -35,17 +35,17 @@ test("server-renders the landing page", async () => {
   assert.match(html, /foi um plano acompanhando você por inteiro/i);
   assert.match(html, /Não é escolher entre dieta, exercício, estética ou medicação/i);
   assert.match(html, /O seu processo não deveria ser igual ao de todo mundo/i);
-  assert.match(html, /protocolo-avaliacao\.png/i);
-  assert.match(html, /processo-personalizado\.png/i);
-  assert.match(html, /jornada-acompanhada\.png/i);
-  assert.match(html, /protocolo-para-voce\.png/i);
+  assert.match(html, /protocolo-avaliacao\.webp/i);
+  assert.match(html, /processo-personalizado\.webp/i);
+  assert.match(html, /jornada-acompanhada\.webp/i);
+  assert.match(html, /protocolo-para-voce\.webp/i);
   assert.match(html, /O protocolo completo, em um só investimento/i);
   assert.match(html, /Sob agendamento/i);
   assert.match(html, /Diferentes especialidades, um plano construído em conjunto/i);
   assert.match(html, /Daniel Gomes de Figueiredo/i);
   assert.match(html, /Profissional definido conforme o caso/i);
   assert.match(html, /Thassia Garcia/i);
-  assert.match(html, /thassia-garcia-estetica\.jpeg/i);
+  assert.match(html, /thassia-garcia-estetica\.webp/i);
   assert.match(html, /Histórias de quem escolheu cuidar do processo por inteiro/i);
   assert.match(html, /depoimento-resultado-9kg\.jpeg/i);
   assert.match(html, /totalizando 9 kg a menos/i);
@@ -64,7 +64,8 @@ test("server-renders the landing page", async () => {
   assert.match(html, /AW-17712476440/i);
   assert.match(html, /Av\. Henrique Moscoso, 530/i);
   assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
-  assert.match(html, /images\/gio\/hero\.png/i);
+  assert.match(html, /images\/gio\/hero-1600\.webp/i);
+  assert.match(html, /hero-768\.webp 768w/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 

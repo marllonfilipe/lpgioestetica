@@ -255,7 +255,9 @@ export default function GioLandingPage() {
             <div className="hero-visual reveal delay-1">
               <div className="image-frame hero-image-frame">
                 <img
-                  src="/images/gio/hero.png"
+                  src="/images/gio/hero-1600.webp"
+                  srcSet="/images/gio/hero-768.webp 768w, /images/gio/hero-1280.webp 1280w, /images/gio/hero-1600.webp 1600w"
+                  sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) 52vw, 640px"
                   width="2048"
                   height="1152"
                   alt="Profissional acolhendo uma paciente em ambiente premium"
@@ -305,11 +307,12 @@ export default function GioLandingPage() {
             <div className="identification-layout">
               <div className="identification-image image-frame">
                 <img
-                  src="/images/gio/identificacao-avaliacao.png"
+                  src="/images/gio/identificacao-avaliacao.webp"
                   width="1672"
                   height="941"
                   alt="Profissional avaliando medidas corporais de uma paciente durante o acompanhamento"
                   loading="lazy"
+                  decoding="async"
                 />
                 <span className="image-note">“Você se reconhece em alguma dessas situações?”</span>
               </div>
@@ -381,11 +384,12 @@ export default function GioLandingPage() {
               </div>
               <div className="protocol-photo image-frame">
                 <img
-                  src="/images/gio/protocolo-avaliacao.png"
+                  src="/images/gio/protocolo-avaliacao.webp"
                   width="1672"
                   height="941"
                   alt="Profissional realizando avaliação personalizada de uma paciente"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -468,11 +472,12 @@ export default function GioLandingPage() {
           <div className="shell audience-grid">
             <div className="audience-photo image-frame">
               <img
-                src="/images/gio/protocolo-para-voce.png"
+                src="/images/gio/protocolo-para-voce.webp"
                 width="2048"
                 height="1152"
                 alt="Profissional apresentando o protocolo personalizado"
                 loading="lazy"
+                decoding="async"
               />
               <div className="audience-overlap">
                 Para quem deseja avaliação e acompanhamento de acordo com a própria realidade, sem uma fórmula pronta.
@@ -533,11 +538,12 @@ export default function GioLandingPage() {
             </div>
             <div className="personalization-photo image-frame">
               <img
-                src="/images/gio/processo-personalizado.png"
+                src="/images/gio/processo-personalizado.webp"
                 width="2048"
                 height="1152"
                 alt="Profissional e paciente analisando um plano alimentar personalizado"
                 loading="lazy"
+                decoding="async"
               />
               <span className="photo-caption light">Escuta antes da estratégia</span>
             </div>
@@ -551,8 +557,8 @@ export default function GioLandingPage() {
                 <h2>Sua jornada começa com uma avaliação.</h2>
               </div>
               <div className="process-thumbnails" aria-label="Momentos da avaliação e do acompanhamento">
-                <img src="/images/gio/hero.png" alt="Conversa inicial durante a avaliação" loading="lazy" />
-                <img src="/images/gio/para-quem-e.png" alt="Acompanhamento do plano personalizado" loading="lazy" />
+                <img src="/images/gio/hero-768.webp" alt="Conversa inicial durante a avaliação" loading="lazy" decoding="async" />
+                <img src="/images/gio/para-quem-e.webp" alt="Acompanhamento do plano personalizado" loading="lazy" decoding="async" />
               </div>
             </div>
             <ol className="timeline">
@@ -654,11 +660,12 @@ export default function GioLandingPage() {
             </div>
             <div className="transformation-photo image-frame">
               <img
-                src="/images/gio/jornada-acompanhada.png"
+                src="/images/gio/jornada-acompanhada.webp"
                 width="1672"
                 height="941"
                 alt="Equipe multidisciplinar reunida com paciente durante o acompanhamento"
                 loading="lazy"
+                decoding="async"
               />
               <span className="transformation-orbit" aria-hidden="true" />
             </div>
@@ -771,11 +778,12 @@ export default function GioLandingPage() {
                     return (
                       <article key={role} className="team-area-card team-area-card-profile">
                         <img
-                          src="/images/gio/thassia-garcia-estetica.jpeg"
+                          src="/images/gio/thassia-garcia-estetica.webp"
                           alt="Thassia Garcia, profissional da área de estética na Praia da Costa"
                           width="1365"
                           height="2048"
                           loading="lazy"
+                          decoding="async"
                         />
                         <div className="team-profile-content">
                           <span className="team-area-label">Profissional de estética</span>
@@ -866,6 +874,7 @@ export default function GioLandingPage() {
                     width="720"
                     height="1280"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div>
                     <span>Registro da jornada</span>

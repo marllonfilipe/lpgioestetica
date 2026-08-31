@@ -3848,7 +3848,7 @@ h3 {
   background-color: #eee5e1;
   background-image:
     linear-gradient(90deg, rgba(247, 242, 239, 0.38) 0%, rgba(247, 242, 239, 0.12) 52%, rgba(89, 66, 99, 0.06) 100%),
-    url("/images/gio/hero.png");
+    url("/images/gio/hero-1600.webp");
   background-position: center, 62% center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3932,7 +3932,7 @@ h3 {
   background-color: var(--beige-pale);
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.92) 50%, rgba(245, 240, 234, 0.24) 76%, rgba(245, 240, 234, 0.12) 100%),
-    url("/images/gio/identificacao-avaliacao.png");
+    url("/images/gio/identificacao-avaliacao.webp");
   background-position: center, 64% center;
   background-size: cover;
 }
@@ -4003,7 +4003,7 @@ h3 {
   background-image:
     linear-gradient(90deg, rgba(241, 235, 244, 0) 0%, rgba(241, 235, 244, 0.04) 48%, rgba(241, 235, 244, 0.82) 68%, var(--lilac-pale) 80%),
     linear-gradient(180deg, rgba(241, 235, 244, 0.08) 0%, rgba(241, 235, 244, 0.32) 520px, rgba(241, 235, 244, 0.98) 1040px),
-    url("/images/gio/protocolo.png");
+    url("/images/gio/protocolo.webp");
   background-position: center, center, 7% 94px;
   background-size: 100% 100%, 100% 100%, auto 990px;
 }
@@ -4055,7 +4055,7 @@ h3 {
   background-color: var(--beige-pale);
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.97) 0%, rgba(245, 240, 234, 0.9) 50%, rgba(245, 240, 234, 0.22) 76%, rgba(245, 240, 234, 0.08) 100%),
-    url("/images/gio/para-quem-e.png");
+    url("/images/gio/para-quem-e.webp");
   background-position: center, 72% center;
   background-size: cover;
 }
@@ -4108,7 +4108,7 @@ h3 {
   background-color: var(--off-white);
   background-image:
     linear-gradient(90deg, rgba(252, 250, 248, 0.98) 0%, rgba(252, 250, 248, 0.9) 48%, rgba(252, 250, 248, 0.18) 76%, rgba(252, 250, 248, 0.06) 100%),
-    url("/images/gio/para-quem-e.png");
+    url("/images/gio/para-quem-e.webp");
   background-position: center, 88% center;
   background-size: cover, auto 118%;
 }
@@ -4159,7 +4159,7 @@ h3 {
   background-color: var(--lilac-deep);
   background-image:
     linear-gradient(90deg, rgba(74, 52, 83, 0.97) 0%, rgba(74, 52, 83, 0.9) 47%, rgba(74, 52, 83, 0.3) 74%, rgba(74, 52, 83, 0.12) 100%),
-    url("/images/gio/transformacao.png");
+    url("/images/gio/transformacao.webp");
   background-position: center, 76% center;
   background-size: cover;
 }
@@ -4235,7 +4235,7 @@ h3 {
     background-color: #f3edf3;
     background-image:
       linear-gradient(180deg, rgba(243, 237, 243, 0) 0%, rgba(243, 237, 243, 0.08) 67%, #f3edf3 100%),
-      url("/images/gio/hero.png");
+      url("/images/gio/hero-1600.webp");
     background-position: center 76px, 68% 76px;
     background-size: 100% 360px, auto 360px;
   }
@@ -4281,7 +4281,7 @@ h3 {
     padding-top: 390px;
     background-image:
       linear-gradient(180deg, rgba(245, 240, 234, 0.03) 0%, rgba(245, 240, 234, 0.15) 290px, var(--beige-pale) 390px),
-      url("/images/gio/identificacao-avaliacao.png");
+      url("/images/gio/identificacao-avaliacao.webp");
     background-position: center top, 68% top;
     background-size: 100% 410px, auto 370px;
   }
@@ -4304,7 +4304,7 @@ h3 {
     padding-top: 430px;
     background-image:
       linear-gradient(180deg, rgba(241, 235, 244, 0.02) 0%, rgba(241, 235, 244, 0.16) 320px, var(--lilac-pale) 430px),
-      url("/images/gio/protocolo.png");
+      url("/images/gio/protocolo.webp");
     background-position: center top, center top;
     background-size: 100% 450px, auto 420px;
   }
@@ -4323,7 +4323,7 @@ h3 {
     padding-top: 370px;
     background-image:
       linear-gradient(180deg, rgba(245, 240, 234, 0.03) 0%, rgba(245, 240, 234, 0.14) 280px, var(--beige-pale) 370px),
-      url("/images/gio/para-quem-e.png");
+      url("/images/gio/para-quem-e.webp");
     background-position: center top, 68% top;
     background-size: 100% 390px, auto 350px;
   }
@@ -4346,7 +4346,7 @@ h3 {
     padding-top: 370px;
     background-image:
       linear-gradient(180deg, rgba(252, 250, 248, 0.02) 0%, rgba(252, 250, 248, 0.14) 280px, var(--off-white) 370px),
-      url("/images/gio/para-quem-e.png");
+      url("/images/gio/para-quem-e.webp");
     background-position: center top, 82% top;
     background-size: 100% 390px, auto 350px;
   }
@@ -4364,7 +4364,7 @@ h3 {
     padding-top: 470px;
     background-image:
       linear-gradient(180deg, rgba(89, 66, 99, 0.02) 0%, rgba(89, 66, 99, 0.22) 350px, var(--lilac-deep) 470px),
-      url("/images/gio/transformacao.png");
+      url("/images/gio/transformacao.webp");
     background-position: center top, center top;
     background-size: 100% 490px, auto 455px;
   }
@@ -4414,7 +4414,7 @@ h2 {
   padding-block: 132px 84px;
   background-image:
     linear-gradient(90deg, rgba(242, 235, 231, 0.32) 0%, rgba(242, 235, 231, 0.08) 56%, rgba(69, 45, 76, 0.03) 100%),
-    url("/images/gio/hero.png");
+    url("/images/gio/hero-1600.webp");
   background-position: center, 61% center;
 }
 
@@ -4490,7 +4490,7 @@ h2 {
 .identification {
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.9) 45%, rgba(245, 240, 234, 0.25) 68%, rgba(245, 240, 234, 0.03) 100%),
-    url("/images/gio/identificacao-avaliacao.png");
+    url("/images/gio/identificacao-avaliacao.webp");
   background-position: center, 70% center;
 }
 
@@ -4548,7 +4548,7 @@ h2 {
   background-image:
     linear-gradient(90deg, rgba(241, 235, 244, 0.02) 0%, rgba(241, 235, 244, 0.08) 44%, rgba(241, 235, 244, 0.9) 67%, #f1ebf4 82%),
     linear-gradient(180deg, rgba(241, 235, 244, 0.05), rgba(241, 235, 244, 0.92) 67%, #f1ebf4 100%),
-    url("/images/gio/protocolo.png");
+    url("/images/gio/protocolo.webp");
   background-position: center, center, 8% 88px;
   background-size: cover, cover, auto 940px;
 }
@@ -4606,7 +4606,7 @@ h2 {
 .audience {
   background-image:
     linear-gradient(90deg, rgba(245, 240, 234, 0.98) 0%, rgba(245, 240, 234, 0.9) 46%, rgba(245, 240, 234, 0.2) 70%, rgba(245, 240, 234, 0.02) 100%),
-    url("/images/gio/para-quem-e.png");
+    url("/images/gio/para-quem-e.webp");
   background-position: center, 71% center;
 }
 
@@ -4644,7 +4644,7 @@ h2 {
 .personalization {
   background-image:
     linear-gradient(90deg, rgba(252, 250, 248, 0.98) 0%, rgba(252, 250, 248, 0.9) 45%, rgba(252, 250, 248, 0.18) 70%, rgba(252, 250, 248, 0.02) 100%),
-    url("/images/gio/para-quem-e.png");
+    url("/images/gio/para-quem-e.webp");
   background-position: center, 85% center;
   background-size: cover, auto 115%;
 }
@@ -4716,7 +4716,7 @@ h2 {
   min-height: 980px;
   background-image:
     linear-gradient(270deg, rgba(67, 45, 76, 0.98) 0%, rgba(67, 45, 76, 0.91) 45%, rgba(67, 45, 76, 0.28) 70%, rgba(67, 45, 76, 0.04) 100%),
-    url("/images/gio/transformacao.png");
+    url("/images/gio/transformacao.webp");
   background-position: center, 35% center;
 }
 
@@ -4871,7 +4871,7 @@ h2 {
     padding: 348px 0 74px;
     background-image:
       linear-gradient(180deg, rgba(243, 237, 243, 0) 0%, rgba(243, 237, 243, 0.08) 68%, #f3edf3 100%),
-      url("/images/gio/hero.png");
+      url("/images/gio/hero-1600.webp");
     background-position: center 76px, 68% 76px;
     background-size: 100% 340px, auto 340px;
   }
@@ -4989,7 +4989,7 @@ h2 {
     padding-top: 430px;
     background-image:
       linear-gradient(180deg, rgba(89, 66, 99, 0.01) 0%, rgba(89, 66, 99, 0.16) 330px, var(--lilac-deep) 430px),
-      url("/images/gio/transformacao.png");
+      url("/images/gio/transformacao.webp");
     background-position: center top, center top;
     background-size: 100% 455px, auto 420px;
   }
@@ -5184,7 +5184,7 @@ h2 {
   z-index: -2;
   inset: 0 auto 0 0;
   width: 59%;
-  background: url("/images/gio/equipe-integrada.png") left center / contain no-repeat;
+  background: url("/images/gio/equipe-integrada.webp") left center / contain no-repeat;
 }
 
 .contrast::after {
@@ -5393,7 +5393,7 @@ h2 {
 
 .protocol::before {
   display: block;
-  background-image: url("/images/gio/tirzepatida-aplicacao.png");
+  background-image: url("/images/gio/tirzepatida-aplicacao.webp");
 }
 
 .protocol::after {
@@ -5424,7 +5424,7 @@ h2 {
 }
 
 .audience::before {
-  background-image: url("/images/gio/para-quem-e.png");
+  background-image: url("/images/gio/para-quem-e.webp");
 }
 
 .audience::after {
@@ -5455,7 +5455,7 @@ h2 {
 }
 
 .personalization::before {
-  background-image: url("/images/gio/para-quem-e.png");
+  background-image: url("/images/gio/para-quem-e.webp");
 }
 
 .personalization::after {
@@ -5484,7 +5484,7 @@ h2 {
 .transformation::before {
   display: block;
   height: 980px;
-  background-image: url("/images/gio/transformacao.png");
+  background-image: url("/images/gio/transformacao.webp");
   background-position: center;
 }
 
@@ -6286,7 +6286,7 @@ main > section.section-pad:not(.hero) {
 
 @media (min-width: 761px) {
   .contrast::before {
-    background-image: url("/images/gio/plano-integrado.png");
+    background-image: url("/images/gio/plano-integrado.webp");
     aspect-ratio: 16 / 9;
   }
 
@@ -6298,7 +6298,7 @@ main > section.section-pad:not(.hero) {
     inset: 50% 0 auto auto;
     width: 58%;
     aspect-ratio: 16 / 9;
-    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-image: url("/images/gio/protocolo-para-voce.webp");
     background-position: center;
   }
 
@@ -6313,7 +6313,7 @@ main > section.section-pad:not(.hero) {
     inset: 50% 0 auto auto;
     width: 58%;
     aspect-ratio: 16 / 9;
-    background-image: url("/images/gio/processo-personalizado.png");
+    background-image: url("/images/gio/processo-personalizado.webp");
     background-position: center;
   }
 
@@ -6330,7 +6330,7 @@ main > section.section-pad:not(.hero) {
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
-    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-image: url("/images/gio/jornada-acompanhada.webp");
     background-position: center;
     background-size: cover;
   }
@@ -6408,19 +6408,19 @@ main > section.section-pad:not(.hero) {
   }
 
   .contrast::before {
-    background-image: url("/images/gio/plano-integrado.png");
+    background-image: url("/images/gio/plano-integrado.webp");
   }
 
   .audience::before {
-    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-image: url("/images/gio/protocolo-para-voce.webp");
   }
 
   .personalization::before {
-    background-image: url("/images/gio/processo-personalizado.png");
+    background-image: url("/images/gio/processo-personalizado.webp");
   }
 
   .transformation::before {
-    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-image: url("/images/gio/jornada-acompanhada.webp");
   }
 
   .contrast::after,
@@ -7066,7 +7066,7 @@ main > section.section-pad:not(.hero) {
     height: auto;
     aspect-ratio: 16 / 9;
     transform: none;
-    background-image: url("/images/gio/plano-integrado.png");
+    background-image: url("/images/gio/plano-integrado.webp");
     background-position: center;
     background-size: cover;
   }
@@ -7085,7 +7085,7 @@ main > section.section-pad:not(.hero) {
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
-    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-image: url("/images/gio/protocolo-para-voce.webp");
     background-position: center;
     background-size: cover;
   }
@@ -7107,7 +7107,7 @@ main > section.section-pad:not(.hero) {
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
-    background-image: url("/images/gio/processo-personalizado.png");
+    background-image: url("/images/gio/processo-personalizado.webp");
     background-position: center;
     background-size: cover;
   }
@@ -7129,7 +7129,7 @@ main > section.section-pad:not(.hero) {
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
-    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-image: url("/images/gio/jornada-acompanhada.webp");
     background-position: center;
     background-size: cover;
   }
@@ -7188,19 +7188,19 @@ main > section.section-pad:not(.hero) {
   }
 
   .contrast::before {
-    background-image: url("/images/gio/plano-integrado.png");
+    background-image: url("/images/gio/plano-integrado.webp");
   }
 
   .audience::before {
-    background-image: url("/images/gio/protocolo-para-voce.png");
+    background-image: url("/images/gio/protocolo-para-voce.webp");
   }
 
   .personalization::before {
-    background-image: url("/images/gio/processo-personalizado.png");
+    background-image: url("/images/gio/processo-personalizado.webp");
   }
 
   .transformation::before {
-    background-image: url("/images/gio/jornada-acompanhada.png");
+    background-image: url("/images/gio/jornada-acompanhada.webp");
   }
 
   .contrast::after,

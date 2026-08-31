@@ -78,7 +78,7 @@ body .button-small {
   background-color: #eee5e1;
   background-image:
     linear-gradient(90deg, rgba(242, 235, 231, 0.42) 0%, rgba(242, 235, 231, 0.1) 54%, rgba(69, 45, 76, 0.035) 100%),
-    url("/images/gio/hero.png");
+    url("/images/gio/hero-1600.webp");
   background-position: center, 62% center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -467,7 +467,7 @@ body .floating-whatsapp {
     background-color: #f3edf3;
     background-image:
       linear-gradient(180deg, rgba(243, 237, 243, 0) 0%, rgba(243, 237, 243, 0.08) 72%, #f3edf3 100%),
-      url("/images/gio/hero.png");
+      url("/images/gio/hero-1600.webp");
     background-position: center 72px, 68% 72px;
     background-repeat: no-repeat;
     background-size: 100% 280px, auto 260px;
@@ -1359,7 +1359,7 @@ body .clinic-showcase::before {
   z-index: 0;
   inset: 0 auto 0 0;
   width: 58%;
-  background: url("/images/gio/clinic-interior-wide-v2.png") center / contain no-repeat;
+  background: url("/images/gio/clinic-interior-wide-v2.webp") center / contain no-repeat;
   pointer-events: none;
 }
 
