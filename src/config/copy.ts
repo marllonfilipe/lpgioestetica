@@ -7,7 +7,7 @@ export const navigation = [
 ] as const;
 
 export const sixFronts = [
-  ["Consultas médicas", "Duas consultas previstas ao longo do plano"],
+  ["Consulta médica", "Consulta prevista ao longo do plano"],
   ["Exames laboratoriais", "Conforme avaliação e solicitação médica"],
   ["Nutrição e psicologia", "Alimentação, emoções e comportamento"],
   ["Cuidados estéticos", "Acompanhando as mudanças corporais"],
@@ -40,8 +40,8 @@ export const cycleSteps = [
 export const protocolCards = [
   {
     key: "medical",
-    title: "Duas consultas médicas",
-    text: "Duas consultas para avaliar seu histórico, sua saúde e a resposta ao tratamento.",
+    title: "Consulta médica",
+    text: "Consulta para avaliar seu histórico, sua saúde e a resposta ao tratamento.",
   },
   {
     key: "exams",
@@ -101,7 +101,7 @@ export const personalizationItems = [
 export const processSteps = [
   ["Conversa com a equipe", "Conte seu objetivo, tire dúvidas e conheça os próximos passos pelo WhatsApp."],
   ["Avaliação do seu caso", "Histórico, rotina, dificuldades e objetivos orientam a estratégia."],
-  ["Consulta e exames", "Duas consultas médicas e exames conforme avaliação e solicitação profissional."],
+  ["Consulta e exames", "Consulta médica e exames conforme avaliação e solicitação profissional."],
   ["Definição do plano", "A equipe integra cuidados médicos, nutricionais, psicológicos, estéticos e atividade física."],
   ["Avaliação do tratamento medicamentoso", "O médico avalia a indicação de tratamento medicamentoso."],
   ["Acompanhamento da jornada", "Os profissionais acompanham respostas, dificuldades e evolução ao longo do protocolo."],
@@ -133,7 +133,7 @@ export const teamRoles = [
 ] as const;
 
 export const faqs = [
-  ["O que está incluído no protocolo?", "Duas consultas médicas, exames, nutrição, psicologia, estética, atividade física e medicação quando indicada."],
+  ["O que está incluído no protocolo?", "Consulta médica, exames, nutrição, psicologia, estética, atividade física e medicação quando indicada."],
   ["O tratamento medicamentoso é indicado para todas as pessoas?", "Não. A indicação depende da avaliação médica e das condições de cada paciente."],
   ["O protocolo é igual para todos?", "Não. As condutas consideram histórico, saúde, rotina, dificuldades e objetivos."],
   ["Quais exames estão incluídos?", "O profissional responsável define e solicita os exames. A clínica informa a relação na avaliação."],

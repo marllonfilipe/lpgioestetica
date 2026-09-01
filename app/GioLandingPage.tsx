@@ -144,9 +144,9 @@ export default function GioLandingPage() {
 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <div className="header-inner shell">
-          <a className="brand" href="#hero" aria-label="Estética Avançada, início">
-            <span className="brand-mark">Estética</span>
-            <span className="brand-line">Avançada</span>
+          <a className="brand" href="#hero" aria-label="Estética Avançada Praia da Costa, início">
+            <span className="brand-mark">Estética Avançada</span>
+            <span className="brand-line">Praia da Costa</span>
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
@@ -213,7 +213,7 @@ export default function GioLandingPage() {
                 <em>O que faltou não foi esforço. Foi um plano acompanhando você por inteiro.</em>
               </h1>
               <p className="hero-lead">
-                Um protocolo personalizado que reúne consultas médicas, exames laboratoriais, acompanhamento
+                Um protocolo personalizado que reúne consulta médica, exames laboratoriais, acompanhamento
                 nutricional, psicológico, estético e orientações para atividade física.
               </p>
               <div className="button-row" ref={heroActionsRef}>
@@ -1040,8 +1040,8 @@ export default function GioLandingPage() {
       <footer className="site-footer">
         <div className="shell footer-grid">
           <div className="footer-brand">
-            <span className="brand-mark">Estética</span>
-            <p>{siteConfig.clinicName}</p>
+            <span className="brand-mark">Estética Avançada</span>
+            <span className="brand-line">Praia da Costa</span>
             <span>{siteConfig.location}</span>
           </div>
           <div className="footer-links">
@@ -1052,7 +1052,7 @@ export default function GioLandingPage() {
           </div>
           <div className="footer-pending">
             <strong>Atendimento</strong>
-            <p>{siteConfig.fullAddress} · {siteConfig.openingHours} · WhatsApp: (27) 99775-6738</p>
+            <p>{siteConfig.fullAddress} · {siteConfig.openingHours}</p>
           </div>
         </div>
         <div className="shell footer-notice">

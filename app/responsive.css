@@ -1413,3 +1413,227 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
     padding: clamp(16px, 4.5vw, 20px);
   }
 }
+
+/* Final mobile pass: consistent image framing and unclipped expandable content. */
+@media (max-width: 680px) {
+  body .header-inner {
+    grid-template-columns: minmax(0, 1fr) 44px;
+    gap: 12px;
+  }
+
+  body .site-header .brand {
+    width: min(100%, 230px);
+    max-width: 230px;
+    line-height: 1;
+  }
+
+  body .site-header .brand-mark {
+    display: block;
+    font-size: clamp(1rem, 4.7vw, 1.18rem);
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+
+  body .site-header .brand-line {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.54rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  body .button {
+    width: 100%;
+    min-height: 52px;
+    height: auto;
+    padding: 14px 18px;
+    justify-content: center;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+  }
+
+  body .expandable-action {
+    width: auto;
+    max-width: 100%;
+    min-height: 40px;
+    margin-top: 12px;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  body .timeline {
+    gap: 12px;
+  }
+
+  body .timeline::before,
+  body .timeline-dot {
+    display: none;
+  }
+
+  body .timeline li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px;
+    width: 100%;
+    min-height: 0;
+  }
+
+  body .timeline li > h3,
+  body .timeline li > .expandable-details {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  body .timeline li .expandable-summary {
+    display: block;
+    width: 100%;
+  }
+
+  body .timeline li .expandable-action {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 2px;
+    padding-top: 8px;
+    justify-content: space-between;
+    border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  body :is(
+    .identification-image,
+    .protocol-photo,
+    .audience-photo,
+    .personalization-photo,
+    .transformation-photo
+  ) {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  body main .identification .identification-image,
+  body main .protocol .protocol-intro > .protocol-photo,
+  body main .audience .audience-photo,
+  body main .personalization .personalization-photo,
+  body main .transformation .transformation-photo {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  body :is(
+    .identification-image,
+    .protocol-photo,
+    .audience-photo,
+    .personalization-photo,
+    .transformation-photo
+  ) > img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  body .transformation {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    background-image: none;
+  }
+
+  body .transformation-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 28px;
+  }
+
+  body .transformation-copy {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  body .transformation-photo {
+    grid-column: 1;
+  }
+
+  body .team .team-area-card-profile {
+    display: flex;
+    min-height: 460px;
+    height: auto;
+    padding: 0;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  body .team .team-area-card-profile > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+  }
+
+  body .team .team-area-card-profile .team-profile-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 150px 22px 26px;
+  }
+
+  body .team .team-area-card-profile .expandable-action {
+    color: #fff;
+  }
+
+  body .final-cta {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  body .final-cta-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    min-height: 0;
+  }
+
+  body .footer-brand .brand-mark {
+    display: block;
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    line-height: 1;
+  }
+
+  body .footer-brand .brand-line {
+    display: block;
+    margin-top: 7px;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
