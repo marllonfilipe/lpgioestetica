@@ -1521,7 +1521,7 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
     height: auto;
     min-height: 0;
     margin: 0;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 20px;
   }
@@ -1535,7 +1535,7 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
     max-width: none;
     height: auto;
     min-height: 0;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
   }
 
   body :is(
@@ -1706,5 +1706,135 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
   body .site-header .mobile-menu nav > .button {
     flex: 0 0 auto;
     margin-top: auto;
+  }
+}
+
+/* Preserve the full photography and keep copy cards outside the image area. */
+body main .audience .audience-photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 14px;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+body main .audience::before,
+body main .audience::after {
+  content: none;
+}
+
+body main .audience .audience-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(38px, 5vw, 72px);
+  align-items: center;
+}
+
+body main .audience .audience-copy {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+body main .audience .audience-photo > img {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 20px;
+}
+
+body main .audience .audience-photo .audience-overlap {
+  position: static;
+  inset: auto;
+  width: 100%;
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 18px;
+  font-size: clamp(0.9rem, 1.4vw, 1.08rem);
+  line-height: 1.42;
+}
+
+@media (min-width: 1001px) {
+  body main .contrast::before {
+    width: 50%;
+    background-position: left center;
+    background-size: contain;
+  }
+
+  body main .contrast::after {
+    content: none;
+  }
+
+  body main .contrast :is(.section-heading, .contrast-grid, .contrast-conclusion) {
+    width: min(640px, 48%);
+    max-width: none;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  body main .audience .audience-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  body main > section.contrast.section-pad {
+    padding-top: calc(min(56.25vw, 430px) + 48px);
+  }
+
+  body main .contrast::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: min(56.25vw, 430px);
+    max-height: 430px;
+    transform: none;
+    background-position: center;
+    background-size: contain;
+  }
+
+  body main .contrast::after {
+    content: none;
+  }
+
+  body main .contrast .section-heading {
+    margin-top: 0;
+  }
+
+  body main :is(
+    .identification .identification-image,
+    .protocol .protocol-photo,
+    .personalization .personalization-photo,
+    .transformation .transformation-photo
+  ) {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+  }
+
+  body main :is(
+    .identification .identification-image,
+    .protocol .protocol-photo,
+    .personalization .personalization-photo,
+    .transformation .transformation-photo
+  ) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
