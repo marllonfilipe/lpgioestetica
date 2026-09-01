@@ -5,7 +5,8 @@ export const siteConfig = {
   instagramUrl: "https://www.instagram.com/giopraiadacosta/",
   location: "Praia da Costa, Vila Velha, Espírito Santo",
   fullAddress: "Av. Henrique Moscoso, 530, Praia da Costa, Vila Velha, ES, 29100-020",
-  whatsappNumber: "5527997756738",
+  whatsappNumber: "5527992325542",
+  whatsappDisplay: "(27) 99232-5542",
   whatsappMessage:
     "Olá! Gostaria de entender se o protocolo integrado faz sentido para o meu momento.",
   googleMapsUrl: "https://maps.app.goo.gl/ttdbpcYVpsMCGKeK7",

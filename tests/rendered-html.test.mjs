@@ -57,7 +57,9 @@ test("server-renders the landing page", async () => {
   assert.match(html, /Entenda o protocolo antes do primeiro contato/i);
   assert.match(html, /aria-label="Navegação principal"/i);
   assert.doesNotMatch(html, /<form\b|Enviar meus dados|id="contato"/i);
-  assert.match(html, /wa\.me\/5527997756738/i);
+  assert.match(html, /wa\.me\/5527992325542/i);
+  assert.match(html, /\(27\) 99232-5542/i);
+  assert.doesNotMatch(html, /5527997756738|99775-6738/i);
   assert.match(html, /whatsapp-icon/i);
   assert.doesNotMatch(html, /lucide-message-circle/i);
   assert.match(html, /GT-5R8SLSNT/i);

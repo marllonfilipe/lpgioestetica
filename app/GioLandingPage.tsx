@@ -1052,7 +1052,7 @@ export default function GioLandingPage() {
           </div>
           <div className="footer-pending">
             <strong>Atendimento</strong>
-            <p>{siteConfig.fullAddress} · {siteConfig.openingHours}</p>
+            <p>{siteConfig.fullAddress} · {siteConfig.openingHours} · WhatsApp: {siteConfig.whatsappDisplay}</p>
           </div>
         </div>
         <div className="shell footer-notice">
