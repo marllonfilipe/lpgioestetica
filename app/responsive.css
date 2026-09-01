@@ -1636,4 +1636,75 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
+
+  body:has(.mobile-menu.is-open) {
+    overflow: hidden;
+  }
+
+  body .site-header {
+    isolation: isolate;
+  }
+
+  body .site-header:has(.mobile-menu.is-open) {
+    background: #fcfaf8;
+    border-color: rgba(89, 66, 99, 0.1);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  body .site-header .header-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  body .site-header .menu-button {
+    position: relative;
+    z-index: 3;
+    background: #fff;
+  }
+
+  body .site-header .mobile-menu {
+    position: fixed;
+    z-index: 1;
+    inset: 72px 0 0;
+    display: block;
+    padding: 18px 20px max(28px, env(safe-area-inset-bottom));
+    background: #fcfaf8;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateY(-10px);
+    transition: opacity 220ms ease, visibility 220ms ease, transform 220ms ease;
+  }
+
+  body .site-header .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  body .site-header .mobile-menu nav {
+    width: min(100%, 620px);
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body .site-header .mobile-menu nav > a:not(.button) {
+    min-height: 62px;
+    padding: 17px 4px;
+    border-bottom: 1px solid rgba(89, 66, 99, 0.14);
+    color: var(--lilac-deep);
+    font-size: clamp(1.45rem, 7vw, 1.75rem);
+    line-height: 1.08;
+  }
+
+  body .site-header .mobile-menu nav > .button {
+    flex: 0 0 auto;
+    margin-top: auto;
+  }
 }
