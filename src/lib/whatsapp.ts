@@ -1,7 +1,7 @@
 import { siteConfig } from "../config/site";
 
 export function buildWhatsAppUrl(message = siteConfig.whatsappMessage) {
-  const number = siteConfig.whatsappNumber.replace(/\D/g, "");
+  const number = siteConfig.whatsappNumberE164.replace(/\D/g, "");
   const base = number ? `https://wa.me/${number}` : "https://wa.me/";
   return `${base}?text=${encodeURIComponent(message)}`;
 }

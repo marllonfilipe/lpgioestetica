@@ -60,6 +60,14 @@ test("server-renders the landing page", async () => {
   assert.match(html, /wa\.me\/5527992325542/i);
   assert.match(html, /\(27\) 99232-5542/i);
   assert.doesNotMatch(html, /5527997756738|99775-6738/i);
+  const whatsappLinks = [...html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/gi)].map((match) =>
+    match[1].replaceAll("&amp;", "&"),
+  );
+  assert.ok(whatsappLinks.length > 0, "A página deve renderizar links para o WhatsApp");
+  assert.ok(
+    whatsappLinks.every((link) => new URL(link).pathname === "/5527992325542"),
+    "Todos os links do WhatsApp devem usar o número novo",
+  );
   assert.match(html, /whatsapp-icon/i);
   assert.doesNotMatch(html, /lucide-message-circle/i);
   assert.match(html, /GT-5R8SLSNT/i);
