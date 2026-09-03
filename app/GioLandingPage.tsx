@@ -469,9 +469,9 @@ export default function GioLandingPage() {
           <div className="shell audience-grid">
             <div className="audience-photo image-frame">
               <img
-                src="/images/gio/protocolo-para-voce.webp"
-                width="2048"
-                height="1152"
+                src="/images/gio/protocolo-para-voce-centralizado.webp"
+                width="1672"
+                height="941"
                 alt="Profissional apresentando o protocolo personalizado"
                 loading="lazy"
                 decoding="async"

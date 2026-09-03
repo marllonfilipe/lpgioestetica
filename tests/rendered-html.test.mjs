@@ -38,7 +38,8 @@ test("server-renders the landing page", async () => {
   assert.match(html, /protocolo-avaliacao\.webp/i);
   assert.match(html, /processo-personalizado\.webp/i);
   assert.match(html, /jornada-acompanhada\.webp/i);
-  assert.match(html, /protocolo-para-voce\.webp/i);
+  assert.match(html, /protocolo-para-voce-centralizado\.webp/i);
+  assert.doesNotMatch(html, /protocolo-para-voce\.webp/i);
   assert.match(html, /O protocolo completo, em um só investimento/i);
   assert.match(html, /Sob agendamento/i);
   assert.match(html, /Diferentes especialidades, um plano construído em conjunto/i);
