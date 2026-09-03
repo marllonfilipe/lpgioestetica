@@ -80,8 +80,6 @@ body .header-cta {
 }
 
 /* Purple expandable cards need a light action label for sufficient contrast. */
-body .protocol-tirzepatide .expandable-action,
-body .protocol-tirzepatide .expandable-action svg,
 body :is(.timeline li:nth-child(3), .objection-4) .expandable-action,
 body :is(.timeline li:nth-child(3), .objection-4) .expandable-action svg {
   color: #f0e8f3;

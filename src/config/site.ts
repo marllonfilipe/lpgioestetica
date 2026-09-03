@@ -9,7 +9,6 @@ export const siteConfig = {
   whatsappDisplay: "(27) 99232-5542",
   whatsappMessage:
     "Olá! Gostaria de entender se o protocolo integrado faz sentido para o meu momento.",
-  googleMapsUrl: "https://maps.app.goo.gl/ttdbpcYVpsMCGKeK7",
   email: "giolaserpraiadacosta@gmail.com",
   openingHours: "Seg. a sáb., das 8h às 19h",
   canonicalUrl: "https://gio-praia-da-costa.mfcs1510.chatgpt.site",

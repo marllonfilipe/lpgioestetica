@@ -10,11 +10,9 @@ import {
   ClipboardList,
   Dumbbell,
   HeartPulse,
-  MapPin,
   Menu,
   ShieldCheck,
   Sparkles,
-  Syringe,
   UsersRound,
   X,
 } from "lucide-react";
@@ -32,7 +30,7 @@ import {
   personalizationItems,
   processSteps,
   protocolCards,
-  sixFronts,
+  protocolFronts,
   teamRoles,
 } from "../src/config/copy";
 import { siteConfig } from "../src/config/site";
@@ -46,7 +44,6 @@ const protocolIcons = {
   psychology: Brain,
   movement: Dumbbell,
   aesthetics: Sparkles,
-  tirzepatide: Syringe,
 };
 
 const teamAreaIcons = [Brain, Apple, Dumbbell, Sparkles] as const;
@@ -237,7 +234,7 @@ export default function GioLandingPage() {
               </div>
               <p className="hero-support">
                 Aqui, profissionais acompanham saúde, alimentação, comportamento, movimento e evolução
-                corporal. O tratamento medicamentoso entra quando indicado pelo médico.
+                corporal em uma jornada integrada.
               </p>
               <div className="hero-indicators" aria-label="Diferenciais">
                 {["Avaliação individual", "Equipe multidisciplinar", "Acompanhamento próximo"].map((item) => (
@@ -247,8 +244,8 @@ export default function GioLandingPage() {
                 ))}
               </div>
               <p className="medical-note">
-                <ShieldCheck aria-hidden="true" /> O protocolo é definido individualmente. Tratamentos e
-                medicamentos dependem de avaliação, indicação, prescrição e acompanhamento médico.
+                <ShieldCheck aria-hidden="true" /> O protocolo é definido individualmente, conforme avaliação
+                e acompanhamento dos profissionais responsáveis.
               </p>
             </div>
 
@@ -277,13 +274,13 @@ export default function GioLandingPage() {
           </div>
         </section>
 
-        <section className="fronts-band" aria-label="As seis frentes do protocolo">
+        <section className="fronts-band" aria-label="Frentes do protocolo">
           <div className="shell fronts-grid">
-            {sixFronts.map(([title, text], index) => (
+            {protocolFronts.map(([title, text], index) => (
               <a
                 key={title}
                 className="front-item"
-                href={`#protocolo-${["medical", "exams", "nutrition", "aesthetics", "movement", "tirzepatide"][index]}`}
+                href={`#protocolo-${["medical", "exams", "nutrition", "aesthetics", "movement"][index]}`}
               >
                 <strong>{title}</strong>
                 <span>{text}</span>
@@ -378,8 +375,8 @@ export default function GioLandingPage() {
                   O protocolo reúne avaliações, profissionais e cuidados em uma única jornada.
                 </p>
                 <p className="protocol-medical-disclaimer">
-                  <ShieldCheck aria-hidden="true" /> O médico define as condutas clínicas e avalia a indicação de
-                  tratamento medicamentoso.
+                  <ShieldCheck aria-hidden="true" /> O médico avalia o histórico, acompanha a saúde e define as
+                  condutas clínicas de forma individual.
                 </p>
               </div>
               <div className="protocol-photo image-frame">
@@ -445,19 +442,19 @@ export default function GioLandingPage() {
         <section className="contrast section-pad">
           <div className="shell">
             <div className="section-heading centered-narrow">
-              <h2>Não é escolher entre dieta, exercício, estética ou medicação.</h2>
+              <h2>Não é escolher entre dieta, exercício ou estética.</h2>
               <p>É entender como cada parte pode contribuir para o seu processo.</p>
             </div>
             <div className="contrast-grid">
               <article className="contrast-isolated">
                 <span className="contrast-label">Quando tudo acontece de forma isolada</span>
-                {["Dieta sem considerar sua rotina", "Exercício difícil de sustentar", "Medicação sem cuidado com hábitos", "Estética desconectada do plano", "Orientações desconectadas", "Organizar tudo sozinho"].map((item) => (
+                {["Dieta sem considerar sua rotina", "Exercício difícil de sustentar", "Estética desconectada do plano", "Orientações desconectadas", "Organizar tudo sozinho"].map((item) => (
                   <p key={item}><span aria-hidden="true" />{item}</p>
                 ))}
               </article>
               <article className="contrast-integrated">
                 <span className="contrast-label">Quando existe um plano integrado</span>
-                {["Saúde avaliada pelo médico", "Exames orientando condutas", "Alimentação acompanhada", "Emoções e comportamentos considerados", "Atividade física possível", "Cuidados estéticos integrados", "Medicação dentro da estratégia médica"].map((item) => (
+                {["Saúde avaliada pelo médico", "Exames orientando condutas", "Alimentação acompanhada", "Emoções e comportamentos considerados", "Atividade física possível", "Cuidados estéticos integrados"].map((item) => (
                   <p key={item}><Check aria-hidden="true" />{item}</p>
                 ))}
               </article>
@@ -610,7 +607,7 @@ export default function GioLandingPage() {
               </div>
               <p className="package-disclaimer">
                 <ShieldCheck aria-hidden="true" />
-                Exames, aplicações e medicamentos dependem de avaliação e indicação profissional.
+                Exames e procedimentos dependem de avaliação e indicação profissional.
               </p>
             </div>
 
@@ -679,7 +676,7 @@ export default function GioLandingPage() {
             </div>
             <div className="delay-lines">
               <p>Você ainda tem dúvidas.</p>
-              <p>A indicação do tratamento medicamentoso precisa ser avaliada para o seu caso.</p>
+              <p>Você ainda não sabe qual caminho faz sentido para o seu caso.</p>
               <p>Você tem receio de começar e interromper novamente.</p>
               <p>Ainda não ficou claro qual profissional procurar primeiro.</p>
             </div>
@@ -887,12 +884,11 @@ export default function GioLandingPage() {
                   <blockquote className="testimonial-quote">
                     <p>
                       Passando para registrar um marco importante da minha jornada! Há dois meses e meio dei o
-                      pontapé inicial pesando 94 kg. Há dois meses passei a usar a tirzepatida de um novo
-                      fornecedor e segui firme no processo.
+                      pontapé inicial pesando 94 kg e segui firme no processo com acompanhamento profissional.
                     </p>
                     <p>
                       Hoje, ao subir na balança, marquei 85 kg totalizando 9 kg a menos! Fico muito feliz em ver
-                      como meu corpo respondeu bem ao tratamento e à constância. Seguimos em frente com ainda
+                      como meu corpo respondeu bem ao acompanhamento e à constância. Seguimos em frente com ainda
                       mais motivação!
                     </p>
                   </blockquote>
@@ -959,15 +955,6 @@ export default function GioLandingPage() {
                 ))}
               </div>
               <div className="clinic-actions">
-                <a
-                  className="button button-beige"
-                  href={siteConfig.googleMapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackEvent("maps_click", { location: "clinica" })}
-                >
-                  Abrir no Google Maps <MapPin aria-hidden="true" />
-                </a>
                 <a
                   className="button button-ghost-light"
                   href={whatsappHref}

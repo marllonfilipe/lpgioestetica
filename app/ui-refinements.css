@@ -232,7 +232,7 @@ body .fronts-band {
 }
 
 body .fronts-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 body .front-item {
@@ -333,7 +333,7 @@ body :is(.protocol-card, .timeline li, .objection-card, .team-card):hover {
   border-color: rgba(89, 66, 99, 0.23);
 }
 
-body :is(.protocol-medical, .protocol-tirzepatide, .contrast-integrated, .final-cta-card, .lead-form) {
+body :is(.protocol-medical, .contrast-integrated, .final-cta-card, .lead-form) {
   box-shadow: var(--ui-shadow-soft);
 }
 

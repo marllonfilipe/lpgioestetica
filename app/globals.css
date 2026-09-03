@@ -532,7 +532,7 @@ em {
 
 .fronts-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .front-item {
@@ -872,7 +872,6 @@ em {
 .protocol-psychology { grid-column: span 3; background: var(--beige-pale); }
 .protocol-movement { grid-column: span 7; }
 .protocol-aesthetics { grid-column: span 5; background: #efe7df; }
-.protocol-tirzepatide { grid-column: span 12; min-height: 300px; background: var(--lilac-deep); color: white; }
 
 .protocol-card-top {
   display: flex;
@@ -886,11 +885,6 @@ em {
   height: 27px;
   color: var(--lilac-secondary);
   stroke-width: 1.5;
-}
-
-.protocol-tirzepatide .protocol-card-top svg,
-.protocol-tirzepatide .protocol-card-top span {
-  color: var(--lilac-soft);
 }
 
 .protocol-card-top span {
@@ -908,15 +902,6 @@ em {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.94rem;
-}
-
-.protocol-tirzepatide h3 {
-  font-size: clamp(2rem, 3.4vw, 3rem);
-}
-
-.protocol-tirzepatide p {
-  color: #e8dfea;
-  font-size: 1rem;
 }
 
 .protocol-footer {
@@ -2766,8 +2751,7 @@ em {
   .protocol-nutrition,
   .protocol-psychology,
   .protocol-movement,
-  .protocol-aesthetics,
-  .protocol-tirzepatide {
+  .protocol-aesthetics {
     grid-column: 1;
     min-height: 270px;
   }
@@ -3241,11 +3225,6 @@ h3 {
 .protocol-card h3,
 .team-card h3 {
   font-family: var(--sans);
-}
-
-.protocol-tirzepatide h3 {
-  font-family: var(--serif);
-  font-size: clamp(1.85rem, 2.65vw, 2.55rem);
 }
 
 .protocol-footer {
@@ -4047,10 +4026,6 @@ h3 {
   background: rgba(239, 231, 223, 0.96);
 }
 
-.protocol-tirzepatide {
-  background: rgba(89, 66, 99, 0.97);
-}
-
 .audience {
   background-color: var(--beige-pale);
   background-image:
@@ -4574,8 +4549,7 @@ h2 {
   box-shadow: none;
 }
 
-.protocol-medical,
-.protocol-tirzepatide {
+.protocol-medical {
   box-shadow: var(--editorial-shadow-soft);
 }
 
@@ -5020,7 +4994,7 @@ h2 {
   }
 }
 
-/* Tirzepatida feature — editorial image panel */
+/* Protocol feature — editorial image panel */
 .protocol {
   position: relative;
   overflow: hidden;
@@ -5393,7 +5367,7 @@ h2 {
 
 .protocol::before {
   display: block;
-  background-image: url("/images/gio/tirzepatida-aplicacao.webp");
+  background-image: url("/images/gio/protocolo-cuidado-profissional.webp");
 }
 
 .protocol::after {
@@ -6034,8 +6008,7 @@ main > section.section-pad:not(.hero) {
 .protocol-nutrition,
 .protocol-psychology,
 .protocol-movement,
-.protocol-aesthetics,
-.protocol-tirzepatide {
+.protocol-aesthetics {
   grid-column: auto;
   min-height: 178px;
   padding: 20px;
@@ -6478,7 +6451,6 @@ main > section.section-pad:not(.hero) {
   .protocol-psychology,
   .protocol-movement,
   .protocol-aesthetics,
-  .protocol-tirzepatide,
   .timeline li,
   .objection-card,
   .objection-card:nth-child(n),
@@ -6567,8 +6539,7 @@ main > section.section-pad:not(.hero) {
 .protocol-nutrition,
 .protocol-psychology,
 .protocol-movement,
-.protocol-aesthetics,
-.protocol-tirzepatide {
+.protocol-aesthetics {
   min-height: 190px;
   padding: 22px;
 }
@@ -6789,8 +6760,7 @@ main > section.section-pad:not(.hero) {
   .protocol-nutrition,
   .protocol-psychology,
   .protocol-movement,
-  .protocol-aesthetics,
-  .protocol-tirzepatide {
+  .protocol-aesthetics {
     min-height: 170px;
     padding: 20px;
   }
@@ -6997,8 +6967,7 @@ main > section.section-pad:not(.hero) {
 .protocol-nutrition,
 .protocol-psychology,
 .protocol-movement,
-.protocol-aesthetics,
-.protocol-tirzepatide {
+.protocol-aesthetics {
   grid-column: auto;
   min-height: 178px;
   padding: 20px;
@@ -7254,7 +7223,6 @@ main > section.section-pad:not(.hero) {
   .protocol-psychology,
   .protocol-movement,
   .protocol-aesthetics,
-  .protocol-tirzepatide,
   .timeline li,
   .objection-card,
   .objection-card:nth-child(n),

@@ -6,13 +6,12 @@ export const navigation = [
   { label: "Dúvidas", href: "#duvidas" },
 ] as const;
 
-export const sixFronts = [
+export const protocolFronts = [
   ["Consulta médica", "Consulta prevista ao longo do plano"],
   ["Exames laboratoriais", "Conforme avaliação e solicitação médica"],
   ["Nutrição e psicologia", "Alimentação, emoções e comportamento"],
   ["Cuidados estéticos", "Acompanhando as mudanças corporais"],
   ["Atividade física", "Orientações compatíveis com seu momento"],
-  ["Tratamento medicamentoso", "Quando indicado pelo médico"],
 ] as const;
 
 export const identificationItems = [
@@ -64,11 +63,6 @@ export const protocolCards = [
     text: "Tratamentos definidos conforme as necessidades das mudanças corporais.",
   },
   {
-    key: "tirzepatide",
-    title: "Tratamento medicamentoso",
-    text: "Pode integrar o protocolo mediante avaliação, indicação, prescrição e acompanhamento médico.",
-  },
-  {
     key: "movement",
     title: "Orientações para atividade física",
     text: "Movimento compatível com seu momento, sem exigir uma rotina perfeita.",
@@ -83,7 +77,7 @@ export const audienceItems = [
   "Percebe as emoções interferindo na alimentação",
   "Tem dificuldade para organizar tantas orientações",
   "Busca avaliação profissional e um plano personalizado",
-  "Não quer depender apenas de medicação",
+  "Busca um cuidado que considere diferentes áreas",
   "Quer cuidar de saúde, alimentação, comportamento, movimento e corpo de forma integrada",
 ] as const;
 
@@ -103,7 +97,6 @@ export const processSteps = [
   ["Avaliação do seu caso", "Histórico, rotina, dificuldades e objetivos orientam a estratégia."],
   ["Consulta e exames", "Consulta médica e exames conforme avaliação e solicitação profissional."],
   ["Definição do plano", "A equipe integra cuidados médicos, nutricionais, psicológicos, estéticos e atividade física."],
-  ["Avaliação do tratamento medicamentoso", "O médico avalia a indicação de tratamento medicamentoso."],
   ["Acompanhamento da jornada", "Os profissionais acompanham respostas, dificuldades e evolução ao longo do protocolo."],
 ] as const;
 
@@ -117,7 +110,6 @@ export const emotionalBenefits = [
 ] as const;
 
 export const objections = [
-  ["Não sei se o tratamento medicamentoso é indicado para mim.", "A indicação depende da avaliação médica, do seu histórico e das suas condições de saúde."],
   ["Tenho medo de começar e desistir novamente.", "Diferentes profissionais acompanham também as dificuldades da jornada."],
   ["Não consigo seguir uma rotina perfeita.", "O plano considera sua realidade, suas possibilidades e seu momento."],
   ["Já tentei dieta e exercício e não consegui manter.", "As tentativas anteriores ajudam a equipe a entender o que precisa mudar."],
@@ -125,7 +117,7 @@ export const objections = [
 ] as const;
 
 export const teamRoles = [
-  ["Médico responsável", "Dr. Daniel Gomes de Figueiredo é médico cardiologista e avalia histórico, saúde, resposta ao tratamento e indicação medicamentosa."],
+  ["Médico responsável", "Dr. Daniel Gomes de Figueiredo é médico cardiologista e avalia histórico, saúde e resposta ao tratamento."],
   ["Psicologia", "Considera fatores emocionais e comportamentais ligados à alimentação e à continuidade."],
   ["Nutrição", "Organiza uma estratégia alimentar possível para rotina, hábitos e objetivos."],
   ["Atividade física", "Orienta o movimento de forma progressiva e compatível com o momento atual."],
@@ -133,11 +125,10 @@ export const teamRoles = [
 ] as const;
 
 export const faqs = [
-  ["O que está incluído no protocolo?", "Consulta médica, exames, nutrição, psicologia, estética, atividade física e medicação quando indicada."],
-  ["O tratamento medicamentoso é indicado para todas as pessoas?", "Não. A indicação depende da avaliação médica e das condições de cada paciente."],
+  ["O que está incluído no protocolo?", "Consulta médica, exames, nutrição, psicologia, estética e orientações para atividade física."],
   ["O protocolo é igual para todos?", "Não. As condutas consideram histórico, saúde, rotina, dificuldades e objetivos."],
   ["Quais exames estão incluídos?", "O profissional responsável define e solicita os exames. A clínica informa a relação na avaliação."],
-  ["Quantas aplicações estão incluídas?", "A quantidade depende da avaliação e da estratégia médica."],
+  ["Como funciona o acompanhamento?", "A equipe organiza as etapas conforme a avaliação, a rotina e os objetivos de cada pessoa."],
   ["Preciso já praticar atividade física?", "Não. As orientações ajudam a inserir movimento conforme seu momento e suas possibilidades."],
   ["Posso participar mesmo já tendo tentado outros tratamentos?", "Sim. Suas tentativas anteriores serão consideradas na avaliação."],
   ["Os resultados são iguais para todas as pessoas?", "Não. A resposta varia conforme saúde, organismo, rotina e adesão ao plano."],
@@ -145,4 +136,4 @@ export const faqs = [
 ] as const;
 
 export const medicalNotice =
-  "As informações desta página possuem caráter informativo e não substituem avaliação, consulta ou orientação profissional. A participação no protocolo, a realização de procedimentos e a utilização de medicamentos dependem da avaliação individual e da indicação dos profissionais responsáveis. Os resultados podem variar conforme as condições de saúde, a resposta do organismo, a rotina e a adesão de cada pessoa ao plano.";
+  "As informações desta página possuem caráter informativo e não substituem avaliação, consulta ou orientação profissional. A participação no protocolo e a realização de procedimentos dependem da avaliação individual e da indicação dos profissionais responsáveis. Os resultados podem variar conforme as condições de saúde, a resposta do organismo, a rotina e a adesão de cada pessoa ao plano.";
