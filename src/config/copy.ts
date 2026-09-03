@@ -121,7 +121,7 @@ export const teamRoles = [
   ["Psicologia", "Considera fatores emocionais e comportamentais ligados à alimentação e à continuidade."],
   ["Nutrição", "Organiza uma estratégia alimentar possível para rotina, hábitos e objetivos."],
   ["Atividade física", "Orienta o movimento de forma progressiva e compatível com o momento atual."],
-  ["Estética", "Conecta os cuidados corporais às necessidades do protocolo."],
+  ["Estética", "Thassia Garcia é responsável pela área de estética e coordena os profissionais que realizam os procedimentos estéticos previstos no plano."],
 ] as const;
 
 export const faqs = [

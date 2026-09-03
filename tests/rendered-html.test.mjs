@@ -45,12 +45,16 @@ test("server-renders the landing page", async () => {
   assert.match(html, /Daniel Gomes de Figueiredo/i);
   assert.match(html, /Profissional definido conforme o caso/i);
   assert.match(html, /Thassia Garcia/i);
+  assert.match(html, /Responsável pela área de estética/i);
+  assert.match(html, /coordena os profissionais que realizam os procedimentos estéticos/i);
   assert.match(html, /thassia-garcia-estetica\.webp/i);
   assert.match(html, /Histórias de quem escolheu cuidar do processo por inteiro/i);
   assert.match(html, /depoimento-resultado-9kg\.jpeg/i);
   assert.match(html, /totalizando 9 kg a menos/i);
   assert.doesNotMatch(html, /Em processo de autorização|O primeiro relato será publicado/i);
   assert.match(html, /Conheça nossa estrutura na Praia da Costa/i);
+  assert.match(html, /footer-brand-lockup/i);
+  assert.match(html, /aria-label="Estética Avançada Praia da Costa"/i);
   assert.doesNotMatch(html, /Na Gio|Por isso, a Gio|Paciente Gio|Conheça a Gio|Gio Estética Avançada/i);
   assert.doesNotMatch(html, /A experiência Gio|Cuidado percebido em cada detalhe/i);
   assert.match(html, /Entenda o protocolo antes do primeiro contato/i);

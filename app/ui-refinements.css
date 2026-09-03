@@ -1039,6 +1039,12 @@ body .team-profile-content h3 {
   font-size: 1.45rem;
 }
 
+body .team-profile-content .expandable-action,
+body .team-profile-content .expandable-action svg {
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(24, 16, 28, 0.72);
+}
+
 body .team-integration {
   display: flex;
   align-items: center;

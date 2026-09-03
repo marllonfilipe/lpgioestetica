@@ -2081,9 +2081,36 @@ em {
   padding-bottom: 52px;
 }
 
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-brand-lockup {
+  display: inline-flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: 100%;
+  line-height: 1;
+}
+
 .footer-brand .brand-mark {
   color: var(--lilac-soft);
-  font-size: 3rem;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.footer-brand .brand-line {
+  display: block;
+  margin-top: 4px;
+  color: white;
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .footer-brand p {
@@ -2095,6 +2122,10 @@ em {
 .footer-pending p {
   color: #bbb2bd;
   font-size: 0.8rem;
+}
+
+.footer-brand > span:last-child {
+  margin-top: 18px;
 }
 
 .footer-links,

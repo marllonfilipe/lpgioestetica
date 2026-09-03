@@ -776,14 +776,14 @@ export default function GioLandingPage() {
                       <article key={role} className="team-area-card team-area-card-profile">
                         <img
                           src="/images/gio/thassia-garcia-estetica.webp"
-                          alt="Thassia Garcia, profissional da área de estética na Praia da Costa"
+                          alt="Thassia Garcia, responsável pela área de estética na Praia da Costa"
                           width="1365"
                           height="2048"
                           loading="lazy"
                           decoding="async"
                         />
                         <div className="team-profile-content">
-                          <span className="team-area-label">Profissional de estética</span>
+                          <span className="team-area-label">Responsável pela área de estética</span>
                           <h3>Thassia Garcia</h3>
                           <details className="expandable-details">
                             <summary className="expandable-summary">
@@ -1027,8 +1027,10 @@ export default function GioLandingPage() {
       <footer className="site-footer">
         <div className="shell footer-grid">
           <div className="footer-brand">
-            <span className="brand-mark">Estética Avançada</span>
-            <span className="brand-line">Praia da Costa</span>
+            <div className="footer-brand-lockup" aria-label="Estética Avançada Praia da Costa">
+              <span className="brand-mark">Estética Avançada</span>
+              <span className="brand-line">Praia da Costa</span>
+            </div>
             <span>{siteConfig.location}</span>
           </div>
           <div className="footer-links">
