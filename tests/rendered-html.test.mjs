@@ -1,5 +1,19 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
+
+test("mobile personalization enables grid before placing the photo above the copy", async () => {
+  const css = await readFile(new URL("../app/responsive.css", import.meta.url), "utf8");
+  const mobile = css.slice(css.lastIndexOf("@media (max-width: 680px)"));
+  const grid = mobile.match(/body main \.personalization \.personalization-grid\s*\{([^}]+)\}/)?.[1];
+
+  assert.ok(grid, "The mobile personalization layout must be explicitly defined");
+  assert.match(grid, /display:\s*grid\s*;/);
+  assert.match(grid, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*;/);
+  assert.match(grid, /grid-template-areas:\s*"photo"\s*"copy"\s*;/);
+  assert.match(mobile, /\.personalization-photo\s*\{\s*grid-area:\s*photo\s*;/);
+  assert.match(mobile, /\.personalization-copy\s*\{\s*grid-area:\s*copy\s*;/);
+});
 
 async function dispatch(path = "/", init = {}) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
