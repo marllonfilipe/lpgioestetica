@@ -1858,17 +1858,57 @@ body main .audience .audience-photo .audience-overlap {
 }
 
 @media (max-width: 680px) {
-  body main .audience .audience-grid {
+  /* Compact section spacing without consuming the reserved background photos. */
+  body main > section.section-pad:not(.hero) {
+    padding-block: 32px;
+  }
+
+  body main > section.identification.section-pad {
+    padding-block: 32px !important;
+  }
+
+  body main > section.contrast.section-pad {
+    padding-top: calc(min(56.25vw, 430px) + 32px);
+  }
+
+  body main > section.clinic-showcase.section-pad {
+    padding-top: calc(min(60vw, 360px) + 32px) !important;
+  }
+
+  body main .personalization .personalization-grid {
+    grid-template-areas: "photo" "copy";
     gap: 20px;
   }
 
+  body main .personalization .personalization-photo {
+    grid-area: photo;
+  }
+
+  body main .personalization .personalization-copy {
+    grid-area: copy;
+    padding-top: 0;
+  }
+
+  body main .audience .audience-grid {
+    gap: 16px;
+  }
+
   body main .audience .audience-photo {
-    gap: 10px;
+    gap: 8px;
   }
 
   body main .audience .audience-image {
-    aspect-ratio: 1;
-    max-height: 400px;
+    aspect-ratio: 5 / 4;
+    max-height: 320px;
+  }
+
+  body main .audience .audience-image > img {
+    transform: scale(1.25);
+    transform-origin: 50% 20%;
+  }
+
+  body main .audience .audience-copy {
+    padding-top: 8px;
   }
 
   body main .audience .audience-photo .audience-overlap {
