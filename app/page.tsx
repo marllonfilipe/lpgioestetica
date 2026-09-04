@@ -86,6 +86,8 @@ const structuredData = [
 export default function Home() {
   return (
     <>
+      {/* The visible hero is a CSS background, not the hidden decorative img. */}
+      <link rel="preload" as="image" href="/images/gio/hero-1600.webp" fetchPriority="high" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

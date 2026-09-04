@@ -299,7 +299,8 @@ export default function GioLandingPage() {
                   width="2048"
                   height="1152"
                   alt="Profissional acolhendo uma paciente em ambiente premium"
-                  fetchPriority="high"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="floating-card floating-card-top">
@@ -349,7 +350,7 @@ export default function GioLandingPage() {
                   width="1672"
                   height="941"
                   alt="Profissional avaliando medidas corporais de uma paciente durante o acompanhamento"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                 />
                 <span className="image-note">“Você se reconhece em alguma dessas situações?”</span>
@@ -819,6 +820,8 @@ export default function GioLandingPage() {
                       <article key={role} className="team-area-card team-area-card-profile">
                         <img
                           src="/images/gio/thassia-garcia-estetica.webp"
+                          srcSet="/images/gio/thassia-garcia-640-v1.webp 640w, /images/gio/thassia-garcia-960-v1.webp 960w, /images/gio/thassia-garcia-1365-v1.webp 1365w"
+                          sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 1000px) 45vw, 400px"
                           alt="Thassia Garcia, responsável pela área de estética na Praia da Costa"
                           width="1365"
                           height="2048"

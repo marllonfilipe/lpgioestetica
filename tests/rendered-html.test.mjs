@@ -3,6 +3,32 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import postcss from "postcss";
 
+test("sections do not wait for scroll-linked animations and images can revalidate", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const hosting = await readFile(new URL("../netlify.toml", import.meta.url), "utf8");
+  assert.doesNotMatch(css, /animation-timeline:\s*view\(\)/);
+  const imageHeaders = hosting.split('for = "/images/*"')[1];
+  assert.ok(imageHeaders);
+  assert.match(imageHeaders, /public, max-age=0, must-revalidate/);
+  assert.doesNotMatch(imageHeaders, /no-store|immutable/);
+  assert.doesNotMatch(hosting, /for = "\/\*"/, "A blanket no-store rule must not override asset caching");
+  assert.match(hosting, /no-cache, no-store, must-revalidate/, "HTML must still receive updates immediately");
+});
+
+test("responsive portraits preserve framing while reducing transfer and decode size", async () => {
+  const { default: sharp } = await import("sharp");
+  const original = await readFile(new URL("../public/images/gio/thassia-garcia-estetica.webp", import.meta.url));
+  const originalMetadata = await sharp(original).metadata();
+  for (const width of [640, 960, 1365]) {
+    const photo = await readFile(new URL(`../public/images/gio/thassia-garcia-${width}-v1.webp`, import.meta.url));
+    const metadata = await sharp(photo).metadata();
+    assert.equal(metadata.width, width);
+    assert.ok(Math.abs(metadata.width / metadata.height - originalMetadata.width / originalMetadata.height) < 0.001);
+    assert.ok(photo.length < original.length / 3, "Every rendition must be at least 66% smaller");
+    assert.ok(metadata.width * metadata.height < originalMetadata.width * originalMetadata.height / 6);
+  }
+});
+
 test("UI polish keeps photo cropping mobile-only and prioritizes photos", async () => {
   const css = postcss.parse(await readFile(new URL("../app/ui-polish.css", import.meta.url), "utf8"));
   const mobile = css.nodes.find((node) => node.type === "atrule" && node.params === "(max-width: 680px)");
@@ -151,6 +177,12 @@ test("server-renders the landing page", async () => {
   assert.doesNotMatch(html, /name="timeTrying"|name="priorTreatment"|name="bestTime"/i);
   assert.match(html, /images\/gio\/hero-1600\.webp/i);
   assert.match(html, /hero-768\.webp 768w/i);
+  assert.match(html, /<link[^>]+rel="preload"[^>]+as="image"[^>]+href="\/images\/gio\/hero-1600\.webp"[^>]+fetchPriority="high"/i);
+  const hiddenHero = html.match(/<img[^>]+alt="Profissional acolhendo uma paciente em ambiente premium"[^>]*>/i)?.[0];
+  assert.match(hiddenHero ?? "", /loading="lazy"/i);
+  assert.doesNotMatch(hiddenHero ?? "", /fetchPriority="high"/i);
+  assert.match(html, /thassia-garcia-640-v1\.webp 640w/);
+  assert.match(html, /thassia-garcia-1365-v1\.webp 1365w/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
