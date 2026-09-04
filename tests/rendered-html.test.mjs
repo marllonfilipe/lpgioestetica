@@ -3,6 +3,30 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import postcss from "postcss";
 
+test("button finishes retain accessible contrast, touch behavior and keyboard focus", async () => {
+  const css = await readFile(new URL("../app/ui-polish.css", import.meta.url), "utf8");
+  const theme = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  postcss.parse(css);
+  const token = (name) => theme.match(new RegExp(`${name}:\\s*(#[a-f0-9]{6})`, "i"))?.[1];
+  const luminance = (hex) => {
+    const channels = hex.slice(1).match(/../g).map((value) => parseInt(value, 16) / 255)
+      .map((value) => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  };
+  for (const [ink, fill] of [["--cta-ink", "--cta-top"], ["--cta-ink", "--cta-bottom"], ["--cta-soft-ink", "--cta-soft"]]) {
+    const levels = [luminance(token(ink)), luminance(token(fill))].sort((a, b) => a - b);
+    assert.ok((levels[1] + 0.05) / (levels[0] + 0.05) >= 4.5, `${ink} on ${fill} must remain readable`);
+  }
+  const finishes = css.slice(css.indexOf("/* Button finishes:"));
+  assert.match(finishes, /\.button\.button-outline/);
+  assert.match(finishes, /\.button:is\(\.button-beige, \.button-light\)/);
+  assert.match(finishes, /:focus-visible/);
+  assert.match(finishes, /:active/);
+  assert.match(finishes, /@media \(hover: none\)/);
+  assert.match(finishes, /\.mobile-fixed-cta \{ border-radius: 0; \}/);
+  assert.doesNotMatch(finishes, /url\(|backdrop-filter|filter:\s*blur/);
+});
+
 test("sections do not wait for scroll-linked animations and images can revalidate", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const hosting = await readFile(new URL("../netlify.toml", import.meta.url), "utf8");

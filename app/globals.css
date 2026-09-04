@@ -17,6 +17,12 @@
   --light: #f9f6fa;
   --border: #e5dde4;
   --shadow: 0 22px 70px rgba(49, 35, 55, 0.1);
+  --cta-top: #70557d;
+  --cta-bottom: #4d3659;
+  --cta-border: #644772;
+  --cta-ink: #ffffff;
+  --cta-soft: #f1ebf4;
+  --cta-soft-ink: #51395e;
   --serif: var(--font-editorial, Georgia), "Times New Roman", serif;
   --sans: var(--font-body, Inter), Arial, sans-serif;
 }

@@ -243,6 +243,133 @@ body .faq details[open] > summary svg {
   html { scroll-padding-bottom: 88px; }
 }
 
+/* Button finishes: a restrained satin surface, without extra assets or JS. */
+body :is(.button, .text-link, .editorial-callout a, .floating-whatsapp, .mobile-fixed-cta),
+body .hero .button.button-outline {
+  --button-fill: linear-gradient(160deg, var(--cta-top), var(--cta-bottom));
+  --button-hover-fill: linear-gradient(160deg, #654974, #432e4e);
+  --button-border: var(--cta-border);
+  --button-hover-border: #51365f;
+  --button-ink: var(--cta-ink);
+  border: 1px solid var(--button-border);
+  border-radius: 16px;
+  background: var(--button-fill);
+  color: var(--button-ink);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-shadow: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 4px 10px rgba(49, 35, 58, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body .button.button-outline,
+body .hero .button.button-outline {
+  --button-fill: linear-gradient(160deg, #ffffff, #f6f1f8);
+  --button-hover-fill: linear-gradient(160deg, #f8f4fa, #eae0ef);
+  --button-border: #b9a4c4;
+  --button-hover-border: #8c6b9c;
+  --button-ink: var(--cta-soft-ink);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px rgba(49, 35, 58, 0.05);
+}
+
+body .hero .button.button-outline {
+  min-height: 44px;
+  padding: 11px 19px;
+}
+
+body .button:is(.button-beige, .button-light) {
+  --button-fill: linear-gradient(160deg, #fffdf9, #eee0d1);
+  --button-hover-fill: linear-gradient(160deg, #ffffff, #f5eadd);
+  --button-border: #dbc6ae;
+  --button-hover-border: #c8ac8e;
+  --button-ink: #4d3659;
+}
+
+body .button.button-ghost-light {
+  --button-fill: rgba(255, 255, 255, 0.08);
+  --button-hover-fill: rgba(255, 255, 255, 0.16);
+  --button-border: rgba(255, 255, 255, 0.55);
+  --button-hover-border: #ffffff;
+}
+
+body .header-cta { border-radius: 12px; }
+
+body .expandable-summary .expandable-action {
+  padding: 8px 12px;
+  border: 1px solid #d8c9e0;
+  border-radius: 10px;
+  background: var(--cta-soft);
+  color: var(--cta-soft-ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: left;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+body .team .team-area-card-profile .expandable-action {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+body details[open] > .expandable-summary .expandable-action {
+  border-color: #ab90b8;
+}
+
+body .menu-button {
+  border: 1px solid #d8c9e0;
+  border-radius: 12px;
+  background: #f6f1f8;
+  color: var(--cta-soft-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body :is(.button, .text-link, .editorial-callout a, .floating-whatsapp, .mobile-fixed-cta):hover,
+  body .hero .button.button-outline:hover {
+    border-color: var(--button-hover-border);
+    background: var(--button-hover-fill);
+    color: var(--button-ink);
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 7px 16px rgba(49, 35, 58, 0.16);
+  }
+
+  body .expandable-summary:hover .expandable-action {
+    border-color: #ab90b8;
+    text-decoration: none;
+  }
+}
+
+body :is(.button, .text-link, .editorial-callout a, .floating-whatsapp, .mobile-fixed-cta):active,
+body .hero .button.button-outline:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 3px rgba(30, 19, 36, 0.16);
+}
+
+@media (hover: none) {
+  body :is(.button, .text-link, .editorial-callout a, .floating-whatsapp, .mobile-fixed-cta):hover,
+  body .hero .button.button-outline:hover {
+    background: var(--button-fill);
+    color: var(--button-ink);
+    transform: none;
+  }
+}
+
+body :is(.button, .text-link, .editorial-callout a, .floating-whatsapp, .mobile-fixed-cta):focus-visible,
+body .hero .button.button-outline:focus-visible {
+  outline: 2px solid #594263;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 3px #fff;
+}
+
+@media (max-width: 680px) {
+  /* Keep the bottom action bar flush and preserve its existing safe-area inset. */
+  body .mobile-fixed-cta { border-radius: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
 
