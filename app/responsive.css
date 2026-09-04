@@ -1707,11 +1707,11 @@ body :is(.protocol-card, .objection-card, .team-area-card, .timeline li) {
   }
 }
 
-/* Preserve the full photography and keep copy cards outside the image area. */
+/* Give the centered doctor a taller frame; keep the caption outside the photo. */
 body main .audience .audience-photo {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   gap: 14px;
   width: 100%;
   height: auto;
@@ -1731,26 +1731,37 @@ body main .audience .audience-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   gap: clamp(38px, 5vw, 72px);
-  align-items: center;
+  align-items: stretch;
 }
 
 body main .audience .audience-copy {
   width: 100%;
   max-width: none;
   margin: 0;
+  align-self: center;
 }
 
-body main .audience .audience-photo > img {
+body main .audience .audience-image {
   position: relative;
-  inset: auto;
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(460px, 40vw, 620px);
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+body main .audience .audience-image > img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: none;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: cover;
   object-position: center;
-  border-radius: 20px;
+  border-radius: inherit;
 }
 
 body main .audience .audience-photo .audience-overlap {
@@ -1787,6 +1798,15 @@ body main .audience .audience-photo .audience-overlap {
   body main .audience .audience-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
+  }
+
+  body main .audience .audience-photo {
+    grid-template-rows: auto auto;
+  }
+
+  body main .audience .audience-image {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   body main > section.contrast.section-pad {
@@ -1834,5 +1854,24 @@ body main .audience .audience-photo .audience-overlap {
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+}
+
+@media (max-width: 680px) {
+  body main .audience .audience-grid {
+    gap: 20px;
+  }
+
+  body main .audience .audience-photo {
+    gap: 10px;
+  }
+
+  body main .audience .audience-image {
+    aspect-ratio: 1;
+    max-height: 400px;
+  }
+
+  body main .audience .audience-photo .audience-overlap {
+    padding: 14px 16px;
   }
 }

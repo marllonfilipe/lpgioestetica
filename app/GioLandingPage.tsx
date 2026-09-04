@@ -468,14 +468,16 @@ export default function GioLandingPage() {
         <section id="para-quem-e" className="audience section-pad">
           <div className="shell audience-grid">
             <div className="audience-photo image-frame">
-              <img
-                src="/images/gio/protocolo-para-voce-centralizado.webp"
-                width="1672"
-                height="941"
-                alt="Profissional apresentando o protocolo personalizado"
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="audience-image">
+                <img
+                  src="/images/gio/protocolo-para-voce-centralizado.webp"
+                  width="1672"
+                  height="941"
+                  alt="Profissional apresentando o protocolo personalizado"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div className="audience-overlap">
                 Para quem deseja avaliação e acompanhamento de acordo com a própria realidade, sem uma fórmula pronta.
               </div>
