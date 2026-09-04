@@ -51,21 +51,54 @@ const teamAreaIcons = [Brain, Apple, Dumbbell, Sparkles] as const;
 export default function GioLandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const [contextualActionsVisible, setContextualActionsVisible] = useState(false);
   const [heroActionsVisible, setHeroActionsVisible] = useState(true);
   const heroActionsRef = useRef<HTMLDivElement | null>(null);
   const packageSectionRef = useRef<HTMLElement | null>(null);
   const clinicSectionRef = useRef<HTMLElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    const sections = navigation.map(({ href }) => ({ href, element: document.querySelector(href) }));
+    let frame = 0;
+    const updateNavigation = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 24);
+      const offset = Math.min(window.innerHeight * 0.3, 220);
+      const current = sections.filter(({ element }) => element && element.getBoundingClientRect().top <= offset).at(-1);
+      setActiveSection(current?.href ?? "");
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateNavigation);
+    };
+    updateNavigation();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
-    const sections = [packageSectionRef.current, clinicSectionRef.current].filter(
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+    // Content stays visible without JavaScript; only animate its first entrance.
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("has-entered");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll("main section:not(.hero) :is(.section-heading, .protocol-application-heading, .personalization-copy, .transformation-copy, .team-heading, .testimonials-heading, .faq-heading)")
+      .forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const sections = [packageSectionRef.current, clinicSectionRef.current, document.querySelector<HTMLElement>(".final-cta"), document.querySelector<HTMLElement>(".site-footer")].filter(
       (section): section is HTMLElement => Boolean(section),
     );
     if (sections.length === 0) return;
@@ -88,8 +121,15 @@ export default function GioLandingPage() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    if (menuOpen) document.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", closeOnEscape);
     };
   }, [menuOpen]);
 
@@ -148,7 +188,7 @@ export default function GioLandingPage() {
 
           <nav className="desktop-nav" aria-label="Navegação principal">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href}>
+              <a key={item.href} href={item.href} aria-current={activeSection === item.href ? "location" : undefined}>
                 {item.label}
               </a>
             ))}
@@ -166,6 +206,7 @@ export default function GioLandingPage() {
           </a>
 
           <button
+            ref={menuButtonRef}
             className="menu-button"
             type="button"
             aria-expanded={menuOpen}
@@ -180,7 +221,7 @@ export default function GioLandingPage() {
         <div id="mobile-navigation" className={`mobile-menu ${menuOpen ? "is-open" : ""}`}>
           <nav aria-label="Navegação mobile">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+              <a key={item.href} href={item.href} aria-current={activeSection === item.href ? "location" : undefined} onClick={() => setMenuOpen(false)}>
                 {item.label}
                 <ArrowRight aria-hidden="true" />
               </a>
@@ -1052,7 +1093,7 @@ export default function GioLandingPage() {
         </div>
       </footer>
 
-      {!contextualActionsVisible && !heroActionsVisible && (
+      {!menuOpen && !contextualActionsVisible && !heroActionsVisible && (
         <a
           className="floating-whatsapp"
           href={whatsappHref}
@@ -1066,7 +1107,7 @@ export default function GioLandingPage() {
         </a>
       )}
 
-      {!contextualActionsVisible && !heroActionsVisible && (
+      {!menuOpen && !contextualActionsVisible && !heroActionsVisible && (
         <a
           className="mobile-fixed-cta"
           href={whatsappHref}

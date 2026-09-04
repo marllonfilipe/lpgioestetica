@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { siteConfig } from "../src/config/site";
 import "./globals.css";
 import "./responsive.css";
+import "./ui-polish.css";
 
 const editorial = Playfair_Display({
   variable: "--font-editorial",

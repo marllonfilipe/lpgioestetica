@@ -1,0 +1,253 @@
+/* Interaction polish comes after the legacy responsive rules. */
+body .desktop-nav a {
+  position: relative;
+  transition: color 180ms ease;
+}
+
+body .desktop-nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+body .desktop-nav a[aria-current="location"] {
+  color: var(--lilac-deep);
+}
+
+body .desktop-nav a:is([aria-current="location"], :focus-visible)::after {
+  transform: scaleX(1);
+}
+
+body .mobile-menu a[aria-current="location"]:not(.button) {
+  color: var(--lilac-deep);
+  background: #eee7f0;
+}
+
+body :is(a, button, summary):focus-visible {
+  outline: 2px solid #594263;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+body :is(.button, .text-link, .editorial-callout a, .front-item) {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+body :is(.button, .text-link, .editorial-callout a, .front-item) > svg {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+
+body :is(.statement, .protocol-card, .timeline li, .objection-card, .team-area-card, .faq details) {
+  border-radius: 18px;
+  border-color: rgba(89, 66, 99, 0.16);
+}
+
+/* Informative containers stay still; their actual controls carry the feedback. */
+body :is(.statement, .timeline li, .objection-card, .team-card, .team-area-card, .final-cta-card):hover {
+  transform: none;
+}
+
+body :is(.expandable-summary, .protocol-card-summary, .faq summary) {
+  min-height: 44px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body .expandable-action {
+  min-height: 44px;
+  max-width: 100%;
+  gap: 10px;
+  line-height: 1.45;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+body .expandable-action > span {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+body :is(.expandable-action, .faq summary) > svg {
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+body .faq details[open] > summary svg {
+  transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .desktop-nav a:hover {
+    color: var(--lilac-deep);
+  }
+
+  body .desktop-nav a:hover::after {
+    transform: scaleX(1);
+  }
+
+  body :is(.button, .text-link, .editorial-callout a, .front-item):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(49, 35, 58, 0.12);
+  }
+
+  body :is(.button, .text-link, .editorial-callout a, .front-item):hover > svg {
+    transform: translateX(3px);
+  }
+
+  body .header-cta:hover > svg {
+    transform: translate(2px, -2px);
+  }
+
+  body :is(.expandable-summary, .protocol-card-summary):hover .expandable-action {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .has-entered {
+    animation: section-enter 380ms ease-out both;
+  }
+
+  details[open] > :is(.expandable-content, .audience-more-list),
+  .faq details[open] > p {
+    animation: detail-enter 200ms ease-out;
+  }
+}
+
+@keyframes section-enter {
+  from { opacity: 0.75; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes detail-enter {
+  from { opacity: 0.65; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 680px) {
+  /* Bring the photo above the section's headline without changing desktop markup. */
+  body main .identification > .shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  body main .identification .identification-layout {
+    display: contents;
+  }
+
+  body main .identification .identification-image { order: -1; }
+
+  body main .identification :is(.section-heading, .editorial-callout) {
+    margin-block: 0;
+  }
+
+  body main .protocol .protocol-intro,
+  body main .transformation .transformation-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "photo" "copy";
+    gap: 20px;
+  }
+
+  body main .protocol .protocol-intro > .protocol-photo,
+  body main .transformation .transformation-photo {
+    grid-area: photo;
+  }
+
+  body main .protocol .protocol-intro > .protocol-application-heading,
+  body main .transformation .transformation-copy {
+    grid-area: copy;
+    padding-top: 0;
+  }
+
+  body main .process .process-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  body main .process .process-thumbnails { order: -1; }
+
+  /* The people occupy the right half of these originals. Crop the empty wall,
+     keeping the same ratio and scale for all three mobile photo windows. */
+  body main .identification .identification-image,
+  body main .personalization .personalization-photo,
+  body main .transformation .transformation-photo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: 360px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  body main .identification .identification-image > img,
+  body main .personalization .personalization-photo > img,
+  body main .transformation .transformation-photo > img {
+    position: absolute;
+    inset: 0 0 auto auto;
+    display: block;
+    width: 170%;
+    max-width: none;
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: right top;
+    transform: none;
+  }
+
+  /* Keep the professional's photo before her bio, with no text over her face. */
+  body main .team .team-area-card-profile {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  body main .team .team-area-card-profile > img {
+    position: static;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 22%;
+  }
+
+  body main .team .team-area-card-profile::after { content: none; }
+
+  body main .team .team-area-card-profile .team-profile-content {
+    padding: 20px;
+    background: #3f3048;
+  }
+
+  body .mobile-fixed-cta {
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    min-height: 58px;
+  }
+
+  body .site-footer {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+
+  html { scroll-padding-bottom: 88px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+
+  body *, body *::before, body *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

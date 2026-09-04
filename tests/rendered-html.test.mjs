@@ -1,6 +1,46 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import postcss from "postcss";
+
+test("UI polish keeps photo cropping mobile-only and prioritizes photos", async () => {
+  const css = postcss.parse(await readFile(new URL("../app/ui-polish.css", import.meta.url), "utf8"));
+  const mobile = css.nodes.find((node) => node.type === "atrule" && node.params === "(max-width: 680px)");
+  assert.ok(mobile);
+  const rules = [];
+  css.walkRules((rule) => rules.push(rule));
+  for (const selector of [".identification-image > img", ".personalization-photo > img", ".transformation-photo > img"]) {
+    const crop = rules.find((rule) => rule.selector.includes(selector));
+    assert.ok(crop, selector);
+    assert.equal(crop.parent, mobile, "Desktop must retain its original framing");
+    const values = Object.fromEntries(crop.nodes.map((node) => [node.prop, node.value]));
+    assert.equal(values.width, "170%");
+    assert.equal(values.height, "auto", "Preserve the source image proportions");
+    assert.equal(values.inset, "0 0 auto auto");
+  }
+  const mobileCss = mobile.toString();
+  assert.match(mobileCss, /grid-template-areas: "photo" "copy"/);
+  assert.match(mobileCss, /\.identification-image\s*\{ order: -1;/);
+  assert.match(mobileCss, /\.process-thumbnails\s*\{ order: -1;/);
+  assert.match(mobileCss, /\.team-area-card-profile > img\s*\{\s*position: static;/);
+  assert.match(mobileCss, /safe-area-inset-bottom/);
+});
+
+test("motion is optional and navigation and expandable controls remain accessible", async () => {
+  const css = await readFile(new URL("../app/ui-polish.css", import.meta.url), "utf8");
+  const source = await readFile(new URL("../app/GioLandingPage.tsx", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  assert.ok(layout.indexOf('import "./ui-polish.css"') > layout.indexOf('import "./responsive.css"'));
+  assert.match(css, /@media \(hover: hover\) and \(pointer: fine\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(css, /animation: none !important/);
+  assert.match(css, /:focus-visible/);
+  assert.doesNotMatch(css, /opacity:\s*0\s*;/, "Content must never depend on animation to become visible");
+  assert.match(source, /aria-current=\{activeSection === item.href \? "location" : undefined\}/);
+  assert.match(source, /event.key !== "Escape"/);
+  assert.match(source, /observer.unobserve\(entry.target\)/);
+  assert.match(source, /!menuOpen && !contextualActionsVisible && !heroActionsVisible/);
+});
 
 test("mobile hero fills its photo layer and centers both women", async () => {
   const css = await readFile(new URL("../app/responsive.css", import.meta.url), "utf8");
