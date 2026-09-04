@@ -2,6 +2,20 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+test("mobile hero fills its photo layer and centers both women", async () => {
+  const css = await readFile(new URL("../app/responsive.css", import.meta.url), "utf8");
+  const mobile = css.slice(css.lastIndexOf("@media (max-width: 680px)"));
+  const hero = mobile.match(/body main > \.hero\.section-pad::before\s*\{([^}]+)\}/)?.[1];
+
+  assert.ok(hero, "Hero framing must be scoped to mobile");
+  assert.match(hero, /display:\s*block\s*;/);
+  assert.match(hero, /inset:\s*72px 0 auto\s*;/);
+  assert.match(hero, /width:\s*100%\s*;/);
+  assert.match(hero, /height:\s*260px\s*;/);
+  assert.match(hero, /background-size:\s*100% 100%,\s*185% auto\s*;/);
+  assert.match(hero, /background-position:\s*center,\s*98% 35%\s*;/);
+});
+
 test("mobile personalization enables grid before placing the photo above the copy", async () => {
   const css = await readFile(new URL("../app/responsive.css", import.meta.url), "utf8");
   const mobile = css.slice(css.lastIndexOf("@media (max-width: 680px)"));

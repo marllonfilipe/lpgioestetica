@@ -1858,6 +1858,30 @@ body main .audience .audience-photo .audience-overlap {
 }
 
 @media (max-width: 680px) {
+  /* A bounded photo layer fills mobile width while centering both women. */
+  body main > .hero.section-pad {
+    background-image: none;
+  }
+
+  body main > .hero.section-pad::before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 72px 0 auto;
+    width: 100%;
+    height: 260px;
+    border: 0;
+    border-radius: 0;
+    opacity: 1;
+    background-image:
+      linear-gradient(180deg, rgba(243, 237, 243, 0) 0%, rgba(243, 237, 243, 0.08) 72%, #f3edf3 100%),
+      url("/images/gio/hero-1600.webp");
+    background-size: 100% 100%, 185% auto;
+    background-position: center, 98% 35%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
   /* Compact section spacing without consuming the reserved background photos. */
   body main > section.section-pad:not(.hero) {
     padding-block: 32px;
